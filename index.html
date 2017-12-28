@@ -447,7 +447,19 @@
     </a>
     &ensp;&ensp;&ensp;
     <var id="lang">jQuery</var>
-    <img alt="" id="logo" src="nj.png" height="60" width="60"/>
+    <script>
+    var inverted = false;
+    function invert() {
+      if(!inverted) {
+        document.body.style = 'filter: invert(100%);';
+        inverted = true;
+      } else {
+        document.body.style = 'filter: invert(0%);';
+        inverted = false;
+      }
+    }
+    </script>
+    <img alt="" id="logo" src="nj.png" height="60" width="60" onclick="invert()"/>
   </nav>
  
   <script>
