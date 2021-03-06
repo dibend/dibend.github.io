@@ -150,6 +150,11 @@
     <li><a href="https://github.com/dibend">Open Source Projects</a></li>
   </ul>`;
 
+  var domainText = `
+  <h1>Domains</h1>
+  <br/>
+  The domain you were redirected from may be for sale. Email offers to <a href="mailto:domains@njweb.solutions">domains@njweb.solutions</a>`
+
   var nextPage;
   var prevPage;
 
@@ -286,6 +291,20 @@
       seo();
     };
   }
+
+  function domains() {
+    $("#pageText").html(domainsText);
+    $(".active").attr('class', '');
+    $("#pfNav").attr('class', 'active');
+    hoverPop();
+    history.pushState(null, null, '/domains');
+    nextPage = function() { 
+      home();
+    };
+    prevPage = function() { 
+      home();
+    };
+  }
   </script>
 
   <style>
@@ -417,6 +436,9 @@
         break;
       case '/portfolio':
         pf();
+        break;
+      case '/domains':
+        domains();
         break;
       default:
         home();
