@@ -155,6 +155,15 @@
   <br/>
   The domain you were redirected from may be for sale. Email offers to <a href="mailto:domains@njweb.solutions">domains@njweb.solutions</a>`
 
+  var certsText = `
+  <h1>Certificates</h1>
+  <br/>
+  <a href="https://www.coursera.org/account/accomplishments/certificate/YARTWTEHFU3B">Linux for Developers - Linux Foundation</a><br>
+  <a href="https://www.coursera.org/account/accomplishments/certificate/7LMCU36DENKM">Palo Alto Networks Academy Cybersecurity Foundation</a><br>
+  <a href="https://www.coursera.org/account/accomplishments/certificate/GMA3DZ44ZB2B">IT Security: Defense against the digital dark arts - Google</a><br>
+  <a href="https://www.coursera.org/account/accomplishments/certificate/FFUT6SSDGSPH">AWS Fundamentals: Going Cloud-Native - Amazon Web Services</a><br>
+  <a href="https://courses.edx.org/certificates/5d8db41035b54efdbf19145d6ac6c23c">CS198.1x: Bitcoin and Cryptocurrencies - UC Berkeley</a><br>`
+
   var nextPage;
   var prevPage;
 
@@ -304,6 +313,19 @@
       home();
     };
   }
+
+  function certs() {
+    $("#pageText").html(certsText);
+    $(".active").attr('class', '');
+    hoverPop();
+    history.pushState(null, null, '/certs');
+    nextPage = function() { 
+      home();
+    };
+    prevPage = function() { 
+      home();
+    };
+  }
   </script>
 
   <style>
@@ -438,6 +460,9 @@
         break;
       case '/domains':
         domains();
+        break;
+      case '/certs':
+        certs();
         break;
       default:
         home();
