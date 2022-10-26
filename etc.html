@@ -26,24 +26,23 @@
         xmlHttp.send(null);
       }
 
-      function neoxaStats(responseText) {
-        var neoxaJSON = JSON.parse(responseText);
-        console.log(neoxaJSON);
+      function etcStats(responseText) {
+        var etcJSON = JSON.parse(responseText);
         document.body.innerHTML +=
-          parseInt(neoxaJSON['24hreward']) / 1000000000 +
+          parseInt(etcJSON['24hreward']) / 1000000000 +
           ' Ethereum Classic mined in the last 24 hours.<br><br>' +
           'Current Hashrate: ' +
-          neoxaJSON.currentHashrate +
+          etcJSON.currentHashrate +
           'H/s<br><br>';
-        Object.keys(neoxaJSON.workers).forEach((worker) => {
+        Object.keys(etcJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
-            worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
+            worker + ': ' + etcJSON.workers[worker].hr + 'H/s<br><br>';
         });
       }
 
       httpGetAsync(
         'https://etc.2miners.com/api/accounts/0x3674b0c17defe6d23346601a037dee2e683c9cdc',
-        neoxaStats
+        etcStats
       );
     </script>
   </body>
