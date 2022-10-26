@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlastMining.net Neoxa Stats</title>
+  </head>
+  <body>
+    <img
+      src="https://neoxa.net/wp-content/uploads/2022/10/Neoxa_Logo_1080p-1.png"
+      width="5%"
+    />
+    <h1><a href="https://blastmining.net">BlastMining.net</a> Neoxa Stats</h1>
+    <script>
+      function httpGetAsync(theUrl, callback) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+        };
+        xmlHttp.open('GET', theUrl, true); // true for asynchronous
+        xmlHttp.send(null);
+      }
+
+      function neoxaStats(responseText) {
+        var neoxaJSON = JSON.parse(responseText);
+        console.log(neoxaJSON);
+        document.body.innerHTML +=
+          neoxaJSON['24hnumreward'] +
+          ' Neoxa mined in the last 24 hours.<br><br>' +
+          'Current Hashrate: ' +
+          neoxaJSON.currentHashrate +
+          'H/s<br><br>';
+        Object.keys(neoxaJSON.workers).forEach((worker) => {
+          document.body.innerHTML +=
+            worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
+        });
+      }
+
+      httpGetAsync(
+        'https://neox.2miners.com/api/accounts/GQhCSYtZzDyVZt99x7kUhGD21oLc9aH1CN',
+        neoxaStats
+      );
+    </script>
+  </body>
+</html>
