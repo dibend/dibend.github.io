@@ -22,7 +22,6 @@
 
       function grinStats(responseText) {
         var grinJSON = JSON.parse(responseText);
-        console.log(grinJSON);
         document.body.innerHTML +=
           parseInt(grinJSON['24hreward']) / 1000000000 +
           ' Grin mined in the last 24 hours.<br><br> Mining at ' +
