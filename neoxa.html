@@ -27,7 +27,7 @@
         var neoxaJSON = JSON.parse(responseText);
         console.log(neoxaJSON);
         document.body.innerHTML +=
-          neoxaJSON['24hnumreward'] +
+          parseInt(neoxaJSON['24hreward']) / 100000000 +
           ' Neoxa mined in the last 24 hours.<br><br>' +
           'Current Hashrate: ' +
           neoxaJSON.currentHashrate +
