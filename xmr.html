@@ -27,7 +27,7 @@
       function moneroStats(responseText) {
         var moneroJSON = JSON.parse(responseText);
         document.body.innerHTML +=
-          parseInt(moneroJSON['24hreward']) / 100000000 +
+          parseInt(moneroJSON['24hreward']) / 1000000000000 +
           ' Monero mined in the last 24 hours.<br><br>' +
           'Current Hashrate: ' +
           moneroJSON.currentHashrate +
