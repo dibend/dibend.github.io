@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlastMining.net Monero Stats</title>
     <style>
-      body { 
+      body {
         font-family: Inconsolata, monospace;
         font-size: 1.5rem;
       }
@@ -17,10 +16,7 @@
     </style>
   </head>
   <body>
-    <img
-      src="https://www.getmonero.org/img/monero-logo.png"
-      width="10%"
-    />
+    <img src="https://www.getmonero.org/img/monero-logo.png" width="10%" />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Monero Stats</h1>
     <script>
       function httpGetAsync(theUrl, callback) {
@@ -32,21 +28,23 @@
         xmlHttp.open('GET', theUrl, true); // true for asynchronous
         xmlHttp.send(null);
       }
-
       function moneroStats(responseText) {
         var moneroJSON = JSON.parse(responseText);
+        moneroJSON.sumrewards.forEach((sumreward) => {
+          document.body.innerHTML +=
+            'Mined ' +
+            sumreward.reward / 1000000000000 +
+            ' Monero in the ' +
+            sumreward.name +
+            '<br><br>';
+        });
         document.body.innerHTML +=
-          parseInt(moneroJSON['24hreward']) / 1000000000000 +
-          ' Monero mined in the last 24 hours.<br><br>' +
-          'Current Hashrate: ' +
-          moneroJSON.currentHashrate +
-          'H/s<br><br>';
+          'Current Hashrate: ' + moneroJSON.currentHashrate + 'H/s<br><br>';
         Object.keys(moneroJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + moneroJSON.workers[worker].hr + 'H/s<br><br>';
         });
       }
-
       httpGetAsync(
         'https://xmr.2miners.com/api/accounts/42L4oBG4UAMY5ngPesipqLF4CUd1HjHJ7Rjv7o4vuxnRAYyvS2WEpErNGHjt55JPBQ7ik752KZgbebhBW6SU2eCRN8ME1tw',
         moneroStats
