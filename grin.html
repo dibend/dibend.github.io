@@ -28,16 +28,21 @@
         xmlHttp.open('GET', theUrl, true); // true for asynchronous
         xmlHttp.send(null);
       }
-
       function grinStats(responseText) {
         var grinJSON = JSON.parse(responseText);
+        grinJSON.sumrewards.forEach((sumreward) => {
+          document.body.innerHTML +=
+            'Mined ' +
+            sumreward.reward / 1000000000 +
+            ' Grin in the ' +
+            sumreward.name +
+            '<br><br>';
+        });
         document.body.innerHTML +=
-          parseInt(grinJSON['24hreward']) / 1000000000 +
-          ' Grin mined in the last 24 hours.<br><br> Mining at ' +
+          'Mining at ' +
           grinJSON.currentHashrates[32] +
           ' graphs per second.<br><br>';
       }
-
       httpGetAsync(
         'https://grin.2miners.com/api/accounts/grin17cha4wcp3872udu0vr894lzdpnywpdrhcynve8dqun6k0x5ex4qqgehl6s',
         grinStats
