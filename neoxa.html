@@ -31,7 +31,6 @@
         xmlHttp.open('GET', theUrl, true); // true for asynchronous
         xmlHttp.send(null);
       }
-
       function neoxaStats(responseText) {
         var neoxaJSON = JSON.parse(responseText);
         neoxaJSON.sumrewards.forEach((sumreward) => {
@@ -62,7 +61,6 @@
             '</a><br><br>';
         });
       }
-
       httpGetAsync(
         'https://neox.2miners.com/api/accounts/GQhCSYtZzDyVZt99x7kUhGD21oLc9aH1CN',
         neoxaStats
