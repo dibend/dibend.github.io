@@ -34,12 +34,16 @@
 
       function neoxaStats(responseText) {
         var neoxaJSON = JSON.parse(responseText);
+        neoxaJSON.sumrewards.forEach((sumreward) => {
+          document.body.innerHTML +=
+            'Mined ' +
+            sumreward.reward / 100000000 +
+            ' Neoxa in the ' +
+            sumreward.name +
+            '<br><br>';
+        });
         document.body.innerHTML +=
-          parseInt(neoxaJSON['24hreward']) / 100000000 +
-          ' Neoxa mined in the last 24 hours.<br><br>' +
-          'Current Hashrate: ' +
-          neoxaJSON.currentHashrate +
-          'H/s<br><br>';
+          'Current Hashrate: ' + neoxaJSON.currentHashrate + 'H/s<br><br>';
         Object.keys(neoxaJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
