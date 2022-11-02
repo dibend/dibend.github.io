@@ -45,7 +45,10 @@
             '<br><br>';
         });
         document.body.innerHTML +=
-          'Current Hashrate: ' + etcJSON.currentHashrate + 'H/s<br><br>';
+          etcJSON.stats.paid / 1000000000 +
+          ' Ethereum Classic paid in total<br><br>Current Hashrate: ' +
+          etcJSON.currentHashrate +
+          'H/s<br><br>';
         Object.keys(etcJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + etcJSON.workers[worker].hr + 'H/s<br><br>';
