@@ -39,7 +39,10 @@
             '<br><br>';
         });
         document.body.innerHTML +=
-          'Current Hashrate: ' + moneroJSON.currentHashrate + 'H/s<br><br>';
+          moneroJSON.stats.paid / 1000000000000 +
+          ' Monero paid in total<br><br>Current Hashrate: ' +
+          etcJSON.currentHashrate +
+          'H/s<br><br>';
         Object.keys(moneroJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + moneroJSON.workers[worker].hr + 'H/s<br><br>';
