@@ -42,7 +42,10 @@
             '<br><br>';
         });
         document.body.innerHTML +=
-          'Current Hashrate: ' + neoxaJSON.currentHashrate + 'H/s<br><br>';
+          neoxaJSON.stats.paid / 100000000 +
+          ' Neoxa paid in total.<br><br>Current Hashrate: ' +
+          neoxaJSON.currentHashrate +
+          'H/s<br><br>';
         Object.keys(neoxaJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
