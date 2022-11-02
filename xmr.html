@@ -38,11 +38,15 @@
             sumreward.name +
             '<br><br>';
         });
+        var lastShare = new Date(0);
+        lastShare.setUTCSeconds(moneroJSON.stats.lastShare);
         document.body.innerHTML +=
           moneroJSON.stats.paid / 1000000000000 +
           ' Monero paid in total<br><br>Current Hashrate: ' +
           moneroJSON.currentHashrate +
-          'H/s<br><br>';
+          'H/s<br><br>Last share: ' +
+          lastShare.toLocaleString() +
+          '<br><br>';
         Object.keys(moneroJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + moneroJSON.workers[worker].hr + 'H/s<br><br>';
