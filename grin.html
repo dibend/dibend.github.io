@@ -39,7 +39,7 @@
             '<br><br>';
         });
         var lastShare = new Date(0);
-        lastShare.setUTCSeconds(etcJSON.stats.lastShare);
+        lastShare.setUTCSeconds(grinJSON.stats.lastShare);
         document.body.innerHTML +=
           grinJSON.stats.paid / 1000000000 +
           ' Grin paid in total<br><br>Mining at ' +
