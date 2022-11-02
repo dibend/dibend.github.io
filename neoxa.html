@@ -41,11 +41,15 @@
             sumreward.name +
             '<br><br>';
         });
+        var lastShare = new Date(0);
+        lastShare.setUTCSeconds(neoxaJSON.stats.lastShare);
         document.body.innerHTML +=
           neoxaJSON.stats.paid / 100000000 +
           ' Neoxa paid in total<br><br>Current Hashrate: ' +
           neoxaJSON.currentHashrate +
-          'H/s<br><br>';
+          'H/s<br><br>Last share: ' +
+          lastShare.toLocaleString() +
+          '<br><br>';
         Object.keys(neoxaJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
