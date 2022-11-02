@@ -38,11 +38,15 @@
             sumreward.name +
             '<br><br>';
         });
+        var lastShare = new Date(0);
+        lastShare.setUTCSeconds(etcJSON.stats.lastShare);
         document.body.innerHTML +=
           grinJSON.stats.paid / 1000000000 +
           ' Grin paid in total<br><br>Mining at ' +
           grinJSON.currentHashrates[32] +
-          ' graphs per second<br><br>';
+          ' graphs per second<br><br>Last share: ' +
+          lastShare.toLocaleString() +
+          '<br><br>';
       }
       httpGetAsync(
         'https://grin.2miners.com/api/accounts/grin17cha4wcp3872udu0vr894lzdpnywpdrhcynve8dqun6k0x5ex4qqgehl6s',
