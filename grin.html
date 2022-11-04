@@ -13,12 +13,59 @@
       h1 {
         font-size: 2rem;
       }
+      button {
+        font-family: Inconsolata, monospace;
+        font-size: 1.5rem;
+      }
     </style>
   </head>
   <body>
     <img src="https://cryptologos.cc/logos/grin-grin-logo.svg" width="5%" />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Grin Stats</h1>
     <script>
+      var grinJSON;
+      var numBlocks = 0;
+      var upToBlock = 10;
+      function loadBlocks() {
+        var loadBlocksButton = document.getElementById('moreBlocks');
+        if (loadBlocksButton !== null) {
+          document.getElementById('moreBlocks').outerHTML = '';
+        }
+        for (
+          ;
+          numBlocks < Math.min(upToBlock, grinJSON.rewards.length);
+          numBlocks++
+        ) {
+          var blocktime = new Date(0);
+          var reward = grinJSON.rewards[numBlocks];
+          blocktime.setUTCSeconds(reward.timestamp);
+          document.body.innerHTML +=
+            'Block Height: <a href="https://grinexplorer.net/block/' +
+            reward.blockhash +
+            '">' +
+            reward.blockheight +
+            '</a><br>Timestamp: ' +
+            blocktime.toLocaleString() +
+            '<br>Reward: ' +
+            reward.reward / 1000000000 +
+            ' Grin<br>Share Percent: ' +
+            reward.percent * 100 +
+            '%<br>';
+          if (reward.immature) {
+            document.body.innerHTML += 'Status: Immature';
+          } else {
+            document.body.innerHTML += 'Status: Mature';
+          }
+          if (reward.orphan) {
+            document.body.innerHTML += '<br>Orphan Block';
+          }
+          document.body.innerHTML += '<br><br>';
+        }
+        document.body.innerHTML +=
+          '<button id="moreBlocks">Load more blocks</button>';
+        document.getElementById('moreBlocks').onclick = loadBlocks;
+        upToBlock += 10;
+      }
       function httpGetAsync(theUrl, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
@@ -29,7 +76,7 @@
         xmlHttp.send(null);
       }
       function grinStats(responseText) {
-        var grinJSON = JSON.parse(responseText);
+        grinJSON = JSON.parse(responseText);
         grinJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=
             'Mined ' +
@@ -46,7 +93,18 @@
           grinJSON.currentHashrates[32] +
           ' graphs per second<br><br>Last share: ' +
           lastShare.toLocaleString() +
-          '<br><br>';
+          '<br><h4>Most Recent Payments</h4>';
+        grinJSON.payments.forEach((payment) => {
+          var time = new Date(0);
+          time.setUTCSeconds(payment.timestamp);
+          document.body.innerHTML +=
+            payment.amount / 1000000000 +
+            ' Grin ' +
+            time.toLocaleString() +
+            '<br><br>';
+        });
+        document.body.innerHTML += '<h4>Blocks</h4>';
+        loadBlocks();
       }
       httpGetAsync(
         'https://grin.2miners.com/api/accounts/grin17cha4wcp3872udu0vr894lzdpnywpdrhcynve8dqun6k0x5ex4qqgehl6s',
