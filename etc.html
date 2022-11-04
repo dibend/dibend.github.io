@@ -94,8 +94,15 @@
             sumreward.name +
             '<br><br>';
         });
+        var lastShare = new Date(0);
+        lastShare.setUTCSeconds(etcJSON.stats.lastShare);
         document.body.innerHTML +=
-          'Current Hashrate: ' + etcJSON.currentHashrate + 'H/s<br><br>';
+          etcJSON.stats.paid / 100000000 +
+          ' Ethereum Classic paid in total<br><br>Current Hashrate: ' +
+          etcJSON.currentHashrate +
+          'H/s<br><br>Last share: ' +
+          lastShare.toLocaleString() +
+          '<br><br>';
         Object.keys(etcJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + etcJSON.workers[worker].hr + 'H/s<br><br>';
