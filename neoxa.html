@@ -68,9 +68,6 @@
         document.getElementById('moreBlocks').onclick = loadBlocks;
         upToBlock += 10;
       }
-      function timeout(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      }
       function httpGetAsync(theUrl, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
