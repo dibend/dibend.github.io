@@ -33,13 +33,13 @@
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
         }
-        neoxaJSON.rewards.every((reward) => {
-          if (numBlocks > upToBlock) {
-            upToBlock += 10;
-            return false;
-          }
-          numBlocks++;
+        for (
+          ;
+          numBlocks < Math.min(upToBlock, neoxaJSON.rewards.length);
+          numBlocks++
+        ) {
           var blocktime = new Date(0);
+          var reward = neoxaJSON.rewards[numBlocks];
           blocktime.setUTCSeconds(reward.timestamp);
           document.body.innerHTML +=
             'Block Height: ' +
@@ -60,11 +60,11 @@
             document.body.innerHTML += '<br>Orphan Block';
           }
           document.body.innerHTML += '<br><br>';
-          return true;
-        });
+        }
         document.body.innerHTML +=
           '<button id="moreBlocks">Load more blocks</button>';
         document.getElementById('moreBlocks').onclick = loadBlocks;
+        upToBlock += 10;
       }
       function timeout(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
