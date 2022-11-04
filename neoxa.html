@@ -13,6 +13,9 @@
       h1 {
         font-size: 2rem;
       }
+      button {
+        font-size: 1.5rem;
+      }
     </style>
   </head>
   <body>
@@ -22,6 +25,49 @@
     />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Neoxa Stats</h1>
     <script>
+      var neoxaJSON;
+      var numBlocks = 0;
+      var upToBlock = 10;
+      function loadBlocks() {
+        try {
+          document.getElementById('moreBlocks').outerHTML = '';
+        } catch {}
+        neoxaJSON.rewards.every((reward) => {
+          if (numBlocks > upToBlock) {
+            upToBlock += 10;
+            return false;
+          }
+          numBlocks++;
+          var blocktime = new Date(0);
+          blocktime.setUTCSeconds(reward.timestamp);
+          document.body.innerHTML +=
+            'Block Height: ' +
+            reward.blockheight +
+            '<br>Timestamp: ' +
+            blocktime.toLocaleString() +
+            '<br>Reward: ' +
+            reward.reward / 100000000 +
+            '<br>Share Percent: ' +
+            reward.percent * 100 +
+            '<br>';
+          if (reward.immature) {
+            document.body.innerHTML += 'Status: Immature';
+          } else {
+            document.body.innerHTML += 'Status: Mature';
+          }
+          if (reward.orphan) {
+            document.body.innerHTML += '<br>Orphan Block';
+          }
+          document.body.innerHTML += '<br><br>';
+          return true;
+        });
+        document.body.innerHTML +=
+          '<button id="moreBlocks">Load more blocks</button>';
+        document.getElementById('moreBlocks').onclick = loadBlocks;
+      }
+      function timeout(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
       function httpGetAsync(theUrl, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
@@ -32,7 +78,7 @@
         xmlHttp.send(null);
       }
       function neoxaStats(responseText) {
-        var neoxaJSON = JSON.parse(responseText);
+        neoxaJSON = JSON.parse(responseText);
         neoxaJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=
             'Mined ' +
@@ -67,6 +113,8 @@
             time.toLocaleString() +
             '</a><br><br>';
         });
+        document.body.innerHTML += '<h4>Blocks</h4>';
+        loadBlocks();
       }
       httpGetAsync(
         'https://neox.2miners.com/api/accounts/GQhCSYtZzDyVZt99x7kUhGD21oLc9aH1CN',
