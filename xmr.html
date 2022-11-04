@@ -19,6 +19,49 @@
     <img src="https://www.getmonero.org/img/monero-logo.png" width="10%" />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Monero Stats</h1>
     <script>
+      var moneroJSON;
+      var numBlocks = 0;
+      var upToBlock = 10;
+      function loadBlocks() {
+        var loadBlocksButton = document.getElementById('moreBlocks');
+        if (loadBlocksButton !== null) {
+          document.getElementById('moreBlocks').outerHTML = '';
+        }
+        for (
+          ;
+          numBlocks < Math.min(upToBlock, moneroJSON.rewards.length);
+          numBlocks++
+        ) {
+          var blocktime = new Date(0);
+          var reward = moneroJSON.rewards[numBlocks];
+          blocktime.setUTCSeconds(reward.timestamp);
+          document.body.innerHTML +=
+            'Block Height: <a href="https://xmrchain.com/block/' +
+            reward.blockhash +
+            '">' +
+            reward.blockheight +
+            '</a><br>Timestamp: ' +
+            blocktime.toLocaleString() +
+            '<br>Reward: ' +
+            reward.reward / 100000000 +
+            ' Monero<br>Share Percent: ' +
+            reward.percent * 100 +
+            '%<br>';
+          if (reward.immature) {
+            document.body.innerHTML += 'Status: Immature';
+          } else {
+            document.body.innerHTML += 'Status: Mature';
+          }
+          if (reward.orphan) {
+            document.body.innerHTML += '<br>Orphan Block';
+          }
+          document.body.innerHTML += '<br><br>';
+        }
+        document.body.innerHTML +=
+          '<button id="moreBlocks">Load more blocks</button>';
+        document.getElementById('moreBlocks').onclick = loadBlocks;
+        upToBlock += 10;
+      }
       function httpGetAsync(theUrl, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
@@ -29,7 +72,7 @@
         xmlHttp.send(null);
       }
       function moneroStats(responseText) {
-        var moneroJSON = JSON.parse(responseText);
+        moneroJSON = JSON.parse(responseText);
         moneroJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=
             'Mined ' +
@@ -51,6 +94,21 @@
           document.body.innerHTML +=
             worker + ': ' + moneroJSON.workers[worker].hr + 'H/s<br><br>';
         });
+        document.body.innerHTML += '<h4>Most Recent Payments</h4>';
+        moneroJSON.payments.forEach((payment) => {
+          var time = new Date(0);
+          time.setUTCSeconds(payment.timestamp);
+          document.body.innerHTML +=
+            '<a href = "https://xmrchain.com/tx/' +
+            payment.tx +
+            '">' +
+            payment.amount / 1000000000000 +
+            ' Monero ' +
+            time.toLocaleString() +
+            '</a><br><br>';
+        });
+        document.body.innerHTML += '<h4>Blocks</h4>';
+        loadBlocks();
       }
       httpGetAsync(
         'https://xmr.2miners.com/api/accounts/42L4oBG4UAMY5ngPesipqLF4CUd1HjHJ7Rjv7o4vuxnRAYyvS2WEpErNGHjt55JPBQ7ik752KZgbebhBW6SU2eCRN8ME1tw',
