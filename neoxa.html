@@ -14,7 +14,6 @@
         font-size: 2rem;
       }
       button {
-        font-family: Inconsolata, monospace;
         font-size: 1.5rem;
       }
     </style>
@@ -32,7 +31,7 @@
       function loadBlocks() {
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
-          loadBlocksButton.outerHTML = '';
+          document.getElementById('moreBlocks').outerHTML = '';
         }
         for (
           ;
@@ -64,9 +63,11 @@
           }
           document.body.innerHTML += '<br><br>';
         }
-        document.body.innerHTML +=
-          '<button id="moreBlocks">Load more blocks</button>';
-        document.getElementById('moreBlocks').onclick = loadBlocks;
+        if (upToBlock < neoxaJSON.rewards.length) {
+          document.body.innerHTML +=
+            '<button id="moreBlocks">Load more blocks</button>';
+          document.getElementById('moreBlocks').onclick = loadBlocks;
+        }
         upToBlock += 10;
       }
       function httpGetAsync(theUrl, callback) {
