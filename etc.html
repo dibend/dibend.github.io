@@ -13,6 +13,10 @@
       h1 {
         font-size: 2rem;
       }
+      button {
+        font-family: Inconsolata, monospace;
+        font-size: 1.5rem;
+      }
     </style>
   </head>
   <body>
@@ -25,6 +29,52 @@
       Stats
     </h1>
     <script>
+      var etcJSON;
+      var numBlocks = 0;
+      var upToBlock = 10;
+      function loadBlocks() {
+        var loadBlocksButton = document.getElementById('moreBlocks');
+        if (loadBlocksButton !== null) {
+          document.getElementById('moreBlocks').outerHTML = '';
+        }
+        for (
+          ;
+          numBlocks < Math.min(upToBlock, etcJSON.rewards.length);
+          numBlocks++
+        ) {
+          var blocktime = new Date(0);
+          var reward = etcJSON.rewards[numBlocks];
+          blocktime.setUTCSeconds(reward.timestamp);
+          document.body.innerHTML +=
+            'Block Height: <a href="https://etcblockexplorer.com/block/' +
+            reward.blockheight +
+            '">' +
+            reward.blockheight +
+            '</a><br>Timestamp: ' +
+            blocktime.toLocaleString() +
+            '<br>Reward: ' +
+            reward.reward / 100000000 +
+            ' Ethereum Classic<br>Share Percent: ' +
+            reward.percent * 100 +
+            '%<br>';
+          if (reward.immature) {
+            document.body.innerHTML += 'Status: Immature';
+          } else {
+            document.body.innerHTML += 'Status: Mature';
+          }
+          if (reward.orphan) {
+            document.body.innerHTML += '<br>Orphan Block';
+          }
+          if (reward.uncle) {
+            document.body.innerHTML += '<br>Uncle Block';
+          }
+          document.body.innerHTML += '<br><br>';
+        }
+        document.body.innerHTML +=
+          '<button id="moreBlocks">Load more blocks</button>';
+        document.getElementById('moreBlocks').onclick = loadBlocks;
+        upToBlock += 10;
+      }
       function httpGetAsync(theUrl, callback) {
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
@@ -35,7 +85,7 @@
         xmlHttp.send(null);
       }
       function etcStats(responseText) {
-        var etcJSON = JSON.parse(responseText);
+        etcJSON = JSON.parse(responseText);
         etcJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=
             'Mined ' +
@@ -44,15 +94,8 @@
             sumreward.name +
             '<br><br>';
         });
-        var lastShare = new Date(0);
-        lastShare.setUTCSeconds(etcJSON.stats.lastShare);
         document.body.innerHTML +=
-          etcJSON.stats.paid / 1000000000 +
-          ' Ethereum Classic paid in total<br><br>Current Hashrate: ' +
-          etcJSON.currentHashrate +
-          'H/s<br><br>Last share: ' +
-          lastShare.toLocaleString() +
-          '<br><br>';
+          'Current Hashrate: ' + etcJSON.currentHashrate + 'H/s<br><br>';
         Object.keys(etcJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             worker + ': ' + etcJSON.workers[worker].hr + 'H/s<br><br>';
@@ -70,6 +113,8 @@
             time.toLocaleString() +
             '</a><br><br>';
         });
+        document.body.innerHTML += '<h4>Blocks</h4>';
+        loadBlocks();
       }
       httpGetAsync(
         'https://etc.2miners.com/api/accounts/0x3674b0c17defe6d23346601a037dee2e683c9cdc',
