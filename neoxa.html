@@ -42,15 +42,17 @@
           var reward = neoxaJSON.rewards[numBlocks];
           blocktime.setUTCSeconds(reward.timestamp);
           document.body.innerHTML +=
-            'Block Height: ' +
+            'Block Height: <a href="https://neoxa.cryptoscope.io/block/?blockheight=' +
             reward.blockheight +
-            '<br>Timestamp: ' +
+            '">' +
+            reward.blockheight +
+            '</a><br>Timestamp: ' +
             blocktime.toLocaleString() +
             '<br>Reward: ' +
             reward.reward / 100000000 +
-            '<br>Share Percent: ' +
+            ' Neoxa<br>Share Percent: ' +
             reward.percent * 100 +
-            '<br>';
+            '%<br>';
           if (reward.immature) {
             document.body.innerHTML += 'Status: Immature';
           } else {
