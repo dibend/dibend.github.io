@@ -70,9 +70,11 @@
           }
           document.body.innerHTML += '<br><br>';
         }
-        document.body.innerHTML +=
-          '<button id="moreBlocks">Load more blocks</button>';
-        document.getElementById('moreBlocks').onclick = loadBlocks;
+        if (upToBlock < etcJSON.rewards.length) {
+          document.body.innerHTML +=
+            '<button id="moreBlocks">Load more blocks</button>';
+          document.getElementById('moreBlocks').onclick = loadBlocks;
+        }
         upToBlock += 10;
       }
       function httpGetAsync(theUrl, callback) {
