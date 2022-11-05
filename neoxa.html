@@ -52,13 +52,13 @@
     />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Neoxa Stats</h1>
     <script>
-      var beep = new Audio('beep.mp3');
+      var explode = new Audio('explode.wav');
       var neoxaJSON;
       var numBlocks = 0;
       var upToBlock = 10;
       function loadBlocks() {
-        beep.play();
-        beep.currentTime = 0;
+        explode.play();
+        explode.currentTime = 0;
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
