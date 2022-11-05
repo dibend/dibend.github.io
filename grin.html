@@ -19,9 +19,21 @@
       button {
         font-family: Inconsolata, monospace;
         font-size: 1.5rem;
-        background-color: black;
-        color: #dbf227;
-        text-shadow: 2px 2px white;
+        background-color: #45f91b;
+        color: black;
+        text-shadow: 2px 2px #dbf227;
+        font-weight: bold;
+        box-shadow: 3px 3px 3px black;
+      }
+      @media (min-width: 768px) {
+        button:hover {
+          box-shadow: 5px 5px 5px black;
+          border: solid black;
+        }
+        a:hover {
+          color: #45f91b;
+          text-shadow: 2px 2px 2px black;
+        }
       }
     </style>
   </head>
