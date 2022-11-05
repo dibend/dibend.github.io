@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      rel="stylesheet"
+    />
     <title>Blast Crypto Mining</title>
     <style>
       body {
@@ -28,20 +31,29 @@
         font-size: 6rem;
       }
       button {
-        font-family: 'Ubuntu', sans-serif;
+        font-family: Inconsolata, monospace;
         font-size: 1.5rem;
-        background-color: black;
-        color: #dbf227;
-        text-shadow: 2px 2px white;
+        background-color: #45f91b;
+        color: black;
+        text-shadow: 2px 2px #dbf227;
+        font-weight: bold;
+        box-shadow: 3px 3px 3px black;
+      }
+      @media (min-width: 768px) {
+        button:hover {
+          box-shadow: 5px 5px 5px black;
+          border: solid black;
+        }
+        #big:hover {
+          font-size: 6.5rem;
+        }
       }
     </style>
   </head>
   <body>
     <div>
       <h1>Blast Crypto Mining</h1>
-      <div id="big">
-        ₿💥🚀
-      </div>
+      <div id="big">₿💥🚀</div>
       <h3>hardware</h3>
       <div>
         2x iPollo V1 Mini Classic<br />
@@ -58,7 +70,8 @@
         1x AMD Ryzen 5 3600XT 6-Core Processor<br />
         1x AMD Ryzen 7 4800H 8-Core Processor<br /><br />
         <a href="/neoxa"><button>Neoxa Mining Stats</button></a><br /><br />
-        <a href="/etc"><button>Ethereum Classic Mining Stats</button></a><br /><br />
+        <a href="/etc"><button>Ethereum Classic Mining Stats</button></a
+        ><br /><br />
         <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
         <a href="/xmr"><button>Monero Mining Stats</button></a><br /><br />
       </div>
