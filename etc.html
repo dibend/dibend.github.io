@@ -55,10 +55,13 @@
       Stats
     </h1>
     <script>
+      var beep = new Audio('beep.mp3');
       var etcJSON;
       var numBlocks = 0;
       var upToBlock = 10;
       function loadBlocks() {
+        beep.play();
+        beep.currentTime = 0;
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
