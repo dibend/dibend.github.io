@@ -25,6 +25,14 @@
         font-weight: bold;
         box-shadow: 3px 3px 3px black;
       }
+      #mature {
+        background-color: #45f91b;
+        display: inline-block;
+      }
+      #immature {
+        background-color: #f9d41b;
+        display: inline-block;
+      }
       @media (min-width: 768px) {
         button:hover {
           box-shadow: 5px 5px 5px black;
@@ -76,9 +84,10 @@
             reward.percent * 100 +
             '%<br>';
           if (reward.immature) {
-            document.body.innerHTML += 'Status: Immature';
+            document.body.innerHTML +=
+              'Status: <div id="immature">Immature</div>';
           } else {
-            document.body.innerHTML += 'Status: Mature';
+            document.body.innerHTML += 'Status: <div id="mature">Mature</div>';
           }
           if (reward.orphan) {
             document.body.innerHTML += '<br>Orphan Block';
