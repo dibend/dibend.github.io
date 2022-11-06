@@ -74,6 +74,28 @@
         ><br /><br />
         <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
         <a href="/xmr"><button>Monero Mining Stats</button></a><br /><br />
+        <script>
+          function httpGetAsync(theUrl, callback) {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+              if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                callback(xmlHttp.responseText);
+            };
+            xmlHttp.open('GET', theUrl, true); // true for asynchronous
+            xmlHttp.send(null);
+          }
+          function btcPrice(responseText) {
+            var btcJSON = JSON.parse(responseText);
+            document.body.innerHTML +=
+              '<h2>Bitcoin Price: $' +
+              btcJSON.bpi.USD.rate +
+              '</h2>Price provided by CoinDesk<br><br>';
+          }
+          httpGetAsync(
+            'https://api.coindesk.com/v1/bpi/currentprice.json',
+            btcPrice
+          );
+        </script>
       </div>
     </div>
   </body>
