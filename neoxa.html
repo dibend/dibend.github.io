@@ -35,6 +35,7 @@
       }
       #boom {
         font-size: 6rem;
+        display: inline-block;
       }
       @media (min-width: 768px) {
         button:hover {
@@ -62,7 +63,7 @@
       function loadBlocks() {
         explode.play();
         explode.currentTime = 0;
-        document.body.innerHTML += '<div id="boom"><br>💥<br><br></div>';
+        document.body.innerHTML += '<div id="boom">💥</div><br>';
         setTimeout(function(){
           document.getElementById('boom').outerHTML = '';
         }, 2200);
