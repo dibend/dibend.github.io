@@ -59,6 +59,10 @@
       function loadBlocks() {
         explode.play();
         explode.currentTime = 0;
+        document.body.innerHTML += '<div id="boom">💥</div>';
+        setTimeout(function(){
+          document.getElementById('boom').outerHTML = '';
+        }, 500);
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
