@@ -34,10 +34,6 @@
         display: inline-block;
         padding-bottom: 3vh;
       }
-      #boom {
-        font-size: 6rem;
-        display: inline-block;
-      }
       @media (min-width: 768px) {
         button:hover {
           box-shadow: 5px 5px 5px black;
@@ -64,10 +60,6 @@
       function loadBlocks() {
         explode.play();
         explode.currentTime = 0;
-        document.body.innerHTML += '<div id="boom">💥</div><br>';
-        setTimeout(function(){
-          document.getElementById('boom').outerHTML = '';
-        }, 2200);
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
