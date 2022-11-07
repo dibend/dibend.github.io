@@ -33,6 +33,9 @@
         background-color: #f9d41b;
         display: inline-block;
       }
+      #boom {
+        font-size: 6rem;
+      }
       @media (min-width: 768px) {
         button:hover {
           box-shadow: 5px 5px 5px black;
@@ -62,7 +65,7 @@
         document.body.innerHTML += '<div id="boom">💥</div>';
         setTimeout(function(){
           document.getElementById('boom').outerHTML = '';
-        }, 500);
+        }, 2200);
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
