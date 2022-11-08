@@ -59,6 +59,23 @@
           transform: translateX(0px);
         }
       }
+      #bang {
+        font-size: 7rem;
+        padding-bottom: 6vh;
+        animation: wiggle 75ms infinite;
+        animation-timing-function: linear;
+      }
+      @keyframes wiggle {
+        0% {
+          transform: translate(2px, 0);
+        }
+        50% {
+          transform: translate(-2px, 0);
+        }
+        100% {
+          transform: translate(2px, 0);
+        }
+      }
     </style>
   </head>
   <body>
@@ -75,6 +92,10 @@
       function loadBlocks() {
         explode.play();
         explode.currentTime = 0;
+        document.body.innerHTML += '<div id="bang">💥</div>';
+        setTimeout(() => {
+          document.getElementById('bang').outerHTML = '';
+        }, 800);
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
