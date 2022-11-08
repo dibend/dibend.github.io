@@ -67,8 +67,6 @@
         padding-bottom: 6vh;
         animation: wiggle 75ms infinite;
         animation-timing-function: linear;
-        height: 9rem;
-        transition: all 0.1s linear;
       }
       @keyframes wiggle {
         0% {
@@ -96,26 +94,26 @@
       var numBlocks = 0;
       var upToBlock = 10;
       function loadBlocks() {
-        explode.play();
-        explode.currentTime = 0;
-        document.body.innerHTML += '<div id="bang">💥</div>';
-        function loopCall() {
-          if (bigBang) {
-            document.getElementById('bang').style.fontSize = '7rem';
-            bigBang = false;
-          } else {
-            document.getElementById('bang').style.fontSize = '8rem';
-            bigBang = true;
-          }
-        }
-        var interval = setInterval(loopCall, 250);
-        setTimeout(() => {
-          document.getElementById('bang').outerHTML = '';
-          clearInterval(interval);
-        }, 1500);
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
+          explode.play();
+          explode.currentTime = 0;
+          document.body.innerHTML += '<div id="bang">💥</div>';
+          function loopCall() {
+            if (bigBang) {
+              document.getElementById('bang').style.fontSize = '7rem';
+              bigBang = false;
+            } else {
+              document.getElementById('bang').style.fontSize = '8rem';
+              bigBang = true;
+            }
+          }
+          var interval = setInterval(loopCall, 250);
+          setTimeout(() => {
+            document.getElementById('bang').outerHTML = '';
+            clearInterval(interval);
+          }, 1500);
           window.scrollBy(0, 300);
         }
         for (
@@ -186,20 +184,7 @@
           '<br><br>';
         Object.keys(neoxaJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
-            '<h4>' +
-            worker +
-            '</h4>' +
-            'Hashrate: ' +
-            neoxaJSON.workers[worker].hr +
-            'H/s<br>Average Hashrate: ' +
-            neoxaJSON.workers[worker].hr2 +
-            'H/s<br>Valid Shares: ' +
-            neoxaJSON.workers[worker].sharesValid +
-            '<br>Invalid Shares: ' +
-            neoxaJSON.workers[worker].sharesInvalid +
-            '<br>Stale Shares: ' +
-            neoxaJSON.workers[worker].sharesStale +
-            '<br><br>';
+            worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
         });
         document.body.innerHTML += '<h4>Most Recent Payments</h4>';
         neoxaJSON.payments.forEach((payment) => {
