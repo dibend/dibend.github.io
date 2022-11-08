@@ -184,7 +184,20 @@
           '<br><br>';
         Object.keys(neoxaJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
-            worker + ': ' + neoxaJSON.workers[worker].hr + 'H/s<br><br>';
+            '<h4>' +
+            worker +
+            '</h4>' +
+            'Hashrate: ' +
+            neoxaJSON.workers[worker].hr +
+            'H/s<br>Average Hashrate: ' +
+            neoxaJSON.workers[worker].hr2 +
+            'H/s<br>Valid Shares: ' +
+            neoxaJSON.workers[worker].sharesValid +
+            '<br>Invalid Shares: ' +
+            neoxaJSON.workers[worker].sharesInvalid +
+            '<br>Stale Shares: ' +
+            neoxaJSON.workers[worker].sharesStale +
+            '<br><br>';
         });
         document.body.innerHTML += '<h4>Most Recent Payments</h4>';
         neoxaJSON.payments.forEach((payment) => {

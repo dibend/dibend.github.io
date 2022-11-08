@@ -181,7 +181,14 @@
           '<br><br>';
         Object.keys(xmrJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
-            worker + ': ' + xmrJSON.workers[worker].hr + 'H/s<br><br>';
+            '<h4>' +
+            worker +
+            '</h4>' +
+            'Hashrate: ' +
+            xmrJSON.workers[worker].hr +
+            'H/s<br>Average Hashrate: ' +
+            xmrJSON.workers[worker].hr2 +
+            'H/s<br><br>';
         });
         document.body.innerHTML += '<h4>Most Recent Payments</h4>';
         xmrJSON.payments.forEach((payment) => {
