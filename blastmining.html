@@ -40,9 +40,25 @@
         button:hover {
           box-shadow: 5px 5px 5px black;
           border: solid black;
+          animation: shake 1s;
         }
         #big:hover {
           font-size: 6.5rem;
+        }
+      }
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(10px);
+        }
+
+        50% {
+          transform: translateX(-10px);
+        }
+        100% {
+          transform: translateX(0px);
         }
       }
     </style>
