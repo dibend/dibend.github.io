@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BlastMining.net Grin Stats</title>
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         font-family: Inconsolata, monospace;
         font-size: 1.5rem;
@@ -96,6 +99,7 @@
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
           document.getElementById('moreBlocks').outerHTML = '';
+          window.scrollBy(0, 300);
         }
         for (
           ;
