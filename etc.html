@@ -190,7 +190,20 @@
           '<br><br>';
         Object.keys(etcJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
-            worker + ': ' + etcJSON.workers[worker].hr + 'H/s<br><br>';
+            '<h4>' +
+            worker +
+            '</h4>' +
+            'Hashrate: ' +
+            etcJSON.workers[worker].hr +
+            'H/s<br>Average Hashrate: ' +
+            etcJSON.workers[worker].hr2 +
+            'H/s<br>Valid Shares: ' +
+            etcJSON.workers[worker].sharesValid +
+            '<br>Invalid Shares: ' +
+            etcJSON.workers[worker].sharesInvalid +
+            '<br>Stale Shares: ' +
+            etcJSON.workers[worker].sharesStale +
+            '<br><br>';
         });
         document.body.innerHTML += '<h4>Most Recent Payments</h4>';
         etcJSON.payments.forEach((payment) => {
