@@ -81,6 +81,11 @@
           transform: translate(2px, 0);
         }
       }
+      #workers {
+        border: solid 5px #45f91b;
+        padding: 15px;
+        box-shadow: 5px 5px 5px #f9d41b;
+      }
     </style>
   </head>
   <body>
@@ -183,7 +188,7 @@
           neoxaJSON.currentHashrate +
           'H/s<br><br>Last share: ' +
           lastShare.toLocaleString() +
-          '<br><br>';
+          '<br><h3>Workers</h3>';
         Object.keys(neoxaJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             '<h4>' +
