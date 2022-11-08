@@ -93,8 +93,19 @@
         explode.play();
         explode.currentTime = 0;
         document.body.innerHTML += '<div id="bang">💥</div>';
+        function loopCall() {
+          if (bigBang) {
+            document.getElementById('bang').style.fontSize = '7rem';
+            bigBang = false;
+          } else {
+            document.getElementById('bang').style.fontSize = '8rem';
+            bigBang = true;
+          }
+        }
+        var interval = setInterval(loopCall, 250);
         setTimeout(() => {
           document.getElementById('bang').outerHTML = '';
+          clearInterval(interval);
         }, 1500);
         var loadBlocksButton = document.getElementById('moreBlocks');
         if (loadBlocksButton !== null) {
