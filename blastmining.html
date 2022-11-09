@@ -103,7 +103,8 @@
             document.getElementById('scroll').innerHTML += 
               '<h2>Bitcoin Price: $' +
               btcJSON.bpi.USD.rate +
-              '</h2>Price provided by CoinDesk<br><br>';
+              '</h2>Price provided by CoinDesk';
+            document.body.innerHTML += '<br><br>';
           }
           httpGetAsync(
             'https://api.coindesk.com/v1/bpi/currentprice.json',
