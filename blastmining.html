@@ -100,7 +100,7 @@
           }
           function btcPrice(responseText) {
             var btcJSON = JSON.parse(responseText);
-            document.getElementById.innerHTML += 
+            document.getElementById('scroll').innerHTML += 
               '<h2>Bitcoin Price: $' +
               btcJSON.bpi.USD.rate +
               '</h2>Price provided by CoinDesk<br><br>';
