@@ -61,6 +61,9 @@
           transform: translateX(0px);
         }
       }
+      #scroll {
+        font-size: 4rem;
+      }
     </style>
   </head>
   <body>
@@ -101,10 +104,8 @@
           function btcPrice(responseText) {
             var btcJSON = JSON.parse(responseText);
             document.getElementById('scroll').innerHTML += 
-              '<h2>Bitcoin Price: $' +
-              btcJSON.bpi.USD.rate +
-              '</h2>Price provided by CoinDesk';
-            document.body.innerHTML += '<br><br>';
+              'Bitcoin Price: $' +
+              btcJSON.bpi.USD.rate;
           }
           httpGetAsync(
             'https://api.coindesk.com/v1/bpi/currentprice.json',
