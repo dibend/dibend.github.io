@@ -64,6 +64,9 @@
       #scroll {
         font-size: 2rem;
       }
+      p {
+        font-size: 1rem;
+      }
     </style>
   </head>
   <body>
@@ -91,7 +94,7 @@
         <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
         <a href="/xmr"><button>Monero Mining Stats</button></a><br /><br />
         <marquee id="scroll"></marquee>
-        Price data provided by CoinDesk
+        <p>Price data provided by CoinDesk</p>
         <script>
           function httpGetAsync(theUrl, callback) {
             var xmlHttp = new XMLHttpRequest();
@@ -104,9 +107,8 @@
           }
           function btcPrice(responseText) {
             var btcJSON = JSON.parse(responseText);
-            document.getElementById('scroll').innerHTML += 
-              'Bitcoin Price: $' +
-              btcJSON.bpi.USD.rate;
+            document.getElementById('scroll').innerHTML +=
+              'Bitcoin Price: $' + btcJSON.bpi.USD.rate;
           }
           httpGetAsync(
             'https://api.coindesk.com/v1/bpi/currentprice.json',
