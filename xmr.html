@@ -128,7 +128,7 @@
           var reward = xmrJSON.rewards[numBlocks];
           blocktime.setUTCSeconds(reward.timestamp);
           document.body.innerHTML +=
-            'Block Height: <a href="https://xmrchain.com/block/' +
+            'Block Height: <a href="https://localmonero.co/blocks/search/' +
             reward.blockhash +
             '">' +
             reward.blockheight +
@@ -201,7 +201,7 @@
           var time = new Date(0);
           time.setUTCSeconds(payment.timestamp);
           document.body.innerHTML +=
-            '<a href = "https://xmrchain.com/tx/' +
+            '<a href = "https://localmonero.co/blocks/search/' +
             payment.tx +
             '">' +
             payment.amount / 1000000000000 +
