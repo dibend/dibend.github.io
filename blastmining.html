@@ -72,10 +72,6 @@
         box-shadow: 5px 5px 5px #f9d41b;
         border: solid #f9d41b;
       }
-      marquee {
-        background-color: #f9d41b;
-        border: 3px dotted black;
-      }
     </style>
   </head>
   <body>
@@ -102,7 +98,8 @@
         ><br /><br />
         <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
         <a href="/xmr"><button>Monero Mining Stats</button></a><br /><br />
-        <marquee id="scroll"></marquee>
+        <marquee id="scroll"></marquee><br /><br />
+        <button onclick="location.reload();">Click to Update Price</button>
         <p>Price data provided by CoinDesk</p>
         <script>
           function httpGetAsync(theUrl, callback) {
