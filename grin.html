@@ -87,6 +87,10 @@
         box-shadow: 5px 5px 5px #f9d41b;
         border: solid #f9d41b;
       }
+      hr {
+        border-top: 1px solid #45f91b;
+        border-bottom: 1px solid #f9d41b;
+      }
     </style>
   </head>
   <body>
@@ -186,7 +190,7 @@
           grinJSON.currentHashrates[32] +
           ' graphs per second<br><br>Last share: ' +
           lastShare.toLocaleString() +
-          '<br><h4>Most Recent Payments</h4>';
+          '<br><br><hr><h4>Most Recent Payments</h4>';
         grinJSON.payments.forEach((payment) => {
           var time = new Date(0);
           time.setUTCSeconds(payment.timestamp);
@@ -196,7 +200,7 @@
             time.toLocaleString() +
             '<br><br>';
         });
-        document.body.innerHTML += '<h4>Blocks</h4>';
+        document.body.innerHTML += '<hr><h4>Most Recent Blocks</h4>';
         loadBlocks();
       }
       httpGetAsync(
