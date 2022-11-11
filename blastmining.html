@@ -73,6 +73,19 @@
       button:active {
         box-shadow: 5px 5px 5px #f9d41b;
         border: solid #f9d41b;
+        animation: wiggle 75ms infinite;
+        animation-timing-function: linear;
+      }
+      @keyframes wiggle {
+        0% {
+          transform: translate(2px, 0);
+        }
+        50% {
+          transform: translate(-2px, 0);
+        }
+        100% {
+          transform: translate(2px, 0);
+        }
       }
     </style>
   </head>
