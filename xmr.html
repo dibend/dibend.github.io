@@ -87,6 +87,10 @@
         box-shadow: 5px 5px 5px #f9d41b;
         border: solid #f9d41b;
       }
+      hr {
+        border-top: 1px solid #45f91b;
+        border-bottom: 1px solid #f9d41b;
+      }
     </style>
   </head>
   <body>
@@ -186,7 +190,7 @@
           xmrJSON.currentHashrate +
           'H/s<br><br>Last share: ' +
           lastShare.toLocaleString() +
-          '<br><h3>Workers</h3>';
+          '<br><br><hr><h3>Workers</h3>';
         Object.keys(xmrJSON.workers).forEach((worker) => {
           document.body.innerHTML +=
             '<h4>' +
@@ -198,7 +202,7 @@
             xmrJSON.workers[worker].hr2 +
             'H/s<br><br>';
         });
-        document.body.innerHTML += '<h4>Most Recent Payments</h4>';
+        document.body.innerHTML += '<hr><h4>Most Recent Payments</h4>';
         xmrJSON.payments.forEach((payment) => {
           var time = new Date(0);
           time.setUTCSeconds(payment.timestamp);
@@ -211,7 +215,7 @@
             time.toLocaleString() +
             '</a><br><br>';
         });
-        document.body.innerHTML += '<h4>Blocks</h4>';
+        document.body.innerHTML += '<hr><h4>Most Recent Blocks</h4>';
         loadBlocks();
       }
       httpGetAsync(
