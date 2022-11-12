@@ -113,7 +113,8 @@
       src="https://neoxa.net/wp-content/uploads/2022/10/Neoxa_Logo_1080p-1.png"
       width="5%"
     />
-    <h1><a href="https://blastmining.net">BlastMining.net</a> Neoxa Stats</h1>
+    <h1><a href="https://blastmining.net">BlastMining.net</a> Neoxa Stats</h1><br>
+    <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
     <script>
       var bigBang = false;
       var explode = new Audio('explode.wav');
@@ -191,6 +192,7 @@
         xmlHttp.send(null);
       }
       function neoxaStats(responseText) {
+        document.getElementById('loading').outerHTML = '';
         neoxaJSON = JSON.parse(responseText);
         neoxaJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=

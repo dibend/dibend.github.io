@@ -112,6 +112,7 @@
   <body>
     <img src="https://www.getmonero.org/img/monero-logo.png" width="10%" />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Monero Stats</h1>
+    <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
     <script>
       var bigBang = false;
       var explode = new Audio('explode.wav');
@@ -189,6 +190,7 @@
         xmlHttp.send(null);
       }
       function xmrStats(responseText) {
+        document.getElementById('loading').outerHTML = '';
         xmrJSON = JSON.parse(responseText);
         xmrJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=
