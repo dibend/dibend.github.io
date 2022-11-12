@@ -107,6 +107,7 @@
   <body>
     <img src="https://cryptologos.cc/logos/grin-grin-logo.svg" width="5%" />
     <h1><a href="https://blastmining.net">BlastMining.net</a> Grin Stats</h1>
+    <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
     <script>
       var bigBang = false;
       var explode = new Audio('explode.wav');
@@ -184,6 +185,7 @@
         xmlHttp.send(null);
       }
       function grinStats(responseText) {
+        document.getElementById('loading').outerHTML = '';
         grinJSON = JSON.parse(responseText);
         grinJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=

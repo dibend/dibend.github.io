@@ -113,6 +113,7 @@
       <a href="https://blastmining.net">BlastMining.net</a> Ethereum Classic
       Stats
     </h1>
+    <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
     <script>
       var bigBang = false;
       var explode = new Audio('explode.wav');
@@ -193,6 +194,7 @@
         xmlHttp.send(null);
       }
       function etcStats(responseText) {
+        document.getElementById('loading').outerHTML = '';
         etcJSON = JSON.parse(responseText);
         etcJSON.sumrewards.forEach((sumreward) => {
           document.body.innerHTML +=
