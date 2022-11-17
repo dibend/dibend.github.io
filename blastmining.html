@@ -162,6 +162,8 @@
       border-radius: 30%;
       max-width: 90%;
       max-height: 50vh;
+      box-shadow: 0px 10px 10px 10px #45f91b;
+      border: solid black;
     }
   </style>
 </head>
@@ -217,7 +219,7 @@
             new Date(Date.parse(btcJSON.time.updated)).toLocaleTimeString(navigator.language, {
               hour: '2-digit',
               minute: '2-digit'
-            });
+            }).replace(/^0+/, '');
           scroll.style.color = '#45f91b';
           scroll.style.textShadow = '2px 2px black';
           setTimeout(() => {
