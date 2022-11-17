@@ -187,6 +187,7 @@
       </button><br /><br />
       <marquee id="scroll"></marquee><br />
       <p>Price data provided by CoinDesk</p>
+      <p>Price updates available every minute</p>
       <script>
         var zam = new Audio('zam.wav');
         function httpGetAsync(theUrl, callback) {
@@ -202,7 +203,9 @@
           var btcJSON = JSON.parse(responseText);
           var scroll = document.getElementById('scroll');
           scroll.innerHTML =
-            'Bitcoin Price: $' + btcJSON.bpi.USD.rate;
+            'Bitcoin Price: $' + btcJSON.bpi.USD.rate +
+            '&ensp;&ensp;₿&ensp;&ensp;<span class="mine">⛏</span>&ensp;&ensp;' +
+            new Date(Date.parse(btcJSON.time.updated)).toLocaleString();
           scroll.style.color = '#45f91b';
           scroll.style.textShadow = '2px 2px black';
           setTimeout(() => {
