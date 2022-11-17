@@ -214,7 +214,10 @@
           scroll.innerHTML =
             'Bitcoin Price: $' + btcJSON.bpi.USD.rate +
             '&ensp;&ensp;₿&ensp;&ensp;<span class="mine">⛏</span>&ensp;&ensp;' +
-            new Date(Date.parse(btcJSON.time.updated)).toLocaleString();
+            new Date(Date.parse(btcJSON.time.updated)).toLocaleTimeString(navigator.language, {
+              hour: '2-digit',
+              minute: '2-digit'
+            });
           scroll.style.color = '#45f91b';
           scroll.style.textShadow = '2px 2px black';
           setTimeout(() => {
