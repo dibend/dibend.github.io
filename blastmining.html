@@ -235,7 +235,25 @@
           }
           imgDiv.innerHTML = `<img src="rigs/${rig}.jpg" alt="rigs" />`;
           rig++;
-        }, 5000)
+        }, 2000);
+        function preloadImages(array) {
+          if (!preloadImages.list) {
+            preloadImages.list = [];
+          }
+          var list = preloadImages.list;
+          for (var i = 0; i < array.length; i++) {
+            var img = new Image();
+            img.onload = function () {
+              var index = list.indexOf(this);
+              if (index !== -1) {
+                list.splice(index, 1);
+              }
+            }
+            list.push(img);
+            img.src = array[i];
+          }
+        }
+        preloadImages(["rigs/2.jpg", "rigs/3.jpg", "rigs/4.jpg", "rigs/5.jpg", "rigs/6.jpg", "rigs/7.jpg", "rigs/8.jpg"]);
       </script>
     </div>
   </div>
