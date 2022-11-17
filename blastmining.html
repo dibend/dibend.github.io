@@ -196,7 +196,7 @@
       <p>Price data provided by CoinDesk</p>
       <p>Price updates available every minute</p>
       <br>
-      <div id="img"><img src="rigs/1.jpg" alt="rigs" /></div>
+      <div id="img"><img onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
       <script>
         var zam = new Audio('zam.wav');
         function httpGetAsync(theUrl, callback) {
@@ -231,13 +231,14 @@
         btcApi();
         var imgDiv = document.getElementById('img');
         var rig = 2;
-        setInterval(() => {
+        function changeImage() {
           if (rig > 8) {
             rig = 1;
           }
-          imgDiv.innerHTML = `<img src="rigs/${rig}.jpg" alt="rigs" />`;
+          imgDiv.innerHTML = `<img onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
           rig++;
-        }, 2000);
+        }
+        var imgInterval = setInterval(changeImage, 2000);
         function preloadImages(array) {
           if (!preloadImages.list) {
             preloadImages.list = [];
@@ -256,6 +257,15 @@
           }
         }
         preloadImages(["rigs/2.jpg", "rigs/3.jpg", "rigs/4.jpg", "rigs/5.jpg", "rigs/6.jpg", "rigs/7.jpg", "rigs/8.jpg"]);
+        function next() {
+          clearInterval(imgInterval);
+          rig++;
+          if (rig > 8) {
+            rig = 1;
+          }
+          imgDiv.innerHTML = `<img onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
+          imgInterval = setInterval(changeImage, 2000);
+        }
       </script>
     </div>
   </div>
