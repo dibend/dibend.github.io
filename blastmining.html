@@ -191,7 +191,7 @@
       <a href="/etc"><button>Ethereum Classic Mining Stats</button></a><br /><br />
       <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
       <a href="/xmr"><button>Monero Mining Stats</button></a><br /><br />
-      <button onclick="btcApi();zam.play();zam.currentTime = 0;">
+      <button onclick="btcApi();bell.play();bell.currentTime = 0;">
         Update Bitcoin Price
       </button><br /><br />
       <marquee id="scroll"></marquee><br />
@@ -200,7 +200,7 @@
       <br>
       <div id="img"><img onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
       <script>
-        var zam = new Audio('zam.wav');
+        var bell = new Audio('bell.wav');
         function httpGetAsync(theUrl, callback) {
           var xmlHttp = new XMLHttpRequest();
           xmlHttp.onreadystatechange = function () {
