@@ -1,245 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="https://blastnotifications.com/img/rocket.png" type="image/png" />
-    <title>BlastMining.net Monero Stats</title>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: Inconsolata, monospace;
-        font-size: 1.5rem;
-        text-align: center;
-        text-shadow: 2px 2px white;
-        background-color: #dbf227;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-      button {
-        font-family: Inconsolata, monospace;
-        font-size: 1.5rem;
-        background-color: #45f91b;
-        color: black;
-        text-shadow: 2px 2px #dbf227;
-        font-weight: bold;
-        box-shadow: 3px 3px 3px black;
-        padding: 15px;
-      }
-      #mature {
-        background-color: #45f91b;
-        display: inline-block;
-      }
-      #immature {
-        background-color: #f9d41b;
-        display: inline-block;
-      }
-      @media (min-width: 768px) {
-        button:hover {
-          box-shadow: 5px 5px 5px black;
-          border: solid black;
-          animation: shake 1s;
-        }
-        a:hover {
-          color: #45f91b;
-          text-shadow: 2px 2px 2px black;
-        }
-      }
-      @keyframes shake {
-        0% {
-          transform: translateX(0);
-        }
-        25% {
-          transform: translateX(10px);
-        }
 
-        50% {
-          transform: translateX(-10px);
-        }
-        100% {
-          transform: translateX(0px);
-        }
-      }
-      #bang {
-        font-size: 7rem;
-        padding-bottom: 6vh;
-        animation: wiggle 75ms infinite;
-        animation-timing-function: ease;
-        height: 9rem;
-        transition: font-size 0.1s ease;
-      }
-      @keyframes wiggle {
-        0% {
-          transform: translate(2px, 0);
-        }
-        50% {
-          transform: translate(-2px, 0);
-        }
-        100% {
-          transform: translate(2px, 0);
-        }
-      }
-      button:active {
-        box-shadow: 5px 5px 5px #45f91b;
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="https://blastnotifications.com/img/rocket.png" type="image/png" />
+  <title>BlastMining.net Monero Stats</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inconsolata, monospace;
+      font-size: 1.5rem;
+      text-align: center;
+      text-shadow: 2px 2px white;
+      background-color: #dbf227;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    button {
+      font-family: Inconsolata, monospace;
+      font-size: 1.5rem;
+      background-color: #45f91b;
+      color: black;
+      text-shadow: 2px 2px #dbf227;
+      font-weight: bold;
+      box-shadow: 3px 3px 3px black;
+      padding: 15px;
+    }
+
+    #mature {
+      background-color: #45f91b;
+      display: inline-block;
+    }
+
+    #immature {
+      background-color: #f9d41b;
+      display: inline-block;
+    }
+
+    @media (min-width: 768px) {
+      button:hover {
+        box-shadow: 5px 5px 5px black;
         border: solid black;
-        background-color: #f9d41b;
-        animation: wiggle 75ms infinite;
-        animation-timing-function: ease;
+        animation: shake 1s;
       }
-      hr {
-        border-top: 5px solid #45f91b;
-        border-bottom: 5px solid #f9d41b;
-        border-radius: 5px;
-        transition: all 200ms ease;
-      }
-      hr:hover {
-        border-top: 5px solid #f9d41b;
-        border-bottom: 5px solid #45f91b;
-      }
-      a {
-        transition: all 200ms ease;
-      }
-      ::selection {
-        background: black;
+
+      a:hover {
         color: #45f91b;
+        text-shadow: 2px 2px 2px black;
       }
-    </style>
-  </head>
-  <body>
-    <img src="https://www.getmonero.org/img/monero-logo.png" width="10%" />
-    <h1><a href="https://blastmining.net">BlastMining.net</a> Monero Stats</h1>
-    <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
-    <script>
-      var bigBang = false;
-      var explode = new Audio('explode.wav');
-      var xmrJSON;
-      var numBlocks = 0;
-      var upToBlock = 10;
-      function loadBlocks() {
-        var loadBlocksButton = document.getElementById('moreBlocks');
-        if (loadBlocksButton !== null) {
-          document.getElementById('moreBlocks').outerHTML = '';
-          explode.play();
-          explode.currentTime = 0;
-          document.body.innerHTML += '<div id="bang">💥</div>';
-          function loopCall() {
-            if (bigBang) {
-              document.getElementById('bang').style.fontSize = '7rem';
-              bigBang = false;
-            } else {
-              document.getElementById('bang').style.fontSize = '8rem';
-              bigBang = true;
-            }
-          }
-          var interval = setInterval(loopCall, 250);
-          setTimeout(() => {
-            document.getElementById('bang').outerHTML = '';
-            clearInterval(interval);
-          }, 1500);
-          window.scrollBy(0, 300);
-        }
-        for (
-          ;
-          numBlocks < Math.min(upToBlock, xmrJSON.rewards.length);
-          numBlocks++
-        ) {
-          var blocktime = new Date(0);
-          var reward = xmrJSON.rewards[numBlocks];
-          blocktime.setUTCSeconds(reward.timestamp);
-          document.body.innerHTML +=
-            'Block Height: <a href="https://localmonero.co/blocks/search/' +
-            reward.blockhash +
-            '">' +
-            reward.blockheight +
-            '</a><br>Timestamp: ' +
-            blocktime.toLocaleString() +
-            '<br>Reward: ' +
-            reward.reward / 1000000000000 +
-            ' Monero<br>Share Percent: ' +
-            reward.percent * 100 +
-            '%<br>';
-          if (reward.immature) {
-            document.body.innerHTML +=
-              'Status: <div id="immature">Immature</div>';
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(10px);
+      }
+
+      50% {
+        transform: translateX(-10px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+
+    #bang {
+      font-size: 7rem;
+      padding-bottom: 6vh;
+      animation: wiggle 75ms infinite;
+      animation-timing-function: ease;
+      height: 9rem;
+      transition: font-size 0.1s ease;
+    }
+
+    @keyframes wiggle {
+      0% {
+        transform: translate(2px, 0);
+      }
+
+      50% {
+        transform: translate(-2px, 0);
+      }
+
+      100% {
+        transform: translate(2px, 0);
+      }
+    }
+
+    button:active {
+      box-shadow: 5px 5px 5px #45f91b;
+      border: solid black;
+      background-color: #f9d41b;
+      animation: wiggle 75ms infinite;
+      animation-timing-function: ease;
+    }
+
+    hr {
+      border-top: 5px solid #45f91b;
+      border-bottom: 5px solid #f9d41b;
+      border-radius: 5px;
+      transition: all 200ms ease;
+    }
+
+    hr:hover {
+      border-top: 5px solid #f9d41b;
+      border-bottom: 5px solid #45f91b;
+    }
+
+    a {
+      transition: all 200ms ease;
+    }
+
+    ::selection {
+      background: black;
+      color: #45f91b;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="https://www.getmonero.org/img/monero-logo.png" width="10%" />
+  <h1><a href="https://blastmining.net">BlastMining.net</a> Monero Stats</h1>
+  <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+  <div class="coinmarketcap-currency-widget" data-currencyid="328" data-base="USD" data-secondary="" data-ticker="true"
+    data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+  <br>
+  <script>
+    var bigBang = false;
+    var explode = new Audio('explode.wav');
+    var xmrJSON;
+    var numBlocks = 0;
+    var upToBlock = 10;
+    function loadBlocks() {
+      var loadBlocksButton = document.getElementById('moreBlocks');
+      if (loadBlocksButton !== null) {
+        document.getElementById('moreBlocks').outerHTML = '';
+        explode.play();
+        explode.currentTime = 0;
+        document.body.innerHTML += '<div id="bang">💥</div>';
+        function loopCall() {
+          if (bigBang) {
+            document.getElementById('bang').style.fontSize = '7rem';
+            bigBang = false;
           } else {
-            document.body.innerHTML += 'Status: <div id="mature">Mature</div>';
+            document.getElementById('bang').style.fontSize = '8rem';
+            bigBang = true;
           }
-          if (reward.orphan) {
-            document.body.innerHTML += '<br>Orphan Block';
-          }
-          document.body.innerHTML += '<br><br>';
         }
-        if (upToBlock < xmrJSON.rewards.length) {
-          document.body.innerHTML +=
-            '<button id="moreBlocks">Load more blocks</button>';
-          document.getElementById('moreBlocks').onclick = loadBlocks;
-        }
-        upToBlock += 10;
+        var interval = setInterval(loopCall, 250);
+        setTimeout(() => {
+          document.getElementById('bang').outerHTML = '';
+          clearInterval(interval);
+        }, 1500);
+        window.scrollBy(0, 300);
       }
-      function httpGetAsync(theUrl, callback) {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.onreadystatechange = function () {
-          if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-            callback(xmlHttp.responseText);
-        };
-        xmlHttp.open('GET', theUrl, true); // true for asynchronous
-        xmlHttp.send(null);
-      }
-      function xmrStats(responseText) {
-        document.getElementById('loading').outerHTML = '';
-        xmrJSON = JSON.parse(responseText);
-        xmrJSON.sumrewards.forEach((sumreward) => {
-          document.body.innerHTML +=
-            'Mined ' +
-            sumreward.reward / 1000000000000 +
-            ' Monero in the ' +
-            sumreward.name +
-            '<br><br>';
-        });
-        var lastShare = new Date(0);
-        lastShare.setUTCSeconds(xmrJSON.stats.lastShare);
+      for (
+        ;
+        numBlocks < Math.min(upToBlock, xmrJSON.rewards.length);
+        numBlocks++
+      ) {
+        var blocktime = new Date(0);
+        var reward = xmrJSON.rewards[numBlocks];
+        blocktime.setUTCSeconds(reward.timestamp);
         document.body.innerHTML +=
-          xmrJSON.stats.paid / 1000000000000 +
-          ' Monero paid in total<br><br>Current Hashrate: ' +
-          xmrJSON.currentHashrate +
-          'H/s<br><br>Last share: ' +
-          lastShare.toLocaleString() +
-          '<br><br><hr><h3>Workers</h3>';
-        Object.keys(xmrJSON.workers).forEach((worker) => {
+          'Block Height: <a href="https://localmonero.co/blocks/search/' +
+          reward.blockhash +
+          '">' +
+          reward.blockheight +
+          '</a><br>Timestamp: ' +
+          blocktime.toLocaleString() +
+          '<br>Reward: ' +
+          reward.reward / 1000000000000 +
+          ' Monero<br>Share Percent: ' +
+          reward.percent * 100 +
+          '%<br>';
+        if (reward.immature) {
           document.body.innerHTML +=
-            '<h4>' +
-            worker +
-            '</h4>' +
-            'Current Hashrate: ' +
-            xmrJSON.workers[worker].hr +
-            'H/s<br>Average Hashrate: ' +
-            xmrJSON.workers[worker].hr2 +
-            'H/s<br><br>';
-        });
-        document.body.innerHTML += '<hr><h4>Most Recent Payments</h4>';
-        xmrJSON.payments.forEach((payment) => {
-          var time = new Date(0);
-          time.setUTCSeconds(payment.timestamp);
-          document.body.innerHTML +=
-            '<a href = "https://localmonero.co/blocks/search/' +
-            payment.tx +
-            '">' +
-            payment.amount / 1000000000000 +
-            ' Monero ' +
-            time.toLocaleString() +
-            '</a><br><br>';
-        });
-        document.body.innerHTML += '<hr><h4>Most Recent Blocks</h4>';
-        loadBlocks();
+            'Status: <div id="immature">Immature</div>';
+        } else {
+          document.body.innerHTML += 'Status: <div id="mature">Mature</div>';
+        }
+        if (reward.orphan) {
+          document.body.innerHTML += '<br>Orphan Block';
+        }
+        document.body.innerHTML += '<br><br>';
       }
-      httpGetAsync(
-        'https://xmr.2miners.com/api/accounts/42L4oBG4UAMY5ngPesipqLF4CUd1HjHJ7Rjv7o4vuxnRAYyvS2WEpErNGHjt55JPBQ7ik752KZgbebhBW6SU2eCRN8ME1tw',
-        xmrStats
-      );
-    </script>
-  </body>
+      if (upToBlock < xmrJSON.rewards.length) {
+        document.body.innerHTML +=
+          '<button id="moreBlocks">Load more blocks</button>';
+        document.getElementById('moreBlocks').onclick = loadBlocks;
+      }
+      upToBlock += 10;
+    }
+    function httpGetAsync(theUrl, callback) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+          callback(xmlHttp.responseText);
+      };
+      xmlHttp.open('GET', theUrl, true); // true for asynchronous
+      xmlHttp.send(null);
+    }
+    function xmrStats(responseText) {
+      document.getElementById('loading').outerHTML = '';
+      xmrJSON = JSON.parse(responseText);
+      xmrJSON.sumrewards.forEach((sumreward) => {
+        document.body.innerHTML +=
+          'Mined ' +
+          sumreward.reward / 1000000000000 +
+          ' Monero in the ' +
+          sumreward.name +
+          '<br><br>';
+      });
+      var lastShare = new Date(0);
+      lastShare.setUTCSeconds(xmrJSON.stats.lastShare);
+      document.body.innerHTML +=
+        xmrJSON.stats.paid / 1000000000000 +
+        ' Monero paid in total<br><br>Current Hashrate: ' +
+        xmrJSON.currentHashrate +
+        'H/s<br><br>Last share: ' +
+        lastShare.toLocaleString() +
+        '<br><br><hr><h3>Workers</h3>';
+      Object.keys(xmrJSON.workers).forEach((worker) => {
+        document.body.innerHTML +=
+          '<h4>' +
+          worker +
+          '</h4>' +
+          'Current Hashrate: ' +
+          xmrJSON.workers[worker].hr +
+          'H/s<br>Average Hashrate: ' +
+          xmrJSON.workers[worker].hr2 +
+          'H/s<br><br>';
+      });
+      document.body.innerHTML += '<hr><h4>Most Recent Payments</h4>';
+      xmrJSON.payments.forEach((payment) => {
+        var time = new Date(0);
+        time.setUTCSeconds(payment.timestamp);
+        document.body.innerHTML +=
+          '<a href = "https://localmonero.co/blocks/search/' +
+          payment.tx +
+          '">' +
+          payment.amount / 1000000000000 +
+          ' Monero ' +
+          time.toLocaleString() +
+          '</a><br><br>';
+      });
+      document.body.innerHTML += '<hr><h4>Most Recent Blocks</h4>';
+      loadBlocks();
+    }
+    httpGetAsync(
+      'https://xmr.2miners.com/api/accounts/42L4oBG4UAMY5ngPesipqLF4CUd1HjHJ7Rjv7o4vuxnRAYyvS2WEpErNGHjt55JPBQ7ik752KZgbebhBW6SU2eCRN8ME1tw',
+      xmrStats
+    );
+  </script>
+</body>
+
 </html>
