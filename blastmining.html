@@ -163,7 +163,7 @@
       transition: all 500ms ease;
     }
 
-    img {
+    #rigs {
       height: 400px;
       border-radius: 30%;
       max-width: 90%;
@@ -205,53 +205,19 @@
       <button onclick="btcApi();bell.play();bell.currentTime = 0;">
         Update Bitcoin Price
       </button><br /><br />
-      <marquee id="scroll"></marquee><br />
-      <p>Price data provided by CoinDesk</p>
-      <p>Price updates available every minute</p>
+      <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+      <div id="coinmarketcap-widget-marquee" coins="1,1027,1321,328,3709,21045" currency="USD" theme="light"
+        transparent="true" show-symbol-logo="true"></div>
       <br>
-      <div id="img"><img onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
+      <div id="img"><img id="rigs" onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
       <script>
-        var bell = new Audio('bell.wav');
-        function httpGetAsync(theUrl, callback) {
-          var xmlHttp = new XMLHttpRequest();
-          xmlHttp.onreadystatechange = function () {
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-              callback(xmlHttp.responseText);
-          };
-          xmlHttp.open('GET', theUrl, true); // true for asynchronous
-          xmlHttp.send(null);
-        }
-        function btcPrice(responseText) {
-          var btcJSON = JSON.parse(responseText);
-          var scroll = document.getElementById('scroll');
-          scroll.innerHTML =
-            'Bitcoin Price: $' + btcJSON.bpi.USD.rate +
-            '&ensp;&ensp;₿&ensp;&ensp;<span class="mine">⛏</span>&ensp;&ensp;' +
-            new Date(Date.parse(btcJSON.time.updated)).toLocaleTimeString(navigator.language, {
-              hour: '2-digit',
-              minute: '2-digit'
-            }).replace(/^0+/, '');
-          scroll.style.color = '#45f91b';
-          scroll.style.textShadow = '2px 2px black';
-          setTimeout(() => {
-            scroll.style.color = 'black';
-            scroll.style.textShadow = '2px 2px white';
-          }, 500);
-        }
-        function btcApi() {
-          httpGetAsync(
-            'https://api.coindesk.com/v1/bpi/currentprice.json',
-            btcPrice
-          );
-        }
-        btcApi();
         var imgDiv = document.getElementById('img');
         var rig = 2;
         function changeImage() {
           if (rig > 8) {
             rig = 1;
           }
-          imgDiv.innerHTML = `<img onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
+          imgDiv.innerHTML = `<img id="rigs" onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
           rig++;
         }
         var imgInterval = setInterval(changeImage, 2000);
@@ -279,7 +245,7 @@
           if (rig > 8) {
             rig = 1;
           }
-          imgDiv.innerHTML = `<img onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
+          imgDiv.innerHTML = `<img id="rigs" onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
           imgInterval = setInterval(changeImage, 2000);
         }
       </script>
