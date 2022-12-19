@@ -544,7 +544,7 @@
       <span class="glyphicon glyphicon-earphone"></span> Call
     </a>
     &ensp;&ensp;&ensp;
-    <var id="lang">jQuery</var>
+    <var id="lang">JavaScript</var>
     <script>
       var inverted = false;
       function invert() {
@@ -577,7 +577,7 @@
       }
     }
 
-    var langs = ['jQuery', 'HTML5', 'Bootstrap', 'CSS', 'Node.js', 'C', 'C++', 'Java', 'Apache', 'Git', 'Shell', 'Perl', 'AWS', 'Linux', 'Docker', 'Python'];
+    var langs = ['JavaScript', 'jQuery', 'HTML5', 'Bootstrap', 'CSS', 'Node.js', 'C', 'C++', 'Java', 'Apache', 'Git', 'Shell', 'Perl', 'AWS', 'Linux', 'Docker', 'Python'];
     var langIndex = 0;
     var langsEnd = langs.length - 1;
     function changeLang() {
@@ -586,7 +586,11 @@
       } else {
         langIndex = 0;
       }
-      $("#lang").html(langs[langIndex]);
+      var langHTML = $("#lang");
+      langHTML.fadeOut(300, function () {
+        langHTML.html(langs[langIndex]);
+        langHTML.fadeIn(300);
+      });
     }
 
     function loopCall() {
@@ -594,7 +598,7 @@
       changeTitle();
     }
 
-    var loopSpeed = 1000; //ms
+    var loopSpeed = 1500; //ms
     setInterval(loopCall, loopSpeed);
   </script>
 </body>
