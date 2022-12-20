@@ -150,15 +150,15 @@
     var pfText = `
       <h1>Portfolio</h1>
       <ul style="text-decoration: underline;">
-        <li><a href="https://blastnotifications.com">BlastNotifications.com</a></li>
-        <li><a href="https://wealth-talks.com">Wealth-Talks.com</a></li>
-        <li><a href="https://microgridmining.com">MicrogridMining.com</a></li>
-        <li><a href="https://blastmining.net">BlastMining.net</a></li>
-        <li><a href="pf/nature/index">Nature Example Site</a></li>
-        <li><a href="pf/agency/index">Agency Example Site</a></li>
-        <li><a href="pf/corp">Corporate Example Site</a></li>
-        <li><a href="pf/band/band">Band Example Site</a></li>
-        <li><a href="pf/artist_page/index">Artist Example Site</a></li>
+        <li><a href="https://blastnotifications.com">BlastNotifications.com</a></li><br>
+        <li><a href="https://wealth-talks.com">Wealth-Talks.com</a></li><br>
+        <li><a href="https://microgridmining.com">MicrogridMining.com</a></li><br>
+        <li><a href="https://blastmining.net">BlastMining.net</a></li><br>
+        <li><a href="pf/nature/index">Nature Example Site</a></li><br>
+        <li><a href="pf/agency/index">Agency Example Site</a></li><br>
+        <li><a href="pf/corp">Corporate Example Site</a></li><br>
+        <li><a href="pf/band/band">Band Example Site</a></li><br>
+        <li><a href="pf/artist_page/index">Artist Example Site</a></li><br>
         <li><a href="https://github.com/dibend">Open Source Projects</a></li>
       </ul>`;
 
@@ -187,9 +187,19 @@
 
     var nextPage;
     var prevPage;
+    var loaded = false;
 
     function home() {
-      $("#pageText").html(homeText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(homeText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(homeText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       $("#homeNav").attr('class', 'active');
       hoverPop();
@@ -203,7 +213,16 @@
     }
 
     function web() {
-      $("#pageText").html(webText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(webText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(webText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       $("#webNav").attr('class', 'active');
       hoverPop();
@@ -217,7 +236,16 @@
     }
 
     function apps() {
-      $("#pageText").html(appsText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(appsText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(appsText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       $("#appsNav").attr('class', 'active');
       hoverPop();
@@ -231,7 +259,16 @@
     }
 
     function security() {
-      $("#pageText").html(securityText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(securityText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(securityText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/security');
@@ -244,7 +281,16 @@
     }
 
     function hosting() {
-      $("#pageText").html(hostingText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(hostingText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(hostingText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/hosting');
@@ -257,7 +303,16 @@
     }
 
     function backups() {
-      $("#pageText").html(backupsText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(backupsText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(backupsText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/backups');
@@ -270,7 +325,16 @@
     }
 
     function consulting() {
-      $("#pageText").html(consultingText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(consultingText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(consultingText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/consulting');
@@ -283,7 +347,16 @@
     }
 
     function ads() {
-      $("#pageText").html(adsText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(adsText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(adsText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/ads');
@@ -296,7 +369,16 @@
     }
 
     function seo() {
-      $("#pageText").html(seoText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(seoText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(seoText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/seo');
@@ -309,7 +391,16 @@
     }
 
     function pf() {
-      $("#pageText").html(pfText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(pfText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(pfText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       $("#pfNav").attr('class', 'active');
       hoverPop();
@@ -336,7 +427,16 @@
     }
 
     function certs() {
-      $("#pageText").html(certsText);
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(certsText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(certsText)
+        loaded = true;
+      }
       $(".active").attr('class', '');
       hoverPop();
       history.pushState(null, null, '/certs');
