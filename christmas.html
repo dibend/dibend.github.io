@@ -1,0 +1,71 @@
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: red;
+      font-family: 'Open Sans', sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      color: green;
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        color: #00FF00;
+      }
+
+      50% {
+        color: #FFFFFF;
+      }
+
+      100% {
+        color: #00FF00;
+      }
+    }
+
+    .coupon {
+      background-color: #FFFFFF;
+      border: 2px solid green;
+      color: green;
+      font-size: 24px;
+      padding: 10px;
+      animation: pulse 2s infinite;
+      max-width: 50%;
+      margin: auto;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+      }
+
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Merry Christmas!</h1>
+  <p>We hope you have a wonderful holiday season and a happy new year. As a special thank you, we are offering a coupon
+    for one free website:</p>
+  <div class="coupon">FREE WEBSITE</div>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/9jyCfRHumHU" title="YouTube video player"
+    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</body>
+
+</html>
