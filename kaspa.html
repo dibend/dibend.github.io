@@ -170,15 +170,15 @@
         kaspaJSON.mode_stats.pplns.default.currentHashrate +
         'H/s<br><br>Paid:<br>' +
         kaspaJSON.stats.paid +
-        '<hr><h3>Workers</h3>';
+        ' Kaspa<hr><h3>Workers</h3>';
       kaspaJSON.workers.forEach((worker) => {
         document.body.innerHTML +=
           '<h4>' +
           worker.worker +
           '</h4>' +
-          'Hashrate: ' +
+          'Hashrate:<br>' +
           worker.hr +
-          '<br><br>';
+          'H/s<br><br>';
       });
       document.body.innerHTML += '<hr><h4>Most Recent Payments</h4>';
       kaspaJSON.payments.forEach((payment) => {
