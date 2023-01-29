@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="https://blastnotifications.com/img/rocket.png" type="image/png" />
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "eyjn69kzmj");
+  </script>
+  <title>BlastMining.net Kaspa Stats</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inconsolata, monospace;
+      font-size: 1.5rem;
+      text-align: center;
+      text-shadow: 2px 2px white;
+      background-color: #dbf227;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    button {
+      font-family: Inconsolata, monospace;
+      font-size: 1.5rem;
+      background-color: #45f91b;
+      color: black;
+      text-shadow: 2px 2px #dbf227;
+      font-weight: bold;
+      box-shadow: 3px 3px 3px black;
+      padding: 15px;
+    }
+
+    #mature {
+      background-color: #45f91b;
+      display: inline-block;
+    }
+
+    #immature {
+      background-color: #f9d41b;
+      display: inline-block;
+    }
+
+    @media (min-width: 768px) {
+      button:hover {
+        box-shadow: 5px 5px 5px black;
+        border: solid black;
+        animation: shake 1s;
+      }
+
+      a:hover {
+        color: #45f91b;
+        text-shadow: 2px 2px 2px black;
+      }
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(10px);
+      }
+
+      50% {
+        transform: translateX(-10px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
+    }
+
+    #bang {
+      font-size: 7rem;
+      padding-bottom: 6vh;
+      animation: wiggle 75ms infinite;
+      animation-timing-function: ease;
+      height: 9rem;
+      transition: font-size 0.1s ease;
+    }
+
+    @keyframes wiggle {
+      0% {
+        transform: translate(2px, 0);
+      }
+
+      50% {
+        transform: translate(-2px, 0);
+      }
+
+      100% {
+        transform: translate(2px, 0);
+      }
+    }
+
+    button:active {
+      box-shadow: 5px 5px 5px #45f91b;
+      border: solid black;
+      background-color: #f9d41b;
+      animation: wiggle 75ms infinite;
+      animation-timing-function: ease;
+    }
+
+    hr {
+      border-top: 5px solid #45f91b;
+      border-bottom: 5px solid #f9d41b;
+      border-radius: 5px;
+      transition: all 200ms ease;
+    }
+
+    hr:hover {
+      border-top: 5px solid #f9d41b;
+      border-bottom: 5px solid #45f91b;
+    }
+
+    a {
+      transition: all 200ms ease;
+    }
+
+    ::selection {
+      background: black;
+      color: #45f91b;
+    }
+  </style>
+</head>
+
+<body>
+  <img src="img/kaspa.png" width="5%" />
+  <h1><a href="https://blastmining.net">BlastMining.net</a> Kaspa Stats</h1><br>
+  <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+  <div class="coinmarketcap-currency-widget" data-currencyid="20396" data-base="USD" data-secondary=""
+    data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true"
+    data-stats="USD"></div>
+  <br>
+  <script>
+    var bigBang = false;
+    var explode = new Audio('explode.wav');
+    var kaspaJSON;
+    var numBlocks = 0;
+    var upToBlock = 10;
+    function httpGetAsync(theUrl, callback) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+          callback(xmlHttp.responseText);
+      };
+      xmlHttp.open('GET', theUrl, true); // true for asynchronous
+      xmlHttp.send(null);
+    }
+    function kaspaStats(responseText) {
+      document.getElementById('loading').outerHTML = '';
+      kaspaJSON = JSON.parse(responseText);
+      console.table(kaspaJSON);
+      document.body.innerHTML +=
+        'Hashrate:' +
+        kaspaJSON.mode_stats.pplns.default.currentHashrate +
+        'H/s<br><br>Paid: ' +
+        kaspaJSON.stats.paid +
+        '<hr><h3>Workers</h3>';
+      kaspaJSON.workers.forEach((worker) => {
+        document.body.innerHTML +=
+          '<h4>' +
+          worker.worker +
+          '</h4>' +
+          'Hashrate: ' +
+          worker.hr +
+          '<br><br>';
+      });
+      document.body.innerHTML += '<hr><h4>Most Recent Payments</h4>';
+      kaspaJSON.payments.forEach((payment) => {
+        var time = new Date(0);
+        time.setUTCSeconds(payment.timestamp);
+        document.body.innerHTML +=
+          '<a href = "https://explorer.kaspa.org/txs/' +
+          payment.tx +
+          '">' +
+          payment.amount +
+          ' Kaspa ' +
+          time.toLocaleString() +
+          '</a><br><br>';
+      });
+      loadBalanceMovements();
+    }
+    httpGetAsync(
+      'https://api.woolypooly.com/api/kas-1/accounts/kaspa:qzs5dsvct5g3npgzhhzvax7w5shckhscszrx66g760dc7zwzmv8xvzhrs47kn',
+      kaspaStats
+    );
+  </script>
+</body>
+
+</html>
