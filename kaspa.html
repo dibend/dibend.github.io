@@ -166,9 +166,9 @@
       kaspaJSON = JSON.parse(responseText);
       console.table(kaspaJSON);
       document.body.innerHTML +=
-        'Hashrate:' +
+        'Hashrate:<br>' +
         kaspaJSON.mode_stats.pplns.default.currentHashrate +
-        'H/s<br><br>Paid: ' +
+        'H/s<br><br>Paid:<br>' +
         kaspaJSON.stats.paid +
         '<hr><h3>Workers</h3>';
       kaspaJSON.workers.forEach((worker) => {
