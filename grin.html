@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="https://blastnotifications.com/img/rocket.png" type="image/png" />
   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "eyjn69kzmj");
   </script>
   <title>BlastMining.net Grin Stats</title>
@@ -23,8 +23,10 @@
       font-family: Inconsolata, monospace;
       font-size: 1.5rem;
       text-align: center;
-      text-shadow: 2px 2px white;
-      background-color: #dbf227;
+      text-shadow: 2px 2px black;
+      background-color: #2C2F33;
+      color: #dbf227;
+      line-height: 1.8;
     }
 
     h1 {
@@ -44,12 +46,10 @@
 
     #mature {
       background-color: #45f91b;
-      display: inline-block;
     }
 
     #immature {
       background-color: #f9d41b;
-      display: inline-block;
     }
 
     @media (min-width: 768px) {
@@ -60,8 +60,8 @@
       }
 
       a:hover {
-        color: #45f91b;
-        text-shadow: 2px 2px 2px black;
+        color: #f9d41b;
+        text-shadow: 4px 4px 4px black;
       }
     }
 
@@ -114,19 +114,42 @@
       animation-timing-function: ease;
     }
 
+    a:active {
+      color: #f9d41b;
+      text-shadow: 4px 4px 4px black;
+    }
+
     hr {
       border-top: 5px solid #45f91b;
       border-bottom: 5px solid #f9d41b;
       border-radius: 5px;
     }
 
+    hr:hover {
+      border-top: 5px solid #f9d41b;
+      border-bottom: 5px solid #45f91b;
+    }
+
     a {
       transition: all 200ms ease;
+      color: #45f91b;
     }
 
     ::selection {
       background: black;
       color: #45f91b;
+    }
+
+    a::selection {
+      color: #f9d41b;
+    }
+
+    #mature,
+    #immature {
+      color: black;
+      display: inline-block;
+      padding: 2px;
+      text-shadow: 2px 2px 2px #dbf227;
     }
   </style>
 </head>
