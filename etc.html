@@ -153,6 +153,11 @@
       padding: 2px;
       text-shadow: 2px 2px 2px #dbf227;
     }
+
+    iframe {
+      width: 75vw;
+      height: 75vh;
+    }
   </style>
 </head>
 
@@ -265,7 +270,7 @@
         etcJSON.currentHashrate +
         'H/s<br><br>Last share: ' +
         lastShare.toLocaleString() +
-        '<br><br><hr><h3>Workers</h3>';
+        '<br><br><iframe src="/etc-bar.html"></iframe><br><br><hr><h3>Workers</h3>';
       Object.keys(etcJSON.workers).forEach((worker) => {
         document.body.innerHTML +=
           '<h4>' +
