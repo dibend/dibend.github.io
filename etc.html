@@ -270,7 +270,7 @@
         etcJSON.currentHashrate +
         'H/s<br><br>Last share: ' +
         lastShare.toLocaleString() +
-        '<br><br><iframe src="/etc-bar.html"></iframe><br><br><hr><h3>Workers</h3>';
+        '<br><br><iframe frameBorder="0" scrolling="no" src="/etc-bar.html"></iframe><br><br><hr><h3>Workers</h3>';
       Object.keys(etcJSON.workers).forEach((worker) => {
         document.body.innerHTML +=
           '<h4>' +
