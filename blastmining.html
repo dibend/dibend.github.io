@@ -221,49 +221,48 @@
 <body>
   <div>
     <h1>Blast Crypto Mining</h1>
-    <div id="big">₿ 💥<br />🚀 <span class="mine">⛏️</span></div>
+    <div id="big">₿ 💥<br />🚀 <span class="mine">⛏️</span></div><br /><br />
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+    <div id="coinmarketcap-widget-marquee" coins="1,1027,1321,2577,20396,3709,21045,328" currency="USD" theme="light"
+      transparent="true" show-symbol-logo="true"></div><br /><br />
+    <a href="/etc"><button>Ethereum Classic Mining Stats</button></a><br /><br />
+    <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
+    <a href="/erg"><button>Ergo Mining Stats</button></a><br /><br />
+    <div id="img"><img id="rigs" onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
     <h3>hardware</h3>
-    <div>
-      3x Bitmain E9 Pro<br />
-      2x iPollo V1 Mini <br />
-      2x iPollo V1 Mini Classic<br />
-      1x iPollo G1 Mini<br />
-      1x Nvidia RTX 3080<br />
-      1x Nvidia RTX 3060<br />
-      1x AMD Radeon RX 6700XT<br />
-      2x AMD Radeon RX 5700XT<br />
-      1x AMD Radeon RX 6600<br />
-      1x AMD Radeon RX 5600M<br />
-      2x AMD Ryzen 7 5800 8-Core Processor<br />
-      1x AMD Ryzen 7 1700 8-Core Processor<br />
-      1x AMD Ryzen 7 3700X 8-Core Processor<br />
-      1x AMD Ryzen 5 3600XT 6-Core Processor<br />
-      1x AMD Ryzen 7 4800H 8-Core Processor<br /><br />
-      <a href="/etc"><button>Ethereum Classic Mining Stats</button></a><br /><br />
-      <a href="/grin"><button>Grin Mining Stats</button></a><br /><br />
-      <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
-      <div id="coinmarketcap-widget-marquee" coins="1,1027,1321,2577,20396,3709,21045,328" currency="USD" theme="light"
-        transparent="true" show-symbol-logo="true"></div>
-      <br>
-      <div id="img"><img id="rigs" onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
-      <script>
-        var imgDiv = document.getElementById('img');
-        var rig = 2;
-        function changeImage() {
-          if (rig > 8) {
-            rig = 1;
-          }
-          imgDiv.innerHTML = `<img id="rigs" onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
-          rig++;
+    3x Bitmain E9 Pro<br />
+    2x iPollo V1 Mini <br />
+    2x iPollo V1 Mini Classic<br />
+    1x iPollo G1 Mini<br />
+    1x Nvidia RTX 3080<br />
+    1x Nvidia RTX 3060<br />
+    1x AMD Radeon RX 6700XT<br />
+    2x AMD Radeon RX 5700XT<br />
+    1x AMD Radeon RX 6600<br />
+    1x AMD Radeon RX 5600M<br />
+    2x AMD Ryzen 7 5800 8-Core Processor<br />
+    1x AMD Ryzen 7 1700 8-Core Processor<br />
+    1x AMD Ryzen 7 3700X 8-Core Processor<br />
+    1x AMD Ryzen 5 3600XT 6-Core Processor<br />
+    1x AMD Ryzen 7 4800H 8-Core Processor<br /><br />
+    <script>
+      var imgDiv = document.getElementById('img');
+      var rig = 2;
+      function changeImage() {
+        if (rig > 8) {
+          rig = 1;
         }
-        var imgInterval = setInterval(changeImage, 2000);
-        function preloadImages(array) {
-          if (!preloadImages.list) {
-            preloadImages.list = [];
-          }
-          var list = preloadImages.list;
-          for (var i = 0; i < array.length; i++) {
-            var img = new Image();
+        imgDiv.innerHTML = `<img id="rigs" onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
+        rig++;
+      }
+      var imgInterval = setInterval(changeImage, 2000);
+      function preloadImages(array) {
+        if (!preloadImages.list) {
+          preloadImages.list = [];
+        }
+        var list = preloadImages.list;
+        for (var i = 0; i < array.length; i++) {
+          var img = new Image();
             img.onload = function () {
               var index = list.indexOf(this);
               if (index !== -1) {
