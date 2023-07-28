@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      async function drawChart() {
+        const response = await fetch('https://erg.2miners.com/api/accounts/32NaCdLEQq1F9fcv868T1Xx1ym5jgouGVy');
+        const jsonData = await response.json();
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'Time');
+        data.addColumn('number', 'Payment');
+
+        jsonData.payments.forEach(function (payment) {
+          data.addRow([new Date(payment.timestamp * 1000), payment.amount / 1000000000]);
+        });
+
+        var options = {
+          title: 'Payments over Time',
+          titleTextStyle: { color: '#dbf227' },
+          hAxis: {
+            title: 'Time',
+            textStyle:{ color: '#dbf227' },
+            titleTextStyle: {
+              color: '#f9d41b'
+            }
+          },
+          vAxis: {
+            title: 'Payment (in ERG)',
+            textStyle: { color: '#dbf227' },
+            titleTextStyle: {
+              color: '#f9d41b'
+            }
+          },
+          legend: { position: 'none' },
+          colors: ['#45f91b'],
+          backgroundColor: 'black'
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 100vw; height: 100vh;"></div>
+  </body>
+</html>
