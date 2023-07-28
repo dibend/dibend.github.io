@@ -13,7 +13,7 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "eyjn69kzmj");
   </script>
-  <title>BlastMining.net ETC Stats</title>
+  <title>BlastMining.net Ergo Stats</title>
   <style>
     html {
       scroll-behavior: smooth;
@@ -162,19 +162,19 @@
 </head>
 
 <body>
-  <img src="https://cryptologos.cc/logos/ethereum-classic-etc-logo.svg" width="3%" />
+  <img src="" width="3%" />
   <h1>
-    <a href="https://blastmining.net">BlastMining.net</a> Ethereum Classic Stats
+    <a href="https://blastmining.net">BlastMining.net</a> Ergo Stats
   </h1>
   <div id="loading"><img src="btc.gif" alt="BTC Loading Icon" /><br>Loading...</div>
   <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
-  <div class="coinmarketcap-currency-widget" data-currencyid="1321" data-base="USD" data-secondary="" data-ticker="true"
-    data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+  <div class="coinmarkergap-currency-widget" data-currencyid="1321" data-base="USD" data-secondary="" data-ticker="true"
+    data-rank="true" data-markergap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
   <br>
   <script>
     var bigBang = false;
     var explode = new Audio('explode.wav');
-    var etcJSON;
+    var ergJSON;
     var numBlocks = 0;
     var upToBlock = 10;
     function loadBlocks() {
@@ -202,22 +202,19 @@
       }
       for (
         ;
-        numBlocks < Math.min(upToBlock, etcJSON.rewards.length);
+        numBlocks < Math.min(upToBlock, ergJSON.rewards.length);
         numBlocks++
       ) {
         var blocktime = new Date(0);
-        var reward = etcJSON.rewards[numBlocks];
+        var reward = ergJSON.rewards[numBlocks];
         blocktime.setUTCSeconds(reward.timestamp);
-        document.body.innerHTML +=
-          'Block Height: <a href="https://etcblockexplorer.com/block/' +
+        document.body.innerHTML += 'Block Height: ' +
           reward.blockheight +
-          '">' +
-          reward.blockheight +
-          '</a><br>Timestamp: ' +
+          '<br>Timestamp: ' +
           blocktime.toLocaleString() +
           '<br>Reward: ' +
           reward.reward / 100000000 +
-          ' Ethereum Classic<br>Share Percent: ' +
+          ' Ergo<br>Share Percent: ' +
           reward.percent * 100 +
           '%<br>';
         if (reward.immature) {
@@ -234,7 +231,7 @@
         }
         document.body.innerHTML += '<br><br>';
       }
-      if (upToBlock < etcJSON.rewards.length) {
+      if (upToBlock < ergJSON.rewards.length) {
         document.body.innerHTML +=
           '<button id="moreBlocks">Load more blocks</button>';
         document.getElementById('moreBlocks').onclick = loadBlocks;
@@ -250,62 +247,59 @@
       xmlHttp.open('GET', theUrl, true); // true for asynchronous
       xmlHttp.send(null);
     }
-    function etcStats(responseText) {
+    function ergStats(responseText) {
       document.getElementById('loading').outerHTML = '';
-      etcJSON = JSON.parse(responseText);
-      etcJSON.sumrewards.forEach((sumreward) => {
+      ergJSON = JSON.parse(responseText);
+      ergJSON.sumrewards.forEach((sumreward) => {
         document.body.innerHTML +=
           'Mined ' +
           sumreward.reward / 1000000000 +
-          ' Ethereum Classic in the ' +
+          ' Ergo in the ' +
           sumreward.name +
           '<br><br>';
       });
       var lastShare = new Date(0);
-      lastShare.setUTCSeconds(etcJSON.stats.lastShare);
+      lastShare.setUTCSeconds(ergJSON.stats.lastShare);
       document.body.innerHTML +=
-        etcJSON.stats.paid / 100000000 +
-        ' Ethereum Classic paid in total<br><br>Current Hashrate: ' +
-        etcJSON.currentHashrate +
+        ergJSON.stats.paid / 100000000 +
+        ' Ergo paid in total<br><br>Current Hashrate: ' +
+        ergJSON.currentHashrate +
         'H/s<br><br>Last share: ' +
         lastShare.toLocaleString() +
-        '<br><br><iframe frameBorder="0" scrolling="no" src="/etc-bar.html"></iframe><br><br><hr><h3>Workers</h3>';
-      Object.keys(etcJSON.workers).forEach((worker) => {
+        '<br><br><iframe frameBorder="0" scrolling="no" src="/erg-bar.html"></iframe><br><br><hr><h3>Workers</h3>';
+      Object.keys(ergJSON.workers).forEach((worker) => {
         document.body.innerHTML +=
           '<h4>' +
           worker +
           '</h4>' +
           'Current Hashrate: ' +
-          etcJSON.workers[worker].hr +
+          ergJSON.workers[worker].hr +
           'H/s<br>Average Hashrate: ' +
-          etcJSON.workers[worker].hr2 +
+          ergJSON.workers[worker].hr2 +
           'H/s<br>Valid Shares: ' +
-          etcJSON.workers[worker].sharesValid +
+          ergJSON.workers[worker].sharesValid +
           '<br>Invalid Shares: ' +
-          etcJSON.workers[worker].sharesInvalid +
+          ergJSON.workers[worker].sharesInvalid +
           '<br>Stale Shares: ' +
-          etcJSON.workers[worker].sharesStale +
+          ergJSON.workers[worker].sharesStale +
           '<br><br>';
       });
       document.body.innerHTML += '<hr><h4>Most Recent Payments</h4>';
-      etcJSON.payments.forEach((payment) => {
+      ergJSON.payments.forEach((payment) => {
         var time = new Date(0);
         time.setUTCSeconds(payment.timestamp);
         document.body.innerHTML +=
-          '<a href = "https://etcblockexplorer.com/tx/' +
-          payment.tx +
-          '">' +
           payment.amount / 1000000000 +
-          ' Ethereum Classic ' +
+          ' Ergo ' +
           time.toLocaleString() +
-          '</a><br><br>';
+          '<br><br>';
       });
       document.body.innerHTML += '<hr><h4>Most Recent Blocks</h4>';
       loadBlocks();
     }
     httpGetAsync(
-      'https://etc.2miners.com/api/accounts/0x3674b0c17defe6d23346601a037dee2e683c9cdc',
-      etcStats
+      'https://erg.2miners.com/api/accounts/32NaCdLEQq1F9fcv868T1Xx1ym5jgouGVy',
+      ergStats
     );
   </script>
 </body>
