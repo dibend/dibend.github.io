@@ -3,58 +3,98 @@
 <head>
   <title>DeepMinerz Pool Stats</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html {
+      scroll-behavior: smooth;
     }
+
+    body {
+      font-family: Inconsolata, monospace;
+      font-size: 1.5rem;
+      text-align: center;
+      text-shadow: 2px 2px black;
+      background: repeating-radial-gradient(circle, #2C2F33, #23272A 20%);
+      background-attachment: fixed;
+      color: #dbf227;
+      line-height: 1.8;
+    }
+
     .container {
       max-width: 800px;
       margin: auto;
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 10px;
+      box-shadow: 3px 3px 3px black;
     }
+
     .header {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
+      font-size: 2rem;
     }
+
     .stats {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
     }
+
     .stat-item {
       width: 48%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
       margin-bottom: 10px;
+      box-shadow: 3px 3px 3px black;
+    }
+
+    .loading {
+      animation: shake 3s;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(10px);
+      }
+
+      50% {
+        transform: translateX(-10px);
+      }
+
+      100% {
+        transform: translateX(0px);
+      }
     }
   </style>
 </head>
 <body>
-  <div class='container'>
+  <div class='container loading' id='container'>
     <div class='header'>
       DeepMinerz Pool Stats for Wallet Address
     </div>
     <div class='stats'>
       <div class='stat-item'>
-        <strong>Hashrate:</strong> <span id='hashrate'></span>
+        <strong>Hashrate:</strong> <span id='hashrate'></span> Hash per second
       </div>
       <div class='stat-item'>
-        <strong>Round Hashes:</strong> <span id='roundHashes'></span>
+        <strong>Round Hashes:</strong> <span id='roundHashes'></span> Hashes
       </div>
     </div>
   </div>
   <script>
     // Fetch stats and populate the page
     async function fetchStats() {
+      const container = document.getElementById('container');
+      container.classList.add('loading');
       const url = 'https://pool.deepminerz.com:8071/live_stats?address=XwnaLAFa3p4URiaRE5gz9tCpyoshdNr3NG3us4CGuPPDPzKRHUepKKVPvrrq8CG8tPhC6Lk3YUKLmEGjxNDTcS6t2r6hdiJzL';
       const response = await fetch(url);
       const data = await response.json();
-      const miner = data.miner;  // Assuming the data is nested under a 'miner' key
+      const miner = data.miner;
       document.getElementById('hashrate').innerText = miner.hashrate || 'N/A';
       document.getElementById('roundHashes').innerText = miner.roundHashes || 'N/A';
+      container.classList.remove('loading');
     }
     fetchStats();
   </script>
