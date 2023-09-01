@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DeepMinerz Pool Stats</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .header {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .stat-item {
+      width: 48%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <div class='header'>
+      DeepMinerz Pool Stats for Wallet Address
+    </div>
+    <div class='stats'>
+      <div class='stat-item'>
+        <strong>Hashrate:</strong> <span id='hashrate'></span>
+      </div>
+      <div class='stat-item'>
+        <strong>Round Hashes:</strong> <span id='roundHashes'></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Fetch stats and populate the page
+    async function fetchStats() {
+      const url = 'https://pool.deepminerz.com:8071/live_stats?address=XwnaLAFa3p4URiaRE5gz9tCpyoshdNr3NG3us4CGuPPDPzKRHUepKKVPvrrq8CG8tPhC6Lk3YUKLmEGjxNDTcS6t2r6hdiJzL';
+      const response = await fetch(url);
+      const data = await response.json();
+      const miner = data.miner;  // Assuming the data is nested under a 'miner' key
+      document.getElementById('hashrate').innerText = miner.hashrate || 'N/A';
+      document.getElementById('roundHashes').innerText = miner.roundHashes || 'N/A';
+    }
+    fetchStats();
+  </script>
+</body>
+</html>
