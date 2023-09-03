@@ -114,9 +114,11 @@
       workerList.innerHTML = ''; // Clear the list
 
       for (let i = 0; i < workers.length; i++) { // Loop through all workers
-        const workerItem = document.createElement('li');
-        workerItem.innerText = `Name: ${workers[i].name}, Hashrate: ${workers[i].hashrate} H/s`;
-        workerList.appendChild(workerItem);
+        if (workers[i].hashrate !== 0) {
+          const workerItem = document.createElement('li');
+          workerItem.innerText = `Name: ${workers[i].name}, Hashrate: ${workers[i].hashrate} H/s`;
+          workerList.appendChild(workerItem);
+        }
       }
 
       container.classList.remove('loading');
