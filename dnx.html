@@ -17,14 +17,16 @@
       color: #dbf227;
       line-height: 1.8;
     }
-
+    
     .container {
-      max-width: 800px;
-      margin: auto;
+      width: 100%;
       padding: 20px;
       border: 1px solid #ccc;
       border-radius: 10px;
       box-shadow: 3px 3px 3px black;
+      display: grid;
+      justify-content: center;
+      align-content: center;
     }
 
     .header {
@@ -34,11 +36,12 @@
     .stats {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      justify-content: center; /* Center items on the horizontal axis */
+      align-items: center; /* Center items on the vertical axis */
     }
 
     .stat-item {
-      width: 48%;
+      width: 80%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
@@ -67,9 +70,14 @@
         transform: translateX(0px);
       }
     }
+    .coinmarketcap-currency-widget {
+      width: 100%;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
+  <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="22858" data-base="USD" data-secondary="" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
   <div class='container loading' id='container'>
     <div class='header'>
       DeepMinerz Pool Stats for Wallet Address
@@ -79,23 +87,41 @@
         <strong>Hashrate:</strong> <span id='hashrate'></span> Hash per second
       </div>
       <div class='stat-item'>
-        <strong>Round Hashes:</strong> <span id='roundHashes'></span> Hashes
+        <strong>Total Hashes:</strong> <span id='totalHashes'></span> Hashes
+      </div>
+      <div class='stat-item'>
+        <strong>Workers:</strong>
+        <ul id='workerList'></ul>
       </div>
     </div>
   </div>
   <script>
-    // Fetch stats and populate the page
     async function fetchStats() {
       const container = document.getElementById('container');
       container.classList.add('loading');
-      const url = 'https://pool.deepminerz.com:8071/live_stats?address=XwnaLAFa3p4URiaRE5gz9tCpyoshdNr3NG3us4CGuPPDPzKRHUepKKVPvrrq8CG8tPhC6Lk3YUKLmEGjxNDTcS6t2r6hdiJzL';
+      const url = 'https://pool.deepminerz.com:8071/stats_address?address=XwnaLAFa3p4URiaRE5gz9tCpyoshdNr3NG3us4CGuPPDPzKRHUepKKVPvrrq8CG8tPhC6Lk3YUKLmEGjxNDTcS6t2r6hdiJzL&longpoll=false';
       const response = await fetch(url);
       const data = await response.json();
-      const miner = data.miner;
-      document.getElementById('hashrate').innerText = miner.hashrate || 'N/A';
-      document.getElementById('roundHashes').innerText = miner.roundHashes || 'N/A';
+      const stats = data.stats;
+      const workers = data.workers;
+
+      // Fill Hashrate and Hashes
+      document.getElementById('hashrate').innerText = stats.hashrate || 'N/A';
+      document.getElementById('totalHashes').innerText = stats.hashes || 'N/A';
+
+      // Fill Worker Names and Hashrates
+      const workerList = document.getElementById('workerList');
+      workerList.innerHTML = ''; // Clear the list
+
+      for (let i = 0; i < workers.length; i++) { // Loop through all workers
+        const workerItem = document.createElement('li');
+        workerItem.innerText = `Name: ${workers[i].name}, Hashrate: ${workers[i].hashrate} H/s`;
+        workerList.appendChild(workerItem);
+      }
+
       container.classList.remove('loading');
     }
+    
     fetchStats();
   </script>
 </body>
