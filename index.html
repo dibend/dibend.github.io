@@ -569,6 +569,33 @@
       max-width: 900px;
       opacity: .4;
     }
+
+    @keyframes floatAnimation {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+      25% {
+        transform: translateX(50px) translateY(-20px);
+      }
+      50% {
+        transform: translateX(100px) translateY(0);
+        opacity: 0.8;
+      }
+      75% {
+        transform: translateX(50px) translateY(20px);
+      }
+      100% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .bi-cloud-check {
+      animation: floatAnimation 10s ease-in-out infinite;
+      display: inline-block;
+    }
+
   </style>
 
 </head>
