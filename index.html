@@ -573,14 +573,14 @@
     @keyframes floatAnimation {
       0% {
         transform: translateX(0) translateY(0);
-        opacity: 1;
+        opacity: .7;
       }
       25% {
         transform: translateX(50px) translateY(-20px);
       }
       50% {
         transform: translateX(100px) translateY(0);
-        opacity: 0.8;
+        opacity: .4;
       }
       75% {
         transform: translateX(50px) translateY(20px);
@@ -596,6 +596,24 @@
       display: inline-block;
     }
 
+    @media (max-width: 600px) {
+      @keyframes floatAnimation {
+        0%, 100% {
+          transform: translateX(0) translateY(0);
+          opacity: .7;
+        }
+        25% {
+          transform: translateX(10px) translateY(-5px);
+        }
+        50% {
+          transform: translateX(20px) translateY(0);
+          opacity: .4;
+        }
+        75% {
+          transform: translateX(10px) translateY(5px);
+        }
+      }
+    }
   </style>
 
 </head>
