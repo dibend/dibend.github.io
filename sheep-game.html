@@ -116,6 +116,7 @@
             gameArea.appendChild(shepherd);
 
             let isDragging = false;
+            let alertShown = false;
 
             shepherd.addEventListener('mousedown', startDrag);
             shepherd.addEventListener('touchstart', startDrag);
@@ -153,7 +154,8 @@
 
             function checkCollision() {
                 sheep.forEach(s => {
-                    if (getDistance(shepherd, s) < 50) {
+                    if (getDistance(shepherd, s) < 50 && !alertShown) {
+                        alertShown = true;
                         alert("Shepherd saved the sheep!");
                         location.reload();
                     }
@@ -171,7 +173,8 @@
                         minDistance = distance;
                     }
 
-                    if (distance < 50) {
+                    if (distance < 50 && !alertShown) {
+                        alertShown = true;
                         alert("Wolf caught the sheep!");
                         location.reload();
                     }
@@ -190,7 +193,8 @@
                     case 'ArrowRight': case 'd': moveCharacter(shepherd, rect.x + step, rect.y); break;
                 }
                 sheep.forEach(s => {
-                    if (getDistance(shepherd, s) < 50) {
+                    if (getDistance(shepherd, s) < 50 && !alertShown) {
+                        alertShown = true;
                         alert("Shepherd saved the sheep!");
                         location.reload();
                     }
