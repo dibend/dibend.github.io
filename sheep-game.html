@@ -115,6 +115,51 @@
             gameArea.appendChild(wolf);
             gameArea.appendChild(shepherd);
 
+            let isDragging = false;
+
+            shepherd.addEventListener('mousedown', startDrag);
+            shepherd.addEventListener('touchstart', startDrag);
+
+            function startDrag(e) {
+                e.preventDefault();
+                isDragging = true;
+            }
+
+            gameArea.addEventListener('mousemove', drag);
+            gameArea.addEventListener('touchmove', drag);
+
+            function drag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                let x, y;
+                if (e.touches) {
+                    x = e.touches[0].clientX;
+                    y = e.touches[0].clientY;
+                } else {
+                    x = e.clientX;
+                    y = e.clientY;
+                }
+                moveCharacter(shepherd, x - 30, y - 30); // Adjusting for cursor position and character size
+                checkCollision();
+            }
+
+            gameArea.addEventListener('mouseup', stopDrag);
+            gameArea.addEventListener('mouseleave', stopDrag);
+            gameArea.addEventListener('touchend', stopDrag);
+
+            function stopDrag() {
+                isDragging = false;
+            }
+
+            function checkCollision() {
+                sheep.forEach(s => {
+                    if (getDistance(shepherd, s) < 50) {
+                        alert("Shepherd saved the sheep!");
+                        location.reload();
+                    }
+                });
+            }
+
             setInterval(() => {
                 let nearestSheep = sheep[0];
                 let minDistance = getDistance(wolf, nearestSheep);
