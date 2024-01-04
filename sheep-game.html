@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheep and Wolf Game</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #gameArea {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .character {
+            position: absolute;
+            font-size: 5rem;
+            user-select: none;
+        }
+
+        body {
+            background-color: green;
+            background-image: url("/bg.webp");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div id="startMenu">
+        <label for="sheepCount">Number of Sheep:</label>
+        <select id="sheepCount">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <button onclick="startGame()">Start Game</button>
+    </div>
+    <div id="gameArea"></div>
+    <script>
+        function createCharacter(emoji, x, y) {
+            const character = document.createElement('div');
+            character.className = 'character';
+            character.textContent = emoji;
+            character.style.left = `${x}px`;
+            character.style.top = `${y}px`;
+            return character;
+        }
+
+        function moveCharacter(character, x, y) {
+            const maxX = window.innerWidth - 60; // Adjusted for larger font size
+            const maxY = window.innerHeight - 60; // Adjusted for larger font size
+            const newX = Math.max(0, Math.min(x, maxX));
+            const newY = Math.max(0, Math.min(y, maxY));
+            character.style.left = `${newX}px`;
+            character.style.top = `${newY}px`;
+        }
+
+        function wander(character) {
+            const stepSize = 10;
+            const direction = Math.floor(Math.random() * 4);
+            const rect = character.getBoundingClientRect();
+            switch (direction) {
+                case 0: moveCharacter(character, rect.x, rect.y - stepSize); break; // Up
+                case 1: moveCharacter(character, rect.x, rect.y + stepSize); break; // Down
+                case 2: moveCharacter(character, rect.x - stepSize, rect.y); break; // Left
+                case 3: moveCharacter(character, rect.x + stepSize, rect.y); break; // Right
+            }
+        }
+
+        function getDistance(a, b) {
+            const aRect = a.getBoundingClientRect();
+            const bRect = b.getBoundingClientRect();
+            return Math.sqrt(Math.pow(aRect.x - bRect.x, 2) + Math.pow(aRect.y - bRect.y, 2));
+        }
+
+        function chase(character, target) {
+            const charRect = character.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const step = 2; // Adjust the step size for faster movement
+            const deltaX = targetRect.x - charRect.x;
+            const deltaY = targetRect.y - charRect.y;
+            moveCharacter(character, charRect.x + Math.sign(deltaX) * step, charRect.y + Math.sign(deltaY) * step);
+        }
+
+        function startGame() {
+            document.getElementById('startMenu').style.display = 'none';
+            const gameArea = document.getElementById('gameArea');
+            gameArea.innerHTML = ''; // Clear previous game
+
+            const numberOfSheep = parseInt(document.getElementById('sheepCount').value);
+            const sheep = [];
+            for (let i = 0; i < numberOfSheep; i++) {
+                let x, y;
+                do {
+                    x = Math.random() * (window.innerWidth - 60);
+                    y = Math.random() * (window.innerHeight - 60);
+                } while (Math.sqrt(Math.pow(x - 500, 2) + Math.pow(y - 500, 2)) < 200);
+
+                sheep.push(createCharacter('🐑', x, y));
+                gameArea.appendChild(sheep[i]);
+                setInterval(() => wander(sheep[i]), 1000);
+            }
+
+            const wolf = createCharacter('🐺', 500, 500);
+            const shepherd = createCharacter('👨‍🌾', 100, 100);
+            gameArea.appendChild(wolf);
+            gameArea.appendChild(shepherd);
+
+            setInterval(() => {
+                let nearestSheep = sheep[0];
+                let minDistance = getDistance(wolf, nearestSheep);
+
+                sheep.forEach(s => {
+                    const distance = getDistance(wolf, s);
+                    if (distance < minDistance) {
+                        nearestSheep = s;
+                        minDistance = distance;
+                    }
+
+                    if (distance < 50) {
+                        alert("Wolf caught the sheep!");
+                        location.reload();
+                    }
+                });
+
+                chase(wolf, nearestSheep);
+            }, 100);
+
+            document.addEventListener('keydown', (event) => {
+                const step = 20;
+                const rect = shepherd.getBoundingClientRect();
+                switch (event.key) {
+                    case 'ArrowUp': case 'w': moveCharacter(shepherd, rect.x, rect.y - step); break;
+                    case 'ArrowDown': case 's': moveCharacter(shepherd, rect.x, rect.y + step); break;
+                    case 'ArrowLeft': case 'a': moveCharacter(shepherd, rect.x - step, rect.y); break;
+                    case 'ArrowRight': case 'd': moveCharacter(shepherd, rect.x + step, rect.y); break;
+                }
+                sheep.forEach(s => {
+                    if (getDistance(shepherd, s) < 50) {
+                        alert("Shepherd saved the sheep!");
+                        location.reload();
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
