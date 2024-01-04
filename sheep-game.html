@@ -93,6 +93,9 @@
 
         function startGame() {
             document.getElementById('startMenu').style.display = 'none';
+            const startTime = new Date(); // Record start time
+            let elapsedTime = 0;
+
             const gameArea = document.getElementById('gameArea');
             gameArea.innerHTML = ''; // Clear previous game
 
@@ -156,7 +159,8 @@
                 sheep.forEach(s => {
                     if (getDistance(shepherd, s) < 50 && !alertShown) {
                         alertShown = true;
-                        alert("Shepherd saved the sheep!");
+                        elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
+                        alert("Shepherd saved the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
                 });
@@ -175,7 +179,8 @@
 
                     if (distance < 50 && !alertShown) {
                         alertShown = true;
-                        alert("Wolf caught the sheep!");
+                        elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
+                        alert("Wolf caught the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
                 });
@@ -195,7 +200,8 @@
                 sheep.forEach(s => {
                     if (getDistance(shepherd, s) < 50 && !alertShown) {
                         alertShown = true;
-                        alert("Shepherd saved the sheep!");
+                        elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
+                        alert("Shepherd saved the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
                 });
