@@ -32,7 +32,14 @@
         }
 
         #startMenu, button, select {
-            font-size: 3rem;
+            font-size: 2.5rem;
+            text-shadow: .2rem .2rem .2rem green;
+        }
+
+        #leaderboard {
+            overflow-y: auto; /* Enables vertical scrolling */
+            padding: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -48,7 +55,7 @@
         </select>
         <button onclick="startGame()">Start Game</button>
         <div id="leaderboard">
-            <h2>Leaderboard</h2>
+            <b>Leaderboard</b>
             <div id="shepherdTimes"></div>
             <div id="wolfTimes"></div>
         </div>        
@@ -67,11 +74,11 @@
             const wolfTimes = JSON.parse(localStorage.getItem("wolfTimes")) || [];
 
             document.getElementById('shepherdTimes').innerHTML = 
-                '<h3>Shepherd Times</h3>' + 
+                '<b>Shepherd Times</b>' + 
                 '<ul>' + shepherdTimes.map(time => `<li>${time} seconds</li>`).join('') + '</ul>';
 
             document.getElementById('wolfTimes').innerHTML = 
-                '<h3>Wolf Times</h3>' + 
+                '<b>Wolf Times</b>' + 
                 '<ul>' + wolfTimes.map(time => `<li>${time} seconds</li>`).join('') + '</ul>';
         }
 
