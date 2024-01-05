@@ -125,7 +125,7 @@
 
         function startGame() {
             document.getElementById('startMenu').style.display = 'none';
-            document.style.overflow = 'hidden';
+            document.querySelector("html").style.overflow = 'hidden';
             document.body.style.overflow = 'hidden';
             const startTime = new Date(); // Record start time
             let elapsedTime = 0;
