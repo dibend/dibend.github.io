@@ -8,7 +8,7 @@
         body, html {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow: scroll;
         }
 
         #gameArea {
@@ -34,12 +34,6 @@
         #startMenu, button, select {
             font-size: 2.5rem;
             text-shadow: .2rem .2rem .2rem green;
-        }
-
-        #leaderboard {
-            overflow-y: auto; /* Enables vertical scrolling */
-            padding: 10px;
-            margin-top: 20px;
         }
     </style>
 </head>
@@ -131,6 +125,8 @@
 
         function startGame() {
             document.getElementById('startMenu').style.display = 'none';
+            document.overflow = 'hidden';
+            document.body.overflow = 'hidden';
             const startTime = new Date(); // Record start time
             let elapsedTime = 0;
 
