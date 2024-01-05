@@ -30,6 +30,10 @@
             background-position: center;
             background-size: cover;
         }
+
+        #startMenu, button, select {
+            font-size: 3rem;
+        }
     </style>
 </head>
 <body>
@@ -43,9 +47,36 @@
             <option value="5">5</option>
         </select>
         <button onclick="startGame()">Start Game</button>
+        <div id="leaderboard">
+            <h2>Leaderboard</h2>
+            <div id="shepherdTimes"></div>
+            <div id="wolfTimes"></div>
+        </div>        
     </div>
     <div id="gameArea"></div>
     <script>
+        function saveTime(role, time) {
+            let times = JSON.parse(localStorage.getItem(role + "Times")) || [];
+            times.push(time);
+            times = times.sort((a, b) => a - b).slice(0, 5); // Keep top 5 times
+            localStorage.setItem(role + "Times", JSON.stringify(times));
+        }
+
+        function displayTimes() {
+            const shepherdTimes = JSON.parse(localStorage.getItem("shepherdTimes")) || [];
+            const wolfTimes = JSON.parse(localStorage.getItem("wolfTimes")) || [];
+
+            document.getElementById('shepherdTimes').innerHTML = 
+                '<h3>Shepherd Times</h3>' + 
+                '<ul>' + shepherdTimes.map(time => `<li>${time} seconds</li>`).join('') + '</ul>';
+
+            document.getElementById('wolfTimes').innerHTML = 
+                '<h3>Wolf Times</h3>' + 
+                '<ul>' + wolfTimes.map(time => `<li>${time} seconds</li>`).join('') + '</ul>';
+        }
+
+        displayTimes();
+
         function createCharacter(emoji, x, y) {
             const character = document.createElement('div');
             character.className = 'character';
@@ -160,6 +191,7 @@
                     if (getDistance(shepherd, s) < 50 && !alertShown) {
                         alertShown = true;
                         elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
+                        saveTime("shepherd", parseFloat(elapsedTime));
                         alert("Shepherd saved the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
@@ -180,6 +212,7 @@
                     if (distance < 50 && !alertShown) {
                         alertShown = true;
                         elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
+                        saveTime("wolf", parseFloat(elapsedTime));
                         alert("Wolf caught the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
@@ -201,6 +234,7 @@
                     if (getDistance(shepherd, s) < 50 && !alertShown) {
                         alertShown = true;
                         elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
+                        saveTime("shepherd", parseFloat(elapsedTime));
                         alert("Shepherd saved the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
