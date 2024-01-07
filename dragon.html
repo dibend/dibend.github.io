@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Game</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url('castle.png'); /* Add your background image here */
+            background-size: cover;
+            background-position: center
+        }
+
+        #game {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+        }
+
+        .emoji {
+            font-size: 3rem;
+            position: absolute;
+        }
+
+        #dragon {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: left 1s ease;
+        }
+
+        #player {
+            bottom: 10px;
+            left: 50px;
+        }
+
+        #timer {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        #level {
+            text-align: center;
+            font-size: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="dragon" class="emoji">🐉</div>
+        <div id="player" class="emoji">🏃‍♂️</div>
+        <!-- Fireballs will be added dynamically -->
+    </div>
+    <div id="timer">Time Left: <span id="time">30</span>s</div>
+    <div id="level">Level: <span id="currentLevel">1</span></div>
+    <script>
+        let timer;
+        const gameArea = document.getElementById('game');
+        const dragon = document.getElementById('dragon');
+        const player = document.getElementById('player');
+        const timerEl = document.getElementById('time');
+        let timeLeft = 30; // seconds
+
+        let currentLevel = 1;
+        const levelEl = document.getElementById('currentLevel');
+
+        // Flag to check if dragging is active
+        let isDragging = false;
+
+        player.addEventListener('mousedown', startDragging);
+        player.addEventListener('touchstart', startDragging);
+
+        document.addEventListener('mousemove', drag);
+        document.addEventListener('touchmove', drag);
+
+        document.addEventListener('mouseup', stopDragging);
+        document.addEventListener('touchend', stopDragging);
+
+        function startDragging(e) {
+            e.preventDefault();
+            isDragging = true;
+        }
+
+        function drag(e) {
+            if (!isDragging) return;
+            let clientX = e.clientX;
+    
+            // If it's a touch event, get the touch coordinates
+            if (e.touches) {
+                clientX = e.touches[0].clientX;
+            }
+
+            const gameRect = gameArea.getBoundingClientRect();
+            let newLeft = clientX - gameRect.left - (player.offsetWidth / 2);
+    
+            // Keep the player within the game area bounds
+            newLeft = Math.max(0, Math.min(newLeft, gameArea.offsetWidth - player.offsetWidth));
+
+            player.style.left = `${newLeft}px`;
+        }
+
+        function stopDragging() {
+            isDragging = false;
+        }
+
+        function updateLevel() {
+            levelEl.textContent = currentLevel;
+        }
+
+        function resetGame() {
+            // Clear existing fireballs
+            document.querySelectorAll('.emoji:not(#dragon):not(#player)').forEach(e => e.remove());
+    
+            // Reset player and dragon positions
+            dragon.style.left = '50%';
+            player.style.left = '50px';
+    
+            // Reset Timer
+            timeLeft = 30;
+            timerEl.textContent = timeLeft;
+        }
+
+        function nextLevel() {
+            currentLevel++;
+            updateLevel();
+            resetGame();
+    
+            // Increase difficulty, for example, by reducing the spawn interval
+            clearInterval(fireballInterval);
+            fireballInterval = setInterval(spawnFireball, Math.max(1000, 2000 - (currentLevel * 100)));
+        }
+
+        // Modify the timer logic to go to the next level
+        clearInterval(timer);
+        timer = setInterval(() => {
+            timeLeft--;
+            timerEl.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                nextLevel();
+            }
+        }, 1000);
+
+        // Store intervals to clear them later
+        let fireballInterval = setInterval(spawnFireball, 2000);
+        let dragonMoveInterval = setInterval(moveDragon, 3000);
+    
+        function spawnFireball() {
+            const fireball = document.createElement('div');
+            fireball.classList.add('emoji');
+            fireball.textContent = '🔥';
+            fireball.style.left = dragon.style.left;
+            fireball.style.top = dragon.style.top;
+            gameArea.appendChild(fireball);
+    
+            const playerRect = player.getBoundingClientRect();
+            const dragonRect = dragon.getBoundingClientRect();
+    
+            // Calculate trajectory
+            const dx = playerRect.left - dragonRect.left;
+            const dy = playerRect.top - dragonRect.top;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const speed = 2; // pixels per frame
+            const vx = (dx / distance) * speed;
+            const vy = (dy / distance) * speed;
+    
+            // Fireball movement
+            let interval = setInterval(() => {
+                let fireballRect = fireball.getBoundingClientRect();
+                fireball.style.left = `${fireballRect.left + vx}px`;
+                fireball.style.top = `${fireballRect.top + vy}px`;
+    
+                // Check collision with player
+                if (collision(fireball, player)) {
+                    alert('Game Over!');
+                    clearInterval(interval);
+                    window.location.reload(); // Restart game
+                }
+    
+                // Remove fireball when it goes out of view
+                if (fireballRect.top > window.innerHeight || fireballRect.left > window.innerWidth || fireballRect.right < 0) {
+                    clearInterval(interval);
+                    fireball.remove();
+                }
+            }, 50);
+        }
+    
+        function moveDragon() {
+            let newLeft = Math.random() * (window.innerWidth - dragon.offsetWidth);
+            dragon.style.left = `${newLeft}px`;
+        }
+    
+        function collision(elem1, elem2) {
+            const rect1 = elem1.getBoundingClientRect();
+            const rect2 = elem2.getBoundingClientRect();
+            return !(rect1.right < rect2.left || 
+                     rect1.left > rect2.right || 
+                     rect1.bottom < rect2.top || 
+                     rect1.top > rect2.bottom);
+        }
+    
+        // Spawn fireballs
+        setInterval(spawnFireball, 2000); // Adjust for difficulty
+        setInterval(moveDragon, 3000); // Dragon moves every 3 seconds
+    
+        // Player movement (simple example)
+        document.addEventListener('keydown', (event) => {
+            let left = parseInt(window.getComputedStyle(player).left);
+            if (event.key === 'ArrowLeft') left -= 10;
+            if (event.key === 'ArrowRight') left += 10;
+            player.style.left = `${left}px`;
+        });
+    </script>
+    
+</body>
+</html>
