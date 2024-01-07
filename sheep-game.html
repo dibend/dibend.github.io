@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,6 +66,8 @@
     </style>
 </head>
 <body>
+    <audio id="wolfSound" src="wolf.mp3" style="display: none;"></audio>
+    <audio id="sheepSound" src="sheep.mp3" style="display: none;"></audio>
     <div id="startMenu">
         <label for="sheepCount">Number of Sheep:</label>
         <select id="sheepCount">
@@ -225,6 +226,7 @@
                         alertShown = true;
                         elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
                         saveTime("shepherd", parseFloat(elapsedTime));
+                        document.getElementById('sheepSound').play();
                         alert("Shepherd saved the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
@@ -246,6 +248,7 @@
                         alertShown = true;
                         elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
                         saveTime("wolf", parseFloat(elapsedTime));
+                        document.getElementById('wolfSound').play();
                         alert("Wolf caught the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
@@ -268,6 +271,7 @@
                         alertShown = true;
                         elapsedTime = (new Date() - startTime) / 1000; // Calculate elapsed time in seconds
                         saveTime("shepherd", parseFloat(elapsedTime));
+                        document.getElementById('sheepSound').play();
                         alert("Shepherd saved the sheep! Time taken: " + elapsedTime + " seconds.");
                         location.reload();
                     }
