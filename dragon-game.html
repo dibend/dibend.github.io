@@ -1,60 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dragon Game</title>
     <style>
-        body,
-        html {
+        body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
-
         body {
-            background-image: url('castle.png');
-            /* Ensure the image path is correct */
+            background-image: url('castle.png'); /* Ensure the image path is correct */
             background-size: cover;
             background-position: center;
         }
-
         #game {
             position: relative;
             width: 100%;
             height: 80vh;
-            display: none;
-            /* Initially hidden */
+            display: none; /* Initially hidden */
         }
-
         .emoji {
             font-size: 3rem;
             position: absolute;
         }
-
         #dragon {
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
             transition: left 1s ease;
         }
-
         #player {
             bottom: 10px;
             left: 50px;
         }
-
-        #timer,
-        #level {
+        #timer, #level {
             text-align: center;
             font-size: 1.5rem;
             margin-top: 20px;
             background-color: rgba(255, 255, 255, 0.5);
         }
-
         #startButton {
             font-size: 3rem;
             color: yellowgreen;
@@ -65,15 +53,21 @@
             transform: translate(-50%, -50%);
             cursor: pointer;
         }
+        /* Responsive sizes for fireballs */
+        @media only screen and (max-width: 1024px) {
+            .emoji.fireball { font-size: 2rem; }
+        }
+        @media only screen and (max-width: 600px) {
+            .emoji.fireball { font-size: 1.5rem; }
+        }
     </style>
 </head>
-
 <body>
     <button id="startButton">Start Game</button>
+    <div id="highScoreDisplay"></div>
     <div id="game">
         <div id="dragon" class="emoji">🐉</div>
         <div id="player" class="emoji">🏃‍♂️</div>
-        <!-- Fireballs will be added dynamically -->
     </div>
     <div id="timer">Time Left: <span id="time">30</span>s</div>
     <div id="level">Level: <span id="currentLevel">1</span></div>
@@ -102,16 +96,11 @@
 
         function drag(e) {
             if (!isDragging) return;
-
             let clientX = e.clientX;
-            if (e.touches) {
-                clientX = e.touches[0].clientX;
-            }
-
+            if (e.touches) clientX = e.touches[0].clientX;
             const gameRect = gameArea.getBoundingClientRect();
             let newLeft = clientX - gameRect.left - player.offsetWidth / 2;
             newLeft = Math.max(0, Math.min(newLeft, gameArea.offsetWidth - player.offsetWidth));
-
             player.style.left = `${newLeft}px`;
         }
 
@@ -120,8 +109,8 @@
         }
 
         document.getElementById('startButton').addEventListener('click', function () {
-            this.style.display = 'none'; // Hide the start button
-            gameArea.style.display = 'block'; // Show the game area
+            this.style.display = 'none';
+            gameArea.style.display = 'block';
             startGame();
             toggleFullScreen();
         });
@@ -136,20 +125,13 @@
         function gameTimer() {
             timeLeft--;
             timerEl.textContent = timeLeft;
-            if (timeLeft <= 0) {
-                nextLevel();
-            }
+            if (timeLeft <= 0) nextLevel();
         }
 
         function resetGame() {
-            // Clear existing fireballs
             document.querySelectorAll('.emoji:not(#dragon):not(#player)').forEach(e => e.remove());
-
-            // Reset player and dragon positions
             dragon.style.left = '50%';
             player.style.left = '50px';
-
-            // Reset Timer
             timeLeft = 30;
             timerEl.textContent = timeLeft;
         }
@@ -158,8 +140,6 @@
             currentLevel++;
             updateLevel();
             resetGame();
-
-            // Increase difficulty, for example, by reducing the spawn interval
             clearInterval(fireballInterval);
             fireballInterval = setInterval(spawnFireball, Math.max(1000, 2000 - (currentLevel * 100)));
         }
@@ -172,34 +152,31 @@
             if (!document.fullscreenElement) {
                 if (document.documentElement.requestFullscreen) {
                     document.documentElement.requestFullscreen();
-                } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+                } else if (document.documentElement.mozRequestFullScreen) {
                     document.documentElement.mozRequestFullScreen();
-                } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                } else if (document.documentElement.webkitRequestFullscreen) {
                     document.documentElement.webkitRequestFullscreen();
-                } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+                } else if (document.documentElement.msRequestFullscreen) {
                     document.documentElement.msRequestFullscreen();
                 }
             } else {
                 if (document.exitFullscreen) {
                     document.exitFullscreen();
-                } else if (document.mozCancelFullScreen) { /* Firefox */
+                } else if (document.mozCancelFullScreen) {
                     document.mozCancelFullScreen();
-                } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                } else if (document.webkitExitFullscreen) {
                     document.webkitExitFullscreen();
-                } else if (document.msExitFullscreen) { /* IE/Edge */
+                } else if (document.msExitFullscreen) {
                     document.msExitFullscreen();
                 }
             }
         }
 
-        // Placeholder for spawnFireball, moveDragon, and collision functions
-        // Please insert your game logic here
-
         function spawnFireball() {
             const fireball = document.createElement('div');
-            fireball.classList.add('emoji');
+            fireball.classList.add('emoji', 'fireball');
             fireball.textContent = '🔥';
-            fireball.style.left = dragon.style.left; // Start from the dragon's position
+            fireball.style.left = dragon.style.left;
             fireball.style.top = dragon.style.top;
             gameArea.appendChild(fireball);
 
@@ -208,9 +185,7 @@
                 if (isOffScreen(fireball) || collision(fireball, player)) {
                     clearInterval(interval);
                     fireball.remove();
-                    if (collision(fireball, player)) {
-                        gameOver();
-                    }
+                    if (collision(fireball, player)) gameOver();
                 }
             }, 50);
         }
@@ -218,34 +193,20 @@
         function moveFireball(fireball) {
             const playerRect = player.getBoundingClientRect();
             const fireballRect = fireball.getBoundingClientRect();
-
             const dx = playerRect.left - fireballRect.left;
             const dy = playerRect.top - fireballRect.top;
             const distance = Math.sqrt(dx * dx + dy * dy);
             const speed = 2; // Adjust speed for difficulty
-
-            const stepX = speed * (dx / distance);
-            const stepY = speed * (dy / distance);
-
+            const stepX = (dx / distance) * speed;
+            const stepY = (dy / distance) * speed;
             fireball.style.left = `${fireballRect.left + stepX}px`;
             fireball.style.top = `${fireballRect.top + stepY}px`;
-
-            // Check for collision with player after moving the fireball
-            if (collision(fireball, player)) {
-                gameOver(); // Call game over function
-            }
-        }
-
-        function gameOver() {
-            alert('Game Over!');
-            // Any additional game over logic can go here
-            window.location.reload(); // This reloads the page to restart the game
+            if (collision(fireball, player)) gameOver();
         }
 
         function isOffScreen(element) {
             const rect = element.getBoundingClientRect();
-            return rect.bottom < 0 || rect.top > window.innerHeight ||
-                rect.right < 0 || rect.left > window.innerWidth;
+            return rect.bottom < 0 || rect.top > window.innerHeight || rect.right < 0 || rect.left > window.innerWidth;
         }
 
         function gameOver() {
@@ -257,37 +218,32 @@
             const min = 0;
             const max = gameArea.offsetWidth - dragon.offsetWidth;
             const newPosition = Math.floor(Math.random() * (max - min + 1) + min);
-
             dragon.style.left = `${newPosition}px`;
         }
 
         function collision(elem1, elem2) {
-            const rect1 = elem1.getBoundingClientRect();
-            const rect2 = elem2.getBoundingClientRect();
+            const rect1 = getReducedRect(elem1, 0.7); // 70% of the original size
+            const rect2 = getReducedRect(elem2, 0.7);
+            return rect1.left < rect2.right && rect1.right > rect2.left && rect1.top < rect2.bottom && rect1.bottom > rect2.top;
+        }
 
-            return rect1.left < rect2.right &&
-                rect1.right > rect2.left &&
-                rect1.top < rect2.bottom &&
-                rect1.bottom > rect2.top;
+        function getReducedRect(elem, reductionFactor) {
+            const rect = elem.getBoundingClientRect();
+            const reducedWidth = rect.width * reductionFactor;
+            const reducedHeight = rect.height * reductionFactor;
+            const x = rect.left + (rect.width - reducedWidth) / 2;
+            const y = rect.top + (rect.height - reducedHeight) / 2;
+            return { left: x, right: x + reducedWidth, top: y, bottom: y + reducedHeight };
         }
 
         document.addEventListener('keydown', (event) => {
             let left = parseInt(window.getComputedStyle(player).left);
             const step = 10; // This is the step size for each key press
-
-            if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') {
-                left -= step; // Move left
-            } else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'D') {
-                left += step; // Move right
-            }
-
-            // Keep the player within the game area bounds
+            if (event.key === 'ArrowLeft' || event.key === 'a' || event.key === 'A') left -= step;
+            else if (event.key === 'ArrowRight' || event.key === 'd' || event.key === 'D') left += step;
             left = Math.max(0, Math.min(left, gameArea.offsetWidth - player.offsetWidth));
             player.style.left = `${left}px`;
         });
-
     </script>
-
 </body>
-
 </html>
