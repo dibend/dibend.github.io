@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Emoji Pong Game</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #startButton {
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #scoreboard {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            cursor: move;
+            background-color: limegreen;
+            border: 1px solid black;
+        }
+
+        :fullscreen {
+            canvas {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button id="startButton">Start Game</button>
+    <div id="scoreboard"></div>
+    <canvas id="pongCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('pongCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const paddleWidth = 10;
+        const paddleHeight = 100;
+        const ballRadius = 20;
+        const ballSpeedX = 2;
+        const ballSpeedY = 2;
+        const emojis = ["🟠", "🔵", "🟢", "🟣", "🟡", "⚪", "⚫", "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"];
+        let selectedEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+        let playerScore = 0;
+        let aiScore = 0;
+        const startButton = document.getElementById('startButton');
+        const scoreboard = document.getElementById('scoreboard');
+
+        const playerPaddle = {
+            x: 0,
+            y: canvas.height / 2 - paddleHeight / 2,
+            width: paddleWidth,
+            height: paddleHeight,
+            dy: 0,
+            dragging: false
+        };
+
+        const aiPaddle = {
+            x: canvas.width - paddleWidth,
+            y: canvas.height / 2 - paddleHeight / 2,
+            width: paddleWidth,
+            height: paddleHeight,
+            speed: 1.5
+        };
+
+        const ball = {
+            x: canvas.width / 2,
+            y: canvas.height / 2,
+            radius: ballRadius,
+            speedX: ballSpeedX,
+            speedY: ballSpeedY
+        };
+
+        function resizeCanvas() {
+            const ratio = 800 / 400;
+            const width = window.innerWidth;
+            const height = window.innerWidth / ratio;
+            canvas.width = width > 800 ? 800 : width;
+            canvas.height = height > 400 ? 400 : height;
+            playerPaddle.y = canvas.height / 2 - paddleHeight / 2;
+            aiPaddle.x = canvas.width - paddleWidth;
+            aiPaddle.y = canvas.height / 2 - paddleHeight / 2;
+            ball.x = canvas.width / 2;
+            ball.y = canvas.height / 2;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        startButton.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        function updateScoreboard() {
+            scoreboard.innerHTML = `Player: ${playerScore} | AI: ${aiScore}`;
+        }
+
+        function drawPaddle(paddle) {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+        }
+
+        function drawBall() {
+            ctx.font = '30px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(selectedEmoji, ball.x, ball.y);
+        }
+
+        function changeEmoji() {
+            selectedEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        }
+
+        function moveBall() {
+            ball.x += ball.speedX;
+            ball.y += ball.speedY;
+
+            if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+                ball.speedY = -ball.speedY;
+                changeEmoji();
+            }
+
+            if (ball.x - ball.radius < playerPaddle.x + playerPaddle.width && ball.y > playerPaddle.y && ball.y < playerPaddle.y + playerPaddle.height) {
+                ball.speedX = -ball.speedX;
+                changeEmoji();
+            } else if (ball.x + ball.radius > aiPaddle.x && ball.y > aiPaddle.y && ball.y < aiPaddle.y + aiPaddle.height) {
+                ball.speedX = -ball.speedX;
+                changeEmoji();
+            }
+
+            if (ball.x + ball.radius < 0) {
+                aiScore++;
+                updateScoreboard();
+                ball.x = canvas.width / 2;
+                ball.y = canvas.height / 2;
+                ball.speedX = ballSpeedX;
+                ball.speedY = ballSpeedY;
+                changeEmoji();
+            } else if (ball.x - ball.radius > canvas.width) {
+                playerScore++;
+                updateScoreboard();
+                ball.x = canvas.width / 2;
+                ball.y = canvas.height / 2;
+                ball.speedX = ballSpeedX;
+                ball.speedY = ballSpeedY;
+                changeEmoji();
+            }
+        }
+
+        function moveAiPaddle() {
+            if (ball.y > aiPaddle.y + aiPaddle.height / 2) {
+                aiPaddle.y += aiPaddle.speed;
+            } else if (ball.y < aiPaddle.y + aiPaddle.height / 2) {
+                aiPaddle.y -= aiPaddle.speed;
+            }
+        }
+
+        function getMousePos(canvas, evt) {
+            var rect = canvas.getBoundingClientRect();
+            var scaleX = canvas.width / rect.width;    // relationship bitmap vs. element for X
+            var scaleY = canvas.height / rect.height;  // relationship bitmap vs. element for Y
+
+            return {
+                x: (evt.clientX - rect.left) * scaleX,  // scale mouse coordinates after they have
+                y: (evt.clientY - rect.top) * scaleY    // been adjusted to be relative to element
+            }
+        }
+
+        function handleMouseDown(e) {
+            var mousePos = getMousePos(canvas, e);
+            if (mousePos.y > playerPaddle.y && mousePos.y < playerPaddle.y + playerPaddle.height) {
+                playerPaddle.dragging = true;
+            }
+        }
+
+        function handleMouseUp(e) {
+            playerPaddle.dragging = false;
+        }
+
+        function handleMouseMove(e) {
+            if (playerPaddle.dragging) {
+                var mousePos = getMousePos(canvas, e);
+                playerPaddle.y = mousePos.y - paddleHeight / 2;
+                playerPaddle.y = Math.max(Math.min(playerPaddle.y, canvas.height - paddleHeight), 0);
+            }
+        }
+
+        canvas.addEventListener('mousedown', handleMouseDown);
+        canvas.addEventListener('mouseup', handleMouseUp);
+        canvas.addEventListener('mousemove', handleMouseMove);
+
+        let gameStarted = false;
+
+        function initializeGame() {
+            updateScoreboard();
+            resizeCanvas();
+        }
+
+        function startGame() {
+            if (!gameStarted) {
+                gameStarted = true;
+                gameLoop();
+            }
+        }
+
+        function gameLoop() {
+            if (!gameStarted) return; // Prevent game loop if not started
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawPaddle(playerPaddle);
+            drawPaddle(aiPaddle);
+            drawBall();
+            moveBall();
+            moveAiPaddle();
+            requestAnimationFrame(gameLoop);
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error trying to enable fullscreen mode: ${err.message}`);
+                    // Fallback: Start the game even if fullscreen fails
+                    startGame();
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function onFullScreenChange() {
+            if (document.fullscreenElement) {
+                startGame();
+            }
+        }
+
+        document.addEventListener('fullscreenchange', onFullScreenChange);
+
+        startButton.addEventListener('click', toggleFullScreen);
+
+        initializeGame(); // Initialize the game, but don't start the loop
+    </script>
+</body>
+
+</html>
