@@ -107,6 +107,7 @@
             countdownDisplay.textContent = countdown;
             countdownDisplay.style.display = 'block';
             startButton.style.display = 'none';
+            document.getElementById('frequencyInput').style.display = 'none';
 
             countdownInterval = setInterval(() => {
                 countdown--;
