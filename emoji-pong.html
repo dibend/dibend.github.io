@@ -18,27 +18,29 @@
             padding: 10px 20px;
             font-size: 20px;
             cursor: pointer;
+            z-index: 2; /* Ensure it's above the canvas */
         }
 
         #scoreboard {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             font-size: 20px;
-            margin-bottom: 10px;
+            z-index: 2; /* Ensure it's above the canvas */
+            margin: 10px 0; /* Add some space from the top */
         }
 
         canvas {
-            background: #eee;
             display: block;
             cursor: move;
-            background-color: limegreen;
+            background-color: pink;
             border: 1px solid black;
         }
 
-        :fullscreen {
-            canvas {
-                width: 100%;
-                height: 100%;
-            }
+        :fullscreen canvas {
+            display: block;
         }
     </style>
 </head>
@@ -55,8 +57,8 @@
         const paddleWidth = 10;
         const paddleHeight = 100;
         const ballRadius = 20;
-        const ballSpeedX = 2;
-        const ballSpeedY = 2;
+        const ballSpeedX = 3;
+        const ballSpeedY = 3;
         const emojis = ["🟠", "🔵", "🟢", "🟣", "🟡", "⚪", "⚫", "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"];
         let selectedEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
@@ -79,7 +81,7 @@
             y: canvas.height / 2 - paddleHeight / 2,
             width: paddleWidth,
             height: paddleHeight,
-            speed: 1.5
+            speed: 2.5
         };
 
         const ball = {
@@ -91,11 +93,31 @@
         };
 
         function resizeCanvas() {
-            const ratio = 800 / 400;
-            const width = window.innerWidth;
-            const height = window.innerWidth / ratio;
-            canvas.width = width > 800 ? 800 : width;
-            canvas.height = height > 400 ? 400 : height;
+            const targetAspectRatio = 16 / 9;
+            let newWidth, newHeight;
+
+            // Determine the new dimensions based on the screen's aspect ratio
+            const screenAspectRatio = window.innerWidth / window.innerHeight;
+            if (screenAspectRatio > targetAspectRatio) {
+                // Screen is wider than 16:9, add letterboxing on the sides
+                newHeight = window.innerHeight;
+                newWidth = newHeight * targetAspectRatio;
+            } else {
+                // Screen is narrower than 16:9 (or equal), add letterboxing on the top and bottom
+                newWidth = window.innerWidth;
+                newHeight = newWidth / targetAspectRatio;
+            }
+
+            // Set the new width and height of the canvas
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+
+            // Center the canvas on the screen
+            canvas.style.position = 'absolute';
+            canvas.style.left = ((window.innerWidth - newWidth) / 2) + 'px';
+            canvas.style.top = ((window.innerHeight - newHeight) / 2) + 'px';
+
+            // Update game elements based on new dimensions
             playerPaddle.y = canvas.height / 2 - paddleHeight / 2;
             aiPaddle.x = canvas.width - paddleWidth;
             aiPaddle.y = canvas.height / 2 - paddleHeight / 2;
@@ -106,8 +128,13 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
         startButton.addEventListener('click', () => {
             if (!document.fullscreenElement) {
+                startButton.style.display = 'none';
                 document.documentElement.requestFullscreen();
             } else {
                 if (document.exitFullscreen) {
@@ -213,6 +240,41 @@
         canvas.addEventListener('mousedown', handleMouseDown);
         canvas.addEventListener('mouseup', handleMouseUp);
         canvas.addEventListener('mousemove', handleMouseMove);
+
+        // Add touch event listeners
+        canvas.addEventListener('touchstart', handleTouchStart, false);
+        canvas.addEventListener('touchend', handleTouchEnd, false);
+        canvas.addEventListener('touchmove', handleTouchMove, false);
+
+        // Touch event handlers
+        function handleTouchStart(e) {
+            e.preventDefault(); // Prevents additional mouse event handling
+            let touchPos = getTouchPos(canvas, e);
+            if (touchPos.y > playerPaddle.y && touchPos.y < playerPaddle.y + playerPaddle.height) {
+                playerPaddle.dragging = true;
+            }
+        }
+
+        function handleTouchEnd(e) {
+            playerPaddle.dragging = false;
+        }
+
+        function handleTouchMove(e) {
+            if (playerPaddle.dragging) {
+                let touchPos = getTouchPos(canvas, e);
+                playerPaddle.y = touchPos.y - paddleHeight / 2;
+                playerPaddle.y = Math.max(Math.min(playerPaddle.y, canvas.height - paddleHeight), 0);
+            }
+        }
+
+        // Helper function to get touch position
+        function getTouchPos(canvas, evt) {
+            var rect = canvas.getBoundingClientRect();
+            return {
+                x: (evt.touches[0].clientX - rect.left),
+                y: (evt.touches[0].clientY - rect.top)
+            };
+        }
 
         let gameStarted = false;
 
