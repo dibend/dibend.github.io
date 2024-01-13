@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcade Game Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            margin-bottom: 40px;
+        }
+        header h1 {
+            color: #ffcc00;
+            text-shadow: 3px 3px #000;
+        }
+        .game-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .game-tile {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #ffcc00;
+            border-radius: 10px;
+            margin: 10px;
+            background: #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .game-tile:hover {
+            transform: scale(1.1);
+        }
+        .game-icon {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+        .game-title {
+            color: #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Arcade Game Portal</h1>
+    </header>
+    <div class="game-container">
+        <div class="game-tile" onclick="location.href='/dragon-game';">
+            <img src="dragon.png" alt="Dragon Game" class="game-icon">
+            <div class="game-title">Dragon Game</div>
+        </div>
+        <div class="game-tile" onclick="location.href='/emoji-pong';">
+            <img src="emoji-pong.png" alt="Emoji Pong" class="game-icon">
+            <div class="game-title">Emoji Pong</div>
+        </div>
+        <div class="game-tile" onclick="location.href='/sheep-game';">
+            <img src="sheep.png" alt="Sheep and Wolf Game" class="game-icon">
+            <div class="game-title">Sheep and Wolf</div>
+        </div>
+        <div class="game-tile" onclick="location.href='/pumpkin';">
+            <img src="pumpkin.png" alt="Pumpkin Picking" class="game-icon">
+            <div class="game-title">Pumpkin Picking</div>
+        </div>
+    </div>
+</body>
+</html>
