@@ -4,13 +4,15 @@
 <head>
     <title>Emoji Pong Game</title>
     <style>
-        body {
+        html, body {
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
+            overflow: hidden; /* Prevents scrollbars */
+            place-items: center;
         }
 
         #startButton {
@@ -37,6 +39,8 @@
             cursor: move;
             background-color: pink;
             border: 1px solid black;
+            max-height: 100vh; /* Example, adjust as needed */
+            max-width: calc(100vh * 16 / 9); /* Maintain aspect ratio */
         }
 
         :fullscreen canvas {
@@ -57,8 +61,8 @@
         const paddleWidth = 10;
         const paddleHeight = 100;
         const ballRadius = 20;
-        const ballSpeedX = 3;
-        const ballSpeedY = 3;
+        const ballSpeedX = 2.8;
+        const ballSpeedY = 2.8;
         const emojis = ["🟠", "🔵", "🟢", "🟣", "🟡", "⚪", "⚫", "😀", "😃", "😄", "😁", "😆", "😅", "😂", "🤣", "😊", "😇", "🙂", "🙃", "😉", "😌", "😍", "🥰", "😘", "😗", "😙", "😚", "😋", "😛", "😝", "😜", "🤪", "🤨", "🧐", "🤓", "😎", "🥸", "🤩", "🥳", "😏", "😒", "😞", "😔", "😟", "😕", "🙁", "☹️", "😣", "😖", "😫", "😩", "🥺", "😢", "😭", "😤", "😠", "😡", "🤬", "🤯", "😳", "🥵", "🥶", "😱", "😨", "😰", "😥", "😓", "🤗", "🤔", "🤭", "🤫", "🤥", "😶", "😐", "😑", "😬", "🙄", "😯", "😦", "😧", "😮", "😲", "🥱", "😴", "🤤", "😪", "😵", "🤐", "🥴", "🤢", "🤮", "🤧", "😷", "🤒", "🤕", "🤑", "🤠", "😈", "👿", "👹", "👺", "🤡", "💩", "👻", "💀", "☠️", "👽", "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾"];
         let selectedEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
