@@ -164,7 +164,7 @@
       <br/>
       The domain you were redirected from may be for sale or rent. Email offers to <a href="mailto:domains@njweb.solutions">domains@njweb.solutions</a>`
 
-    var certsText = `
+    var Text = `
       <h1>Certificates</h1>
       <hr>
       <div class="underline">
@@ -450,11 +450,12 @@
       prevPage = function () {
         pf();
       };
+    }
 
-      function dataAcq() {
-        var pageTextDiv = $("#pageText");
-        if (loaded) {
-          pageTextDiv.fadeOut(300, function () {
+    function dataAcq() {
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
           pageTextDiv.html(dataAcqText);
           pageTextDiv.fadeIn(300);
         });
