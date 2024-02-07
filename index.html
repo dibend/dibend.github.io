@@ -452,14 +452,14 @@
       };
 
       function dataAcq() {
-      var pageTextDiv = $("#pageText");
-      if (loaded) {
-        pageTextDiv.fadeOut(300, function () {
+        var pageTextDiv = $("#pageText");
+        if (loaded) {
+          pageTextDiv.fadeOut(300, function () {
           pageTextDiv.html(dataAcqText);
           pageTextDiv.fadeIn(300);
         });
       } else {
-        $("#pageText").html(certsText)
+        $("#pageText").html(dataAcqText)
         loaded = true;
       }
       $(".active").attr('class', '');
