@@ -492,10 +492,32 @@
       hoverPop();
       history.pushState(null, null, '/dataAcquisition');
       nextPage = function () {
-        home();
+        about();
       };
       prevPage = function () {
         certs();
+      };
+    }
+
+    function about() {
+      var pageTextDiv = $("#pageText");
+      if (loaded) {
+        pageTextDiv.fadeOut(300, function () {
+          pageTextDiv.html(aboutText);
+          pageTextDiv.fadeIn(300);
+        });
+      } else {
+        $("#pageText").html(aboutText)
+        loaded = true;
+      }
+      $(".active").attr('class', '');
+      hoverPop();
+      history.pushState(null, null, '/about');
+      nextPage = function () {
+        home();
+      };
+      prevPage = function () {
+        dataAcq();
       };
     }
   </script>
@@ -703,6 +725,7 @@
       </div>
       <ul class="nav navbar-nav">
         <li id="homeNav" class="active"><a onclick="home();">Home</a></li>
+        <li id="aboutNav"><a onclick="about();">About</a></li>
         <li id="webNav"><a onclick="web();">Web</a></li>
         <li id="appsNav"><a onclick="apps();">Apps</a></li>
         <li id="pfNav"><a onclick="pf();">Portfolio</a></li>
