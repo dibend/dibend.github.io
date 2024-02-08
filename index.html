@@ -162,7 +162,7 @@
     var domainsText = `
       <h1>Domains</h1>
       <br/>
-      The domain you were redirected from may be for sale or rent. Email offers to <a href="mailto:domains@njweb.solutions">domains@njweb.solutions</a>`
+      The domain you were redirected from may be for sale or rent. Email offers to <a href="mailto:domains@njweb.solutions">domains@njweb.solutions</a>`;
 
     var certsText = `
       <h1>Certificates</h1>
@@ -182,12 +182,37 @@
         <a href="https://www.linkedin.com/learning/certificates/97d41db7dcc1d1453664cd06f5c2d0e55ddbf4f3fff129052984c4aa8269d26b">Learning Python - LinkedIn</a><br><br>
         <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/UQYLYTDQ29RD">DevOps on AWS Specialization - Amazon Web Services</a><br><br>
         <a href="https://www.coursera.org/account/accomplishments/certificate/T2CQWQNPYLQ2">Foundations: Data, Data, Everywhere - Google</a>
-      </div>`
+      </div>`;
 
     var dataAcqText = `
       <h1>Data Acquisition</h1>
       <hr>
-      NJWeb.Solutions can acquire data from across the internet for sales leads, et cetera.`
+      NJWeb.Solutions can acquire data from across the internet for sales leads, et cetera.`;
+
+    var aboutText = `
+      <h1>Welcome to NJWeb.Solutions</h1>
+      <p>Founded by David DiBenedetto, a passionate programmer and IT specialist, NJWeb.Solutions is dedicated to building technological solutions that empower businesses and individuals alike. Our journey began in 2016 in New Providence, NJ, fueled by a vision to harness the transformative power of software development and digital marketing to address the unique challenges faced by our clients.</p>
+      <hr>
+      <h2>Our Mission</h2>
+      <p>At NJWeb.Solutions, our mission is to create impactful, efficient, and innovative digital solutions that drive success for our clients. We believe in the power of technology to solve complex problems, enhance operational efficiency, and create new opportunities for businesses in the digital age. Our team is committed to delivering customized solutions that align with our clients' goals and exceed their expectations.</p>
+      <hr>
+      <h2>What Sets Us Apart</h2>
+      <p>Our unique approach to software development and digital marketing sets us apart in a crowded field. We combine deep technical expertise with a client-centric philosophy, ensuring that every project we undertake is tailored to meet the specific needs and objectives of our clients. From developing a Battery and Supercapacitor Management System for Bitmain Antminer Bitcoin Miners to co-engineering a thermostat product that utilizes advanced temperature sensor systems, our portfolio showcases our ability to innovate and deliver results.</p>
+      <hr>
+      <h2>Client Success Stories</h2>
+      <p>At NJWeb.Solutions, our track record of delivering innovative and impactful solutions is evidenced by our diverse range of successful projects. These include:</p>
+      <ul>
+        <li>Battery and Supercapacitor Management System for Bitmain Antminer Bitcoin Miners: An innovative project that utilized Raspberry Pis and Arduino voltage sensors to optimize the efficiency of cryptocurrency mining operations.</li>
+        <li>Comprehensive Business Financing Application: Developed to streamline the underwriting process by automating bank and credit checks, significantly reducing the time and complexity involved in securing business financing.</li>
+        <li>Bitmain Antminer Bitcoin Miner Thermostat Product (Thermohashostat): A cutting-edge solution co-engineered to precisely control the temperature of spaces using a Raspberry Pi-based Node.js web server with advanced temperature sensor systems. This project showcases our ability to integrate hardware and software to create practical, real-world solutions.</li>
+        <li>Alexa Skill for Market Data Retrieval: Collaborated with an Amazon UX expert to develop an Alexa Skill that enables users to access market data, manage watchlists, and voice-activate portfolio data through the Alexa app. This project highlights our expertise in voice-enabled technologies and our ability to create user-friendly, interactive tools.</li>
+      </ul>
+      <hr>
+      <h2>Our Future Goals</h2>
+      <p>Looking ahead, NJWeb.Solutions is poised for growth. Our goal is to secure major software development and licensing contracts, as well as hosting and other IT-related contracts. We are committed to expanding our reach, innovating our services, and continuing to provide unparalleled support to our clients.</p>
+      <hr>
+      <h2>Join Us on Our Journey</h2>
+      <p>At NJWeb.Solutions, we're more than just a technology company; we're a team of dreamers, thinkers, and creators dedicated to making a difference. We invite you to join us on this exciting journey as we continue to push the boundaries of what's possible with technology. Together, we can create solutions that not only meet the needs of today but also pave the way for a brighter, more connected future.</p>`;
 
     var nextPage;
     var prevPage;
@@ -604,16 +629,20 @@
         transform: translateX(0) translateY(0);
         opacity: .7;
       }
+
       25% {
         transform: translateX(50px) translateY(-20px);
       }
+
       50% {
         transform: translateX(100px) translateY(0);
         opacity: .4;
       }
+
       75% {
         transform: translateX(50px) translateY(20px);
       }
+
       100% {
         transform: translateX(0) translateY(0);
         opacity: 1;
@@ -627,7 +656,8 @@
 
     @media (max-width: 768px) {
       .bi-cloud-check {
-        width: 50vw; /* Smaller size for mobile devices */
+        width: 50vw;
+        /* Smaller size for mobile devices */
         height: auto;
       }
     }
@@ -636,9 +666,12 @@
       aspect-ratio: 16 / 9;
       position: relative;
       overflow: hidden;
-      width: 100%; /* Full width */
-      max-width: 1280px; /* Maximum width of the iframe */
-      margin: 0 auto; /* Center the container */
+      width: 100%;
+      /* Full width */
+      max-width: 1280px;
+      /* Maximum width of the iframe */
+      margin: 0 auto;
+      /* Center the container */
     }
 
     hr {
@@ -650,8 +683,13 @@
     }
 
     @keyframes shiftColor {
-      0% {background-position: 100% 0;}
-      100% {background-position: 0 0;}
+      0% {
+        background-position: 100% 0;
+      }
+
+      100% {
+        background-position: 0 0;
+      }
     }
   </style>
 
