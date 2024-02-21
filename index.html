@@ -221,7 +221,7 @@
     var sponsorText=`
       <h1>Please Sponsor my Open-Source Work</h1>
       <hr>
-      <iframe src="https://github.com/sponsors/dibend/card" title="Sponsor dibend" height="225" width="600" style="border: 0;"></iframe>`;
+      <iframe id="sponsoriframe" src="https://github.com/sponsors/dibend/card" title="Sponsor dibend" height="225" width="600" style="border: 0;"></iframe>`;
 
     var nextPage;
     var prevPage;
@@ -746,6 +746,10 @@
       100% {
         background-position: 0 0;
       }
+    }
+
+    #sponsoriframe {
+      max-width: 90%;
     }
   </style>
 
