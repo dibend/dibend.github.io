@@ -4,63 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NJWeb.Solutions Odoo Services</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            color: #ffdf00; /* Gold text */
+            background-color: #000; /* Black background */
         }
-        .video, .service {
-            margin-bottom: 20px;
+        .gold-bg {
+            background-color: #ffdf00; /* Gold background */
+            color: #000; /* Black text */
         }
-        iframe {
-            width: 560px;
-            height: 315px;
-        }
-        @media (max-width: 600px) {
-            iframe {
-                width: 100%;
-                height: auto;
-            }
+        .container {
+            padding-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>NJWeb.Solutions Odoo Services & Tutorials</h1>
-    
-    <section class="service">
-        <h2>Custom Odoo Solutions</h2>
-        <p>At NJWeb.Solutions, we specialize in customizing Odoo to fit your business perfectly. From on-premises deployments to cloud-based solutions, our team ensures your Odoo implementation is seamless, efficient, and fully tailored to your needs.</p>
-    </section>
-    
-    <!-- Embedding selected professional tutorials -->
-    <section class="video">
-        <h2>Odoo 101: Getting Started</h2>
-        <iframe src="https://www.youtube.com/embed/Tn07KORAX5E" frameborder="0" allowfullscreen></iframe>
-    </section>
-    
-    <section class="video">
-        <h2>Sales Basics and Your First Quotation</h2>
-        <iframe src="https://www.youtube.com/embed/TXkb2z5Ohf8" frameborder="0" allowfullscreen></iframe>
-    </section>
-    
-    <section class="video">
-        <h2>Navigate in Odoo</h2>
-        <iframe src="https://www.youtube.com/embed/DrOYTFtHU4Y" frameborder="0" allowfullscreen></iframe>
-    </section>
-    
-    <section class="video">
-        <h2>Odoo Software Tutorial for Beginners</h2>
-        <iframe src="https://www.youtube.com/embed/mQp6YbDNEFM" frameborder="0" allowfullscreen></iframe>
-    </section>
-    
-    <section class="service">
-        <h2>Why Choose NJWeb.Solutions?</h2>
-        <p>Our extensive experience with Odoo ensures that you get the most out of this powerful platform. Whether you need a complete ERP solution, CRM capabilities, or custom app development, NJWeb.Solutions is here to elevate your business with Odoo.</p>
-    </section>
-    
+    <div class="container text-center">
+        <h1 class="gold-bg p-3">NJWeb.Solutions Odoo Services</h1>
+        <p class="lead mt-4">Leverage our proprietary data and expertise for your Odoo deployment, whether on-prem or in the cloud.</p>
+        
+        <!-- Videos Section -->
+        <div class="mt-5">
+            <h2>Featured Odoo Tutorials</h2>
+            <!-- Placeholder for video iframes -->
+            <div class="embed-responsive embed-responsive-16by9 my-3">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Tn07KORAX5E" allowfullscreen></iframe>
+            </div>
+            <div class="embed-responsive embed-responsive-16by9 my-3">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/DrOYTFtHU4Y" allowfullscreen></iframe>
+            </div>
+            <!-- Add more iframes for other videos -->
+        </div>
+        
+        <!-- Custom Data Section -->
+        <div class="mt-5 gold-bg p-4">
+            <h3>Custom Solutions with NJWeb.Solutions Data</h3>
+            <p>Enhance your Odoo experience with our exclusive, pre-populated data, tailored specifically to your business needs.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
