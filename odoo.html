@@ -13,6 +13,23 @@
         .cta a { color: #FFD700; font-size: 20px; }
         .animate__animated.animate__bounce { --animate-duration: 2s; }
         iframe { max-width: 90%; }
+        hr {
+            border: 0;
+            height: 2px;
+            background-size: 200% 100%;
+            background-image: linear-gradient(to right, black 25%, gold 50%, black 75%);
+            animation: shiftColor 2s infinite linear;
+        }
+
+        @keyframes shiftColor {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -20,22 +37,23 @@
         <h1 class="animate__animated animate__bounce">Odoo Solutions by NJWeb.Solutions</h1>
         <p class="lead animate__animated animate__fadeInUp">Unlock the full potential of your business with custom Odoo solutions tailored to your needs.</p>
         <p>Odoo offers a comprehensive suite of business management applications, including CRM, eCommerce, accounting, and inventory, all seamlessly integrated into a single, user-friendly platform. With Odoo, businesses of all sizes can streamline operations, enhance productivity, and drive growth through data-driven insights. Whether you're looking to manage projects, nurture customer relationships, or expand your online presence, Odoo's modular design allows for customization to fit your specific needs. Let NJWeb.Solutions help you harness the full power of Odoo to transform your business today.</p>
+        <br><hr><br>
+        <p>Supercharge your sales with our prepopulated Odoo CRM/ERP solution, packed with thousands of verified contacts for email marketing, SMS, and phone calls. Save time and effort by starting with a ready-made database, and watch your business grow with targeted marketing campaigns. Don't miss out on this opportunity to transform your sales and take your business to new heights!</p>
+        <br><hr><br>
         <div class="video">
             <h2>Getting Started with Odoo</h2>
             <iframe class="animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/Tn07KORAX5E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        
+        <hr>
         <div class="video">
             <h2>Sales Basics and Your First Quotation</h2>
             <iframe class="animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/TXkb2z5Ohf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-        
+        <hr>
         <div class="cta">
             <p class="animate__animated animate__bounce">Ready to transform your business with Odoo? Contact us today!</p>
             <a href="tel:+1 (908) 577-6850" class="animate__animated animate__bounce">Call Us</a> | <a href="mailto:david@njwebsolutions.net" class="animate__animated animate__bounce">Email Us</a>
         </div>
     </div>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
 </html>
