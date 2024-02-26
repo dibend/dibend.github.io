@@ -1,34 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Odoo Solutions by NJWeb.Solutions</title>
     <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "eyjn69kzmj");
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "eyjn69kzmj");
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="nj.png" type="image/png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <style>
-        body { 
+        body {
             background-color: #40444b;
             color: #FFD700;
             font-family: "Ubuntu", sans-serif;
             font-weight: 400;
             font-style: normal;
+            font-size: 2rem;
         }
-        .container { max-width: 960px; margin: auto; padding: 20px; }
-        .video { margin-bottom: 20px; }
-        .cta { text-align: center; margin-top: 40px; }
-        .cta a { color: #FFD700; font-size: 20px; }
-        .animate__animated.animate__bounce { --animate-duration: 2s; }
-        iframe { max-width: 90%; }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .video {
+            margin-bottom: 20px;
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta a {
+            color: #FFD700;
+            font-size: 20px;
+        }
+
+        .animate__animated.animate__bounce {
+            --animate-duration: 2s;
+        }
+
+        iframe {
+            max-width: 90%;
+        }
+
         hr {
             border: 0;
             height: 2px;
@@ -64,59 +94,157 @@
             font-size: 20px;
             text-decoration: none;
         }
+
+        button {
+        display: inline-block;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #000;
+        color: #ffd700;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        animation: wiggle 2s infinite alternate;
+    }
+    
+    @keyframes wiggle {
+        0% {
+            transform: rotate(2deg);
+        }
+        100% {
+            transform: rotate(-2deg);
+        }
+    }
+    
+    button:hover {
+        transform: scale(1.45);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1 class="animate__animated animate__bounce">Odoo Solutions by NJWeb.Solutions</h1>
         <hr>
-        <iframe width="315" height="560"
-            src="https://www.youtube.com/embed/IImfkSzMXX4"
-            title="YouTube video player"
+        <iframe width="315" height="560" src="https://www.youtube.com/embed/IImfkSzMXX4" title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
         </iframe>
         <div class="odoo-explanation">
             <h2>What is Odoo?</h2>
-            <p>Odoo is an all-in-one management software that offers a range of business applications forming a complete suite of enterprise management applications. It encompasses CRM, eCommerce, accounting, inventory, point of sale, project management, etc. Odoo's integrated applications are designed to meet the needs of companies, regardless of their size or budget. The flexibility of Odoo is such that apps can be added according to the growth of your company, adding one application at a time as your needs evolve and your customer base grows.</p>
+            <p>Odoo is an all-in-one management software that offers a range of business applications forming a complete
+                suite of enterprise management applications. It encompasses CRM, eCommerce, accounting, inventory, point
+                of sale, project management, etc. Odoo's integrated applications are designed to meet the needs of
+                companies, regardless of their size or budget. The flexibility of Odoo is such that apps can be added
+                according to the growth of your company, adding one application at a time as your needs evolve and your
+                customer base grows.</p>
             <h2>How NJWeb.Solutions Deploys Odoo</h2>
-            <p>NJWeb.Solutions specializes in deploying Odoo both on-premises and in the cloud, tailored to meet the specific requirements of our customers. For cloud deployments, we leverage Bitnami, which simplifies the process of deploying applications and development stacks in the cloud. Bitnami packages make it incredibly easy to deploy Odoo in a cloud environment, ensuring that our customers can start with their Odoo applications quickly and securely. Whether you prefer the control of an on-premises deployment or the flexibility of the cloud, NJWeb.Solutions has the expertise to get your Odoo solution up and running seamlessly.</p>
+            <p>NJWeb.Solutions specializes in deploying Odoo both on-premises and in the cloud, tailored to meet the
+                specific requirements of our customers. For cloud deployments, we leverage Bitnami, which simplifies the
+                process of deploying applications and development stacks in the cloud. Bitnami packages make it
+                incredibly easy to deploy Odoo in a cloud environment, ensuring that our customers can start with their
+                Odoo applications quickly and securely. Whether you prefer the control of an on-premises deployment or
+                the flexibility of the cloud, NJWeb.Solutions has the expertise to get your Odoo solution up and running
+                seamlessly.</p>
         </div>
         <hr>
-        <p class="lead animate__animated animate__fadeInUp">Unlock the full potential of your business with custom Odoo solutions tailored to your needs.</p>
-        <p>Odoo offers a comprehensive suite of business management applications, including CRM, eCommerce, accounting, and inventory, all seamlessly integrated into a single, user-friendly platform. With Odoo, businesses of all sizes can streamline operations, enhance productivity, and drive growth through data-driven insights. Whether you're looking to manage projects, nurture customer relationships, or expand your online presence, Odoo's modular design allows for customization to fit your specific needs. Let NJWeb.Solutions help you harness the full power of Odoo to transform your business today.</p>
-        <br><hr><br>
-        <p>Supercharge your sales with our prepopulated Odoo CRM/ERP solution, packed with thousands of verified contacts for email marketing, SMS, and phone calls. Save time and effort by starting with a ready-made database, and watch your business grow with targeted marketing campaigns. Don't miss out on this opportunity to transform your sales and take your business to new heights!</p>
-        <br><hr><br>
+        <p class="lead animate__animated animate__fadeInUp">Unlock the full potential of your business with custom Odoo
+            solutions tailored to your needs.</p>
+        <p>Odoo offers a comprehensive suite of business management applications, including CRM, eCommerce, accounting,
+            and inventory, all seamlessly integrated into a single, user-friendly platform. With Odoo, businesses of all
+            sizes can streamline operations, enhance productivity, and drive growth through data-driven insights.
+            Whether you're looking to manage projects, nurture customer relationships, or expand your online presence,
+            Odoo's modular design allows for customization to fit your specific needs. Let NJWeb.Solutions help you
+            harness the full power of Odoo to transform your business today.</p>
+        <br>
+        <hr><br>
+        <p>Supercharge your sales with our prepopulated Odoo CRM/ERP solution, packed with thousands of verified
+            contacts for email marketing, SMS, and phone calls. Save time and effort by starting with a ready-made
+            database, and watch your business grow with targeted marketing campaigns. Don't miss out on this opportunity
+            to transform your sales and take your business to new heights!</p>
+        <br>
+        <hr><br>
         <div class="video">
             <h2>Getting Started with Odoo</h2>
-            <iframe class="animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/Tn07KORAX5E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="animate__animated animate__fadeInUp" width="560" height="315"
+                src="https://www.youtube.com/embed/Tn07KORAX5E" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
         </div>
         <hr>
         <div class="video">
             <h2>Sales Basics and Your First Quotation</h2>
-            <iframe class="animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/TXkb2z5Ohf8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="animate__animated animate__fadeInUp" width="560" height="315"
+                src="https://www.youtube.com/embed/TXkb2z5Ohf8" frameborder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
         </div>
         <hr>
         <div class="video">
             <h2>Email Marketing with Odoo</h2>
-            <iframe class="animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/9mlIIAoHD0E?si=7MuUIyjLQJ6Ie7Yh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="animate__animated animate__fadeInUp" width="560" height="315"
+                src="https://www.youtube.com/embed/9mlIIAoHD0E?si=7MuUIyjLQJ6Ie7Yh" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
         </div>
         <hr>
         <div class="video">
             <h2>Why Odoo by NJWeb.Solutions?</h2>
-            <iframe class="animate__animated animate__fadeInUp" width="560" height="315" src="https://www.youtube.com/embed/DmcQUdBuxm8?si=1OsNmHd5YkJJsxVw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe class="animate__animated animate__fadeInUp" width="560" height="315"
+                src="https://www.youtube.com/embed/DmcQUdBuxm8?si=1OsNmHd5YkJJsxVw" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
         </div>
         <hr>
         <div class="cta">
-            <p class="animate__animated animate__bounce">Ready to transform your business with Odoo? Contact us today!</p>
+            <p class="animate__animated animate__bounce">Ready to transform your business with Odoo? Contact us today!
+            </p>
         </div>
-        <br><hr><br>
+        <hr>
+        <div class="booking">
+            <h2>Book an Appointment</h2>
+
+            <form id="appointmentForm" action="https://globesold.com/odoo-appointment" method="POST">
+                <label for="name">Your Name:</label><br>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" required><br>
+
+                <label for="datetime">Date and Time:</label><br>
+                <input type="text" id="datetime" name="datetime" required><br>
+
+                <button type="submit">Book a Free Consultation</button>
+            </form>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    flatpickr("#datetime", {
+                        enableTime: true,
+                        dateFormat: "Y-m-d H:i",
+                        minDate: "today", // Optional: restrict selection to today and later
+                        // Add more configuration options as needed
+                    });
+                });
+            </script>
+        </div>
+        <hr><br><br>
+
         <div class="fixed-footer">
-            <a href="tel:+19085776850" class="animate__animated animate__bounce">Call: +1 (908) 577-6850</a> | 
-            <a href="mailto:David@NJWebSolutions.net" class="animate__animated animate__bounce">Email: David@NJWebSolutions.net</a>
+            <a href="tel:+19085776850" class="animate__animated animate__bounce">Call: +1 (908) 577-6850</a> |
+            <a href="mailto:David@NJWebSolutions.net" class="animate__animated animate__bounce">Email:
+                David@NJWebSolutions.net</a>
         </div>
     </div>
 </body>
+
 </html>
