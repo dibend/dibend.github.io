@@ -42,22 +42,36 @@
             margin: 0 auto;
         }
 
-        hr.animated {
+        hr {
             border: 0;
-            border-top: 3px dotted #a4c639;
+            border-top: 3px dotted black;
             width: 80%;
             position: relative;
-        }
-        hr.animated::before {
-            content: "";
-            position: absolute;
-            top: -3px;
-            left: 0;
+            overflow: hidden;
             height: 3px;
-            width: 100%;
-            background: linear-gradient(90deg, transparent, #a4c639, transparent);
-            animation: move 2s linear infinite;
+            transition: border-color 1s ease-in-out;
         }
+
+        hr.animate {
+            border-color: #a4c639;
+        }
+
+        @keyframes colorChange {
+            0% {
+                border-color: black;
+            }
+            50% {
+                border-color: #a4c639;
+            }
+            100% {
+                border-color: black;
+            }
+        }
+        
+        hr {
+            animation: colorChange 2s infinite;
+        }
+        
         @keyframes move {
             0% {
                 left: -100%;
