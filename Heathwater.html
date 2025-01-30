@@ -14,6 +14,19 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        .ratio-9x16 {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.78%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+        .ratio-9x16 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
