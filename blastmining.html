@@ -3,63 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Request Hashrate</title>
+  <title>LTC Hashrate Rentals</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0;
-      padding: 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f1115;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #1c1f26;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
     }
     form {
-      background: #fff;
-      padding: 25px;
-      max-width: 500px;
-      margin: auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background: #1e2129;
+      padding: 30px;
+      border-radius: 12px;
+      margin-top: 30px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
     }
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0 20px;
-      border: 1px solid #ccc;
+      border: none;
       border-radius: 6px;
+      background: #2b2f3a;
+      color: #fff;
     }
     button {
-      padding: 10px 20px;
-      background: #007bff;
-      color: #fff;
+      background: #00c38a;
+      color: white;
+      padding: 12px 20px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 1em;
     }
     button:hover {
-      background: #0056b3;
+      background: #00a973;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 0.95em;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
 
-  <h2 style="text-align:center;">Request Hashrate</h2>
+  <header>
+    <h1>Rent GPU & ASIC Hashrate → Auto Swap to LTC</h1>
+    <p>SHA-256 | KHeavyHash | KawPow → Paid in Litecoin</p>
+  </header>
 
-  <form action="/submit-offer" method="POST">
-    <label for="name">Your Name</label>
-    <input type="text" id="name" name="name" required />
+  <div class="section">
+    <h2>Submit Offer</h2>
+    <form action="/submit-offer" method="POST">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" required />
 
-    <label for="email">Email Address</label>
-    <input type="email" id="email" name="email" required />
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required />
 
-    <label for="algorithm">Algorithm</label>
-    <input type="text" id="algorithm" name="algorithm" placeholder="e.g. SHA-256" required />
+      <label for="algorithm">Algorithm</label>
+      <input type="text" id="algorithm" name="algorithm" placeholder="e.g. SHA-256, KHeavyHash" required />
 
-    <label for="hashrate">Desired Hashrate</label>
-    <input type="text" id="hashrate" name="hashrate" placeholder="e.g. 100 TH/s" required />
+      <label for="hashrate">Desired Hashrate</label>
+      <input type="text" id="hashrate" name="hashrate" placeholder="e.g. 100 TH/s" required />
 
-    <label for="duration">Rental Duration</label>
-    <input type="text" id="duration" name="duration" placeholder="e.g. 30 days" required />
+      <label for="duration">Rental Duration</label>
+      <input type="text" id="duration" name="duration" placeholder="e.g. 7 days" required />
 
-    <button type="submit">Submit Offer</button>
-  </form>
+      <button type="submit">Submit Offer</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Ethereum Classic Mining Dashboard</h2>
+    <iframe src="/etc" title="ETC Dashboard"></iframe>
+    <div class="note">Live GPU activity from our ETC mining rigs.</div>
+  </div>
+
+  <div class="section">
+    <h2>Unmineable LTC Tracker</h2>
+    <iframe src="/unmineable-LTC" title="Unmineable LTC"></iframe>
+    <div class="note">All rewards are auto-swapped and paid in LTC.</div>
+  </div>
 
 </body>
 </html>
