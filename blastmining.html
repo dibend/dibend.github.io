@@ -1,123 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Blast Mining by NJWeb.Solutions</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Request Hashrate</title>
   <style>
     body {
-      background: #0f0f0f;
-      color: #f2f2f2;
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
+      background: #f0f0f0;
+      padding: 30px;
     }
-
-    header {
-      padding: 2em;
-      background: #1f1f1f;
-    }
-
-    header h1 {
-      font-size: 2.5em;
-      margin: 0;
-      color: #00ff99;
-    }
-
-    .btn-container {
-      margin: 2em auto;
-    }
-
-    .animated-btn {
-      display: inline-block;
-      margin: 1em;
-      padding: 1em 2em;
-      background: linear-gradient(135deg, #00ff99, #0077ff);
-      color: #fff;
-      font-size: 1.2em;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
-    }
-
-    .animated-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 30px rgba(0, 255, 153, 0.9);
-    }
-
-    .form-container {
-      background: #1b1b1b;
-      padding: 2em;
+    form {
+      background: #fff;
+      padding: 25px;
       max-width: 500px;
-      margin: 3em auto;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-
-    .form-container h2 {
-      color: #00ffcc;
-      margin-bottom: 1em;
-    }
-
-    input[type="text"],
-    input[type="number"] {
+    input {
       width: 100%;
-      padding: 1em;
-      margin: 1em 0;
-      border: none;
+      padding: 10px;
+      margin: 10px 0 20px;
+      border: 1px solid #ccc;
       border-radius: 6px;
-      background: #2a2a2a;
-      color: #fff;
     }
-
-    input[type="submit"] {
-      background: #00cc88;
+    button {
+      padding: 10px 20px;
+      background: #007bff;
       color: #fff;
       border: none;
-      padding: 1em 2em;
       border-radius: 6px;
-      font-size: 1.1em;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
-
-    input[type="submit"]:hover {
-      background: #00ffaa;
-    }
-
-    footer {
-      padding: 2em;
-      background: #111;
-      color: #777;
+    button:hover {
+      background: #0056b3;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Blast Mining by NJWeb.Solutions</h1>
-</header>
+  <h2 style="text-align:center;">Request Hashrate</h2>
 
-<div class="btn-container">
-  <a href="https://njweb.solutions/etc" class="animated-btn">Ethereum Classic Dashboard</a>
-  <a href="https://njweb.solutions/unmineable-LTC" class="animated-btn">Unmineable LTC Stats</a>
-</div>
+  <form action="/submit-offer" method="POST">
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" required />
 
-<div class="form-container">
-  <h2>Submit a Hashrate Bid (Bitcoin)</h2>
-  <form action="https://blastlabs.net/mining" method="post">
-    <input type="text" name="btc_address" placeholder="Your Bitcoin Address" required>
-    <input type="number" name="btc_bid" placeholder="Bid Amount (BTC)" step="0.00000001" required>
-    <input type="text" name="hashrate_offer" placeholder="Hashrate Desired & Algorithm (e.g., 500 MH/s)" required>
-    <input type="submit" value="Submit Bid">
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="algorithm">Algorithm</label>
+    <input type="text" id="algorithm" name="algorithm" placeholder="e.g. SHA-256" required />
+
+    <label for="hashrate">Desired Hashrate</label>
+    <input type="text" id="hashrate" name="hashrate" placeholder="e.g. 100 TH/s" required />
+
+    <label for="duration">Rental Duration</label>
+    <input type="text" id="duration" name="duration" placeholder="e.g. 30 days" required />
+
+    <button type="submit">Submit Offer</button>
   </form>
-</div>
-
-<footer>
-  &copy; 2025 NJWeb.Solutions | All rights reserved.
-</footer>
 
 </body>
 </html>
