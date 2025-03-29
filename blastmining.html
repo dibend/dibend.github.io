@@ -3,23 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LTC Hashrate Rentals</title>
+  <title>BlastLabs Hashrate Rentals</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #0f1115;
-      color: #f1f1f1;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d0f14;
+      color: #e4e4e4;
       margin: 0;
       padding: 0;
     }
     header {
-      background: #1c1f26;
-      padding: 20px;
+      background: #1a1c23;
+      padding: 30px 20px;
       text-align: center;
     }
-    h1 {
+    header h1 {
       margin: 0;
       font-size: 2em;
+    }
+    header p {
+      font-size: 1em;
+      color: #aaa;
+      margin-top: 10px;
     }
     .section {
       padding: 40px 20px;
@@ -27,20 +32,21 @@
       margin: auto;
     }
     form {
-      background: #1e2129;
+      background: #1e222a;
       padding: 30px;
       border-radius: 12px;
       margin-top: 30px;
       box-shadow: 0 0 12px rgba(0,0,0,0.3);
     }
-    input {
+    input, select, textarea {
       width: 100%;
       padding: 12px;
       margin: 10px 0 20px;
       border: none;
       border-radius: 6px;
-      background: #2b2f3a;
+      background: #2a2f3c;
       color: #fff;
+      font-size: 1em;
     }
     button {
       background: #00c38a;
@@ -52,7 +58,7 @@
       font-size: 1em;
     }
     button:hover {
-      background: #00a973;
+      background: #00a773;
     }
     iframe {
       width: 100%;
@@ -61,52 +67,62 @@
       border-radius: 10px;
       margin-top: 20px;
     }
-    .note {
-      margin-top: 10px;
-      font-size: 0.95em;
-      color: #ccc;
+    a {
+      color: #00c38a;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Rent GPU & ASIC Hashrate → Auto Swap to LTC</h1>
-    <p>SHA-256 | KHeavyHash | KawPow → Paid in Litecoin</p>
+    <h1>Rent Hashrate from BlastLabs</h1>
+    <p>SHA-256 · KHeavyHash · KawPow · Ethash · Etchash</p>
+    <p>Mine BTC, Kaspa, Ravencoin, ETC — or auto-swap to BTC / LTC / DOGE / SHIB · NiceHash supported</p>
   </header>
 
   <div class="section">
-    <h2>Submit Offer</h2>
-    <form action="/submit-offer" method="POST">
+    <h2>Submit Your Rental Offer</h2>
+    <form action="https://blastlabs.net/mining" method="POST">
       <label for="name">Your Name</label>
       <input type="text" id="name" name="name" required />
 
       <label for="email">Email Address</label>
       <input type="email" id="email" name="email" required />
 
-      <label for="algorithm">Algorithm</label>
-      <input type="text" id="algorithm" name="algorithm" placeholder="e.g. SHA-256, KHeavyHash" required />
+      <label for="algorithm">Mining Algorithm</label>
+      <select id="algorithm" name="algorithm" required>
+        <option value="SHA-256">SHA-256</option>
+        <option value="KHeavyHash">KHeavyHash</option>
+        <option value="KawPow">KawPow</option>
+        <option value="Ethash">Ethash (ETH forks, CLO, EXP)</option>
+        <option value="Etchash">Etchash (Ethereum Classic)</option>
+      </select>
 
       <label for="hashrate">Desired Hashrate</label>
-      <input type="text" id="hashrate" name="hashrate" placeholder="e.g. 100 TH/s" required />
+      <input type="text" id="hashrate" name="hashrate" placeholder="e.g. 100 TH/s or 500 MH/s" required />
 
       <label for="duration">Rental Duration</label>
       <input type="text" id="duration" name="duration" placeholder="e.g. 7 days" required />
+
+      <label for="notes">Anything else we should know?</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Include payout address, preferred pool, NiceHash wallet, goals, or questions..."></textarea>
 
       <button type="submit">Submit Offer</button>
     </form>
   </div>
 
   <div class="section">
-    <h2>Ethereum Classic Mining Dashboard</h2>
-    <iframe src="/etc" title="ETC Dashboard"></iframe>
-    <div class="note">Live activity from our ETC mining rigs.</div>
+    <h2>Live Hardware: Ethereum Classic Mining</h2>
+    <iframe src="/etc" title="ETC Mining Dashboard"></iframe>
   </div>
 
   <div class="section">
-    <h2>Unmineable LTC Tracker</h2>
-    <iframe src="/unmineable-LTC" title="Unmineable LTC"></iframe>
-    <div class="note">All rewards are auto-swapped and paid in LTC.</div>
+    <h2>Live Hardware: LTC Auto-Swap Monitoring</h2>
+    <iframe src="/unmineable-LTC" title="Unmineable LTC Dashboard"></iframe>
   </div>
 
 </body>
