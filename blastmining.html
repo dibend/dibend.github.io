@@ -1,289 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" href="https://blastnotifications.com/img/rocket.png" type="image/png" />
-  <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "eyjn69kzmj");
-  </script>
-  <title>Blast Crypto Mining</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blast Mining by NJWeb.Solutions</title>
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
+      background: #0f0f0f;
+      color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
       text-align: center;
-      font-family: 'Ubuntu', sans-serif;
-      text-shadow: 2px 2px black;
-      background: repeating-radial-gradient(circle, #2C2F33, #23272A 20%);
-      background-attachment: fixed;
-      color: #dbf227;
-      animation: fade-in-bloom 2s ease-in-out;
     }
 
-    div {
-      font-size: 1.5rem;
+    header {
+      padding: 2em;
+      background: #1f1f1f;
     }
 
-    h1 {
-      font-size: 4.5rem;
-      color: #2C2F33;
-      text-shadow: 0 0 7px #f9d41b, 0 0 10px #f9d41b, 0 0 21px #f9d41b, 0 0 42px #dbf227, 0 0 82px #dbf227, 0 0 92px #dbf227, 0 0 102px #dbf227, 0 0 151px #dbf227;
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+      color: #00ff99;
     }
 
-    h3 {
-      color: #f9d41b;
-      text-shadow: 4px 4px 4px black;
+    .btn-container {
+      margin: 2em auto;
     }
 
-    #big {
-      color: #45f91b;
-      font-size: 6rem;
-      transition: all 1s ease-in-out;
-    }
-
-    button {
-      font-family: Inconsolata, monospace;
-      font-size: 1.5rem;
-      background-color: #45f91b;
-      color: black;
-      text-shadow: 2px 2px #dbf227;
-      font-weight: bold;
-      box-shadow: 3px 3px 3px black;
-      padding: 15px;
-    }
-
-    @media (min-width: 768px) {
-      button:hover {
-        box-shadow: 5px 5px 5px black;
-        border: solid black;
-        animation: shake 1s;
-      }
-
-      #big:hover {
-        font-size: 6.5rem;
-        text-shadow: 5px 5px #f9d41b;
-      }
-
-      #rigs:hover {
-        box-shadow: 0px 10px 10px 10px black;
-        border: solid #45f91b;
-      }
-    }
-
-    @keyframes shake {
-      0% {
-        transform: translateX(0);
-      }
-
-      25% {
-        transform: translateX(10px);
-      }
-
-      50% {
-        transform: translateX(-10px);
-      }
-
-      100% {
-        transform: translateX(0px);
-      }
-    }
-
-    #scroll {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-    }
-
-    button:active {
-      box-shadow: 5px 5px 5px #45f91b;
-      border: solid black;
-      background-color: #f9d41b;
-      animation: wiggle 75ms infinite;
-      animation-timing-function: ease;
-    }
-
-    @keyframes wiggle {
-      0% {
-        transform: translate(2px, 0);
-      }
-
-      50% {
-        transform: translate(-2px, 0);
-      }
-
-      100% {
-        transform: translate(2px, 0);
-      }
-    }
-
-    ::selection {
-      background: black;
-      color: #45f91b;
-    }
-
-    .mine {
-      animation-name: mine-animation;
-      animation-duration: 2.5s;
-      animation-iteration-count: infinite;
-      transform-origin: 70% 70%;
+    .animated-btn {
       display: inline-block;
+      margin: 1em;
+      padding: 1em 2em;
+      background: linear-gradient(135deg, #00ff99, #0077ff);
+      color: #fff;
+      font-size: 1.2em;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.6);
     }
 
-    @keyframes mine-animation {
-      0% {
-        transform: rotate(0.0deg)
-      }
-
-      10% {
-        transform: rotate(14.0deg)
-      }
-
-      20% {
-        transform: rotate(-8.0deg)
-      }
-
-      30% {
-        transform: rotate(14.0deg)
-      }
-
-      40% {
-        transform: rotate(-4.0deg)
-      }
-
-      50% {
-        transform: rotate(10.0deg)
-      }
-
-      60% {
-        transform: rotate(0.0deg)
-      }
-
-      100% {
-        transform: rotate(0.0deg)
-      }
+    .animated-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px rgba(0, 255, 153, 0.9);
     }
 
-    #rigs {
-      height: 400px;
-      border-radius: 30%;
-      max-width: 90%;
-      max-height: 50vh;
-      box-shadow: 0px 10px 10px 10px #45f91b;
-      border: solid black;
-      transition: all 300ms ease-in-out;
+    .form-container {
+      background: #1b1b1b;
+      padding: 2em;
+      max-width: 500px;
+      margin: 3em auto;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
 
-    #rigs:active {
-      border: solid #f9d41b;
-      box-shadow: 0px 10px 10px 10px #f9d41b;
+    .form-container h2 {
+      color: #00ffcc;
+      margin-bottom: 1em;
     }
 
-    #coinmarketcap-widget-marquee {
-      max-width: 700px;
-      margin: auto;
-      background-color: #dbf227;
-      text-shadow: none;
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 1em;
+      margin: 1em 0;
+      border: none;
+      border-radius: 6px;
+      background: #2a2a2a;
+      color: #fff;
     }
 
-    @keyframes fade-in-bloom {
-      0% {
-        opacity: 0;
-        filter: brightness(1) blur(20px)
-      }
+    input[type="submit"] {
+      background: #00cc88;
+      color: #fff;
+      border: none;
+      padding: 1em 2em;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
 
-      10% {
-        opacity: 1;
-        filter: brightness(2) blur(10px)
-      }
+    input[type="submit"]:hover {
+      background: #00ffaa;
+    }
 
-      100% {
-        opacity: 1;
-        filter: brightness(1) blur(0)
-      }
+    footer {
+      padding: 2em;
+      background: #111;
+      color: #777;
     }
   </style>
 </head>
-
 <body>
-  <div>
-    <h1>Blast Crypto Mining</h1>
-    <div id="big">₿ 💥<br />🚀 <span class="mine">⛏️</span></div><br /><br />
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
-    <div id="coinmarketcap-widget-marquee" coins="1,1027,1321,2577,20396,3709,21045,328" currency="USD" theme="light"
-      transparent="true" show-symbol-logo="true"></div><br /><br />
-    <a href="/etc"><button>Ethereum Classic Mining Stats</button></a><br /><br />
-    <div id="img"><img id="rigs" onclick="next();" src="rigs/1.jpg" alt="rigs" /></div>
-    <h3>hardware</h3>
-    3x Bitmain E9 Pro<br />
-    2x iPollo V1 Mini <br />
-    2x iPollo V1 Mini Classic<br />
-    1x iPollo G1 Mini<br />
-    1x Nvidia RTX 3080<br />
-    1x Nvidia RTX 3060<br />
-    1x AMD Radeon RX 6700XT<br />
-    2x AMD Radeon RX 5700XT<br />
-    1x AMD Radeon RX 6600<br />
-    1x AMD Radeon RX 5600M<br />
-    2x AMD Ryzen 7 5800 8-Core Processor<br />
-    1x AMD Ryzen 7 1700 8-Core Processor<br />
-    1x AMD Ryzen 7 3700X 8-Core Processor<br />
-    1x AMD Ryzen 5 3600XT 6-Core Processor<br />
-    1x AMD Ryzen 7 4800H 8-Core Processor<br /><br />
-    <script>
-      var imgDiv = document.getElementById('img');
-      var rig = 2;
-      function changeImage() {
-        if (rig > 8) {
-          rig = 1;
-        }
-        imgDiv.innerHTML = `<img id="rigs" onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
-        rig++;
-      }
-      var imgInterval = setInterval(changeImage, 2000);
-      function preloadImages(array) {
-        if (!preloadImages.list) {
-          preloadImages.list = [];
-        }
-        var list = preloadImages.list;
-        for (var i = 0; i < array.length; i++) {
-          var img = new Image();
-            img.onload = function () {
-              var index = list.indexOf(this);
-              if (index !== -1) {
-                list.splice(index, 1);
-              }
-            }
-            list.push(img);
-            img.src = array[i];
-          }
-        }
-        preloadImages(["rigs/2.jpg", "rigs/3.jpg", "rigs/4.jpg", "rigs/5.jpg", "rigs/6.jpg", "rigs/7.jpg", "rigs/8.jpg"]);
-        function next() {
-          clearInterval(imgInterval);
-          rig++;
-          if (rig > 8) {
-            rig = 1;
-          }
-          imgDiv.innerHTML = `<img id="rigs" onclick="next();" src="rigs/${rig}.jpg" alt="rigs" />`;
-          imgInterval = setInterval(changeImage, 2000);
-        }
-      </script>
-    </div>
-  </div>
-</body>
 
+<header>
+  <h1>Blast Mining by NJWeb.Solutions</h1>
+</header>
+
+<div class="btn-container">
+  <a href="https://njweb.solutions/etc" class="animated-btn">Ethereum Classic Dashboard</a>
+  <a href="https://njweb.solutions/unmineable-LTC" class="animated-btn">Unmineable LTC Stats</a>
+</div>
+
+<div class="form-container">
+  <h2>Submit a Hashrate Bid (Bitcoin)</h2>
+  <form action="https://blastlabs.net/mining" method="post">
+    <input type="text" name="btc_address" placeholder="Your Bitcoin Address" required>
+    <input type="number" name="btc_bid" placeholder="Bid Amount (BTC)" step="0.00000001" required>
+    <input type="text" name="hashrate_offer" placeholder="Hashrate Offered (e.g., 500 MH/s)" required>
+    <input type="submit" value="Submit Bid">
+  </form>
+</div>
+
+<footer>
+  &copy; 2025 NJWeb.Solutions | All rights reserved.
+</footer>
+
+</body>
 </html>
