@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heathwater Research</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script type="text/javascript">
     (function (c, l, a, r, i, t, y) {
       c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
@@ -13,7 +13,7 @@
     })(window, document, "clarity", "script", "eyjn69kzmj");
     </script>
     <style>
-        body { 
+        body {
             color: gold;
             background: url(img/bg.gif);
             background-attachment: fixed;
@@ -24,7 +24,7 @@
         .ratio-9x16 {
             position: relative;
             width: 100%;
-            padding-bottom: 177.78%; /* 16:9 aspect ratio */
+            padding-bottom: 177.78%; /* 9:16 aspect ratio */
             height: 0;
         }
         .ratio-9x16 iframe {
@@ -34,6 +34,14 @@
             width: 100%;
             height: 100%;
         }
+        @media (prefers-reduced-motion: no-preference) {
+            h1, h2, h3, p, iframe, form {
+                transition: all 0.6s ease-in-out;
+            }
+            h1:hover, h2:hover, h3:hover, p:hover {
+                transform: scale(1.02);
+            }
+        }
     </style>
     <link rel="icon" type="image/x-icon" href="/img/heathwater.ico">
 </head>
@@ -41,157 +49,102 @@
     <div class="container">
         <div class="row">
             <div class="col-12 mb-4">
-                <h1>Heathwater Research</h1>
+                <h1><i class="fas fa-flask"></i> Heathwater Research</h1>
                 <p>Welcome to Heathwater Investment Research by NJWeb.Solutions.</p>
                 <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/XauqD16wOXc" 
-                            title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/XauqD16wOXc" title="YouTube video" allowfullscreen></iframe>
                 </div>
             </div>
             <hr>
             <div class="col-12">
                 <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/_DemUvL_Wvc" 
-                            title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/_DemUvL_Wvc" title="YouTube video" allowfullscreen></iframe>
                 </div>
             </div>
             <hr>
             <div class="col-12">
                 <div class="ratio ratio-9x16">
-                    <iframe src="https://www.youtube.com/embed/LfAoBsDLOMk" 
-                            title="YouTube video" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/LfAoBsDLOMk" title="YouTube video" allowfullscreen></iframe>
                 </div>
             </div>
+        </div><hr>
+
+    <!-- Removed Hugging Face spaces -->
+
+    <!-- Qualifying Questionnaire Form -->
+    <h2 class="mt-5"><i class="fas fa-clipboard-list"></i> Qualifying Questionnaire for Custom Investment Research Software Development</h2>
+    <form action="https://blastlabs.net/heathwater" method="POST" class="mt-4">
+        <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
-        <hr>
-        <h3>FRED Data 3D Correlation</h3>
-        <p>Visualizes a 3D correlation matrix using Federal Reserve Economic Data (FRED).</p>
-        <details>
-          <summary><strong>Manual</strong></summary>
-          <p>1. Choose correlation variables.<br>2. Click "Generate" to view the 3D correlation matrix.</p>
-        </details>
-        <iframe src="https://dibend-fred-data-3d-correlation.hf.space" frameborder="0" width="90%" height="777"></iframe>
-        <hr>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email Address</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
 
-        <h3>FRED Data</h3>
-        <p>Provides access to various U.S. Federal Reserve economic datasets.</p>
-        <details>
-          <summary><strong>Manual</strong></summary>
-          <p>1. Select economic indicators.<br>2. Adjust time frames.<br>3. Export data or view trends.</p>
-        </details>
-        <iframe src="https://dibend-fred-data.hf.space" frameborder="0" width="90%" height="777"></iframe>
-        <hr>
+        <div class="mb-3">
+            <label for="company" class="form-label">Company Name</label>
+            <input type="text" class="form-control" id="company" name="company">
+        </div>
 
-        <h3>USA State Real Estate Grapher</h3>
-        <p>Allows users to visualize housing price trends across different U.S. states.</p>
-        <details>
-          <summary><strong>Manual</strong></summary>
-          <p>1. Select a U.S. state.<br>2. Choose a time period.<br>3. View price trends and download results.</p>
-        </details>
-        <iframe src="https://dibend-usa-state-real-estate-grapher.hf.space" frameborder="0" width="90%" height="777"></iframe>
-        <hr>
+        <div class="mb-3">
+            <label for="industry" class="form-label">Industry</label>
+            <select class="form-control" id="industry" name="industry">
+                <option value="finance">Finance</option>
+                <option value="real_estate">Real Estate</option>
+                <option value="technology">Technology</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
 
-        <h3>US State Zip Code 3D Correlation Matrix</h3>
-        <p>Analyzes real estate data correlations between U.S. states and ZIP codes using a 3D matrix.</p>
-        <details>
-          <summary><strong>Manual</strong></summary>
-          <p>1. Enter State Abrrev.<br>2. Generate the 3D matrix.</p>
-        </details>
-        <iframe src="https://dibend-us-state-zip-code-3d-correlation-matrix.hf.space" frameborder="0" width="90%" height="777"></iframe>
-        <hr>
+        <div class="mb-3">
+            <label for="investmentExperience" class="form-label">Investment Experience Level</label>
+            <select class="form-control" id="investmentExperience" name="investmentExperience">
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+                <option value="institutional">Institutional Investor</option>
+            </select>
+        </div>
 
-        <h3>US Real Estate LSTM</h3>
-        <p>Utilizes an LSTM machine learning model to predict future real estate trends.</p>
-        <details>
-          <summary><strong>Manual</strong></summary>
-          <p>1. Choose a State.<br>2. Select the number of months in the future to predict. 3. Click "Submit".</p>
-        </details>
-        <iframe src="https://dibend-us-real-estate-lstm.hf.space" frameborder="0" width="90%" height="777"></iframe>
-        <hr>
+        <div class="mb-3">
+            <label for="softwareNeeds" class="form-label">What specific features do you need in the investment research software?</label>
+            <textarea class="form-control" id="softwareNeeds" name="softwareNeeds" rows="4"></textarea>
+        </div>
 
-        <h3>Real Estate Linear Regression</h3>
-        <p>Uses linear regression to forecast housing price trends based on historical data.</p>
-        <details>
-          <summary><strong>Manual</strong></summary>
-          <p>1. Enter a valid 5-digit ZIP code.<br>2. Enter a start year between 2000 and the current year.<br>3. Select a start month from the dropdown.<br>4. Use the slider to select the number of prediction months.<br>5. Click "Submit" to view the forecast.</p>
-        </details>
-        <iframe src="https://dibend-real-estate-linear-regression.hf.space" frameborder="0" width="90%" height="777"></iframe>
-        <hr>
-        
-        <!-- Qualifying Questionnaire Form -->
-        <h2 class="mt-5">Qualifying Questionnaire for Custom Investment Research Software Development</h2>
-        <form action="https://blastlabs.net/heathwater" method="POST" class="mt-4">
-            <div class="mb-3">
-                <label for="name" class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
+        <div class="mb-3">
+            <label for="budget" class="form-label">Estimated Budget Range</label>
+            <select class="form-control" id="budget" name="budget">
+                <option value="under_10k">Under $10,000</option>
+                <option value="10k_50k">$10,000 - $50,000</option>
+                <option value="50k_100k">$50,000 - $100,000</option>
+                <option value="over_100k">Over $100,000</option>
+            </select>
+        </div>
 
-            <div class="mb-3">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" required>
-            </div>
+        <div class="mb-3">
+            <label for="timeline" class="form-label">Expected Implementation Timeline</label>
+            <select class="form-control" id="timeline" name="timeline">
+                <option value="1_month">Within 1 month</option>
+                <option value="3_months">1-3 months</option>
+                <option value="6_months">3-6 months</option>
+                <option value="flexible">Flexible</option>
+            </select>
+        </div>
 
-            <div class="mb-3">
-                <label for="company" class="form-label">Company Name</label>
-                <input type="text" class="form-control" id="company" name="company">
-            </div>
+        <div class="mb-3">
+            <label for="additionalComments" class="form-label">Additional Comments</label>
+            <textarea class="form-control" id="additionalComments" name="additionalComments" rows="3"></textarea>
+        </div>
 
-            <div class="mb-3">
-                <label for="industry" class="form-label">Industry</label>
-                <select class="form-control" id="industry" name="industry">
-                    <option value="finance">Finance</option>
-                    <option value="real_estate">Real Estate</option>
-                    <option value="technology">Technology</option>
-                    <option value="healthcare">Healthcare</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit</button>
+    </form>
+</div>
 
-            <div class="mb-3">
-                <label for="investmentExperience" class="form-label">Investment Experience Level</label>
-                <select class="form-control" id="investmentExperience" name="investmentExperience">
-                    <option value="beginner">Beginner</option>
-                    <option value="intermediate">Intermediate</option>
-                    <option value="advanced">Advanced</option>
-                    <option value="institutional">Institutional Investor</option>
-                </select>
-            </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-            <div class="mb-3">
-                <label for="softwareNeeds" class="form-label">What specific features do you need in the investment research software?</label>
-                <textarea class="form-control" id="softwareNeeds" name="softwareNeeds" rows="4"></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="budget" class="form-label">Estimated Budget Range</label>
-                <select class="form-control" id="budget" name="budget">
-                    <option value="under_10k">Under $10,000</option>
-                    <option value="10k_50k">$10,000 - $50,000</option>
-                    <option value="50k_100k">$50,000 - $100,000</option>
-                    <option value="over_100k">Over $100,000</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="timeline" class="form-label">Expected Implementation Timeline</label>
-                <select class="form-control" id="timeline" name="timeline">
-                    <option value="1_month">Within 1 month</option>
-                    <option value="3_months">1-3 months</option>
-                    <option value="6_months">3-6 months</option>
-                    <option value="flexible">Flexible</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="additionalComments" class="form-label">Additional Comments</label>
-                <textarea class="form-control" id="additionalComments" name="additionalComments" rows="3"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
