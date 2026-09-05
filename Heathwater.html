@@ -4,30 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Heathwater Research</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r);
-      t.async = 1;
-      t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0];
-      y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "eyjn69kzmj");
-    </script>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    >
+
+    <link rel="icon" type="image/x-icon" href="/img/heathwater.ico">
 
     <style>
         body {
+            background: url("img/bg.gif") center center / cover fixed no-repeat;
             color: gold;
-            background: url(img/bg.gif);
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         a {
@@ -38,148 +33,109 @@
             color: white;
         }
 
-        .contact-bar {
-            background: rgba(0, 0, 0, 0.85);
-            border: 2px solid gold;
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin: 15px 0 25px 0;
+        .contact {
             text-align: center;
+            padding: 20px 10px;
             font-size: 1.15rem;
-            font-weight: bold;
         }
 
-        .contact-bar a {
+        .contact a {
             display: inline-block;
-            margin: 6px 14px;
-            color: gold;
-            text-decoration: none;
+            margin: 8px 12px;
         }
 
-        .contact-bar a:hover {
-            color: white;
-            text-decoration: underline;
+        .video {
+            margin-bottom: 30px;
+        }
+
+        .vertical-video {
+            max-width: 500px;
+            margin: 0 auto 30px;
         }
 
         .ratio-9x16 {
             position: relative;
             width: 100%;
             padding-bottom: 177.78%;
-            height: 0;
         }
 
         .ratio-9x16 iframe {
             position: absolute;
-            top: 0;
-            left: 0;
+            inset: 0;
             width: 100%;
             height: 100%;
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-            h1, h2, h3, p, iframe, form {
-                transition: all 0.6s ease-in-out;
-            }
-
-            h1:hover,
-            h2:hover,
-            h3:hover,
-            p:hover {
-                transform: scale(1.02);
-            }
+            border: 0;
         }
     </style>
-
-    <link rel="icon" type="image/x-icon" href="/img/heathwater.ico">
 </head>
 
 <body>
-    <div class="container">
 
-        <!-- TOP CONTACT BAR -->
-        <div class="contact-bar">
-            <a href="tel:+19085776850">
-                <i class="fas fa-phone"></i>
-                Call / Text: (908) 577-6850
-            </a>
+<div class="container py-3">
 
-            <a href="mailto:david@njwebsolutions.net">
-                <i class="fas fa-envelope"></i>
-                david@njwebsolutions.net
-            </a>
-        </div>
+    <div class="contact">
+        <a href="tel:+19085776850">
+            <i class="fas fa-phone"></i>
+            (908) 577-6850
+        </a>
 
-        <div class="row">
-            <div class="col-12 mb-4">
-                <h1>
-                    <i class="fas fa-flask"></i>
-                    Heathwater Research
-                </h1>
-
-                <p>
-                    Welcome to Heathwater Investment Research by NJWeb.Solutions.
-                </p>
-
-                <div class="ratio ratio-16x9">
-                    <iframe
-                        src="https://www.youtube.com/embed/XauqD16wOXc"
-                        title="YouTube video"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="col-12">
-                <div class="ratio ratio-16x9">
-                    <iframe
-                        src="https://www.youtube.com/embed/_DemUvL_Wvc"
-                        title="YouTube video"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-
-            <hr>
-
-            <div class="col-12">
-                <div class="ratio ratio-9x16">
-                    <iframe
-                        src="https://www.youtube.com/embed/LfAoBsDLOMk"
-                        title="YouTube video"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <!-- BOTTOM CONTACT BAR -->
-        <div class="contact-bar">
-            <a href="tel:+19085776850">
-                <i class="fas fa-phone"></i>
-                Call / Text: (908) 577-6850
-            </a>
-
-            <a href="mailto:david@njwebsolutions.net">
-                <i class="fas fa-envelope"></i>
-                david@njwebsolutions.net
-            </a>
-        </div>
-
+        <a href="mailto:david@njwebsolutions.net">
+            <i class="fas fa-envelope"></i>
+            david@njwebsolutions.net
+        </a>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <h1>
+        <i class="fas fa-flask"></i>
+        Heathwater Research
+    </h1>
 
-    <script
-        type="module"
-        src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
-        integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg=="
-        data-cf-beacon='{"version":"2024.11.0","token":"6649b1683f6e4442b4f44783f6f4663a","r":1,"spa":2}'
-        crossorigin="anonymous">
-    </script>
+    <p>
+        Welcome to Heathwater Investment Research by NJWeb.Solutions.
+    </p>
+
+    <div class="ratio ratio-16x9 video">
+        <iframe
+            src="https://www.youtube.com/embed/XauqD16wOXc"
+            title="Heathwater Research Video"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="ratio ratio-16x9 video">
+        <iframe
+            src="https://www.youtube.com/embed/_DemUvL_Wvc"
+            title="Heathwater Research Video"
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <div class="vertical-video">
+        <div class="ratio-9x16">
+            <iframe
+                src="https://www.youtube.com/embed/LfAoBsDLOMk"
+                title="Heathwater Research Vertical Video"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="contact">
+        <a href="tel:+19085776850">
+            <i class="fas fa-phone"></i>
+            (908) 577-6850
+        </a>
+
+        <a href="mailto:david@njwebsolutions.net">
+            <i class="fas fa-envelope"></i>
+            david@njwebsolutions.net
+        </a>
+    </div>
+
+</div>
+
 </body>
 </html>
 ```
