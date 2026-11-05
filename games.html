@@ -3,83 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Neon Breakout, VOIDRUNNER 3D Asteroids, and more free browser games in the NJtek web arcade.">
     <title>Arcade Game Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: 'Press Start 2P', cursive;
+            margin: 0;
+            font-family: 'Press Start 2P', monospace;
             background-color: #000;
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 32px 20px;
         }
-        header {
-            margin-bottom: 40px;
-        }
+        header { margin-bottom: 40px; }
         header h1 {
             color: #ffcc00;
+            font-size: clamp(20px, 4vw, 32px);
+            line-height: 1.6;
             text-shadow: 3px 3px #000;
         }
+        header p { color: #ccc; font: 16px/1.6 Arial, sans-serif; }
         .game-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
         .game-tile {
-            width: 200px;
-            height: 200px;
+            width: 240px;
+            max-width: 100%;
+            min-height: 264px;
+            padding: 22px 14px;
             border: 3px solid #ffcc00;
             border-radius: 10px;
-            margin: 10px;
             background: #222;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            color: #fff;
+            text-decoration: none;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        .game-tile:hover {
-            transform: scale(1.1);
-        }
+        .game-tile:hover { transform: translateY(-6px); background: #303030; }
+        .game-tile:focus-visible { outline: 3px solid #fff; outline-offset: 5px; }
         .game-icon {
             width: 100px;
             height: 100px;
-            margin-bottom: 10px;
+            object-fit: contain;
+            margin-bottom: 18px;
+            flex-shrink: 0;
         }
-        .game-title {
-            color: #ffcc00;
+        .game-title { color: #ffcc00; font-size: 14px; line-height: 1.7; }
+        .game-description { margin-top: 10px; color: #ddd; font: 14px/1.5 Arial, sans-serif; }
+        .breakout { background: radial-gradient(circle at 50% 30%, #123c48, #171e26 75%); }
+        .asteroids { background: radial-gradient(circle at 50% 30%, #29364a, #161b25 75%); }
+        @media (max-width: 560px) {
+            body { padding: 24px 16px; }
+            .game-container { gap: 16px; }
+            .game-tile { width: 100%; max-width: 340px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .game-tile { transition: none; }
+            .game-tile:hover { transform: none; }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Arcade Game Portal</h1>
+        <p>Pick a game. Play right in your browser.</p>
     </header>
-    
-    <div class="game-container">
-        <a href="https://www.njweb.solutions/Neon-Break-Out.html">Neon Break Out</a>
-        <div class="game-tile" onclick="location.href='/dragon-game';">
-            <img src="dragon.png" alt="Dragon Game" class="game-icon">
-            <div class="game-title">Dragon Game</div>
-        </div>
-        <div class="game-tile" onclick="location.href='/emoji-pong';">
-            <img src="emoji-pong.png" alt="Emoji Pong" class="game-icon">
-            <div class="game-title">Emoji Pong</div>
-        </div>
-        <div class="game-tile" onclick="location.href='/sheep-game';">
-            <img src="sheep.png" alt="Sheep and Wolf Game" class="game-icon">
-            <div class="game-title">Sheep and Wolf</div>
-        </div>
-        <div class="game-tile" onclick="location.href='/pumpkin';">
-            <img src="pumpkin.png" alt="Pumpkin Picking" class="game-icon">
-            <div class="game-title">Pumpkin Picking</div>
-        </div>
-        <div class="game-tile" onclick="location.href='/emoji-draw';">
-            <img src="emoji-draw.png" alt="Emoji Drawing Explosion" class="game-icon">
-            <div class="game-title">Emoji Drawing Explosion</div>
-        </div>
-    </div>
+    <main class="game-container" aria-label="Browser games">
+        <a class="game-tile breakout" href="Neon-Break-Out.html">
+            <svg class="game-icon" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <g fill="#5ce4ff">
+                    <rect x="8" y="10" width="24" height="10" rx="2"/>
+                    <rect x="38" y="10" width="24" height="10" rx="2"/>
+                    <rect x="68" y="10" width="24" height="10" rx="2"/>
+                    <rect x="8" y="26" width="24" height="10" rx="2"/>
+                    <rect x="68" y="26" width="24" height="10" rx="2"/>
+                </g>
+                <path d="M50 43 65 58 48 76" fill="none" stroke="#5ce4ff" stroke-width="2" stroke-dasharray="4 4"/>
+                <circle cx="65" cy="58" r="6" fill="#fff"/>
+                <rect x="24" y="84" width="52" height="7" rx="3.5" fill="#5ce4ff"/>
+            </svg>
+            <span class="game-title">Neon Breakout</span>
+            <span class="game-description">Bounce the ball. Clear the bricks.</span>
+        </a>
+        <a class="game-tile asteroids" href="asteriods-around.html">
+            <svg class="game-icon" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+                <g fill="#fff">
+                    <circle cx="12" cy="12" r="1.5"/><circle cx="85" cy="8" r="1"/>
+                    <circle cx="91" cy="62" r="1.5"/><circle cx="8" cy="72" r="1"/>
+                </g>
+                <path d="m66 15 19 3 10 16-8 19-22 2-12-18Z" fill="#354354" stroke="#a9bdce" stroke-width="2"/>
+                <path d="m66 15 5 20 24-1M71 35l-6 20M71 35l16 18" fill="none" stroke="#a9bdce"/>
+                <path d="m14 87 20-49 22 49-22-10Z" fill="#1e3445" stroke="#d5fa63" stroke-width="3" stroke-linejoin="round"/>
+                <path d="M29 86 34 96 39 86M34 29V18" fill="none" stroke="#d5fa63" stroke-width="3"/>
+            </svg>
+            <span class="game-title">3D Asteroids</span>
+            <span class="game-description">VOIDRUNNER: fly, fire, survive.</span>
+        </a>
+        <a class="game-tile" href="/dragon-game">
+            <img src="dragon.png" alt="" class="game-icon" width="100" height="100">
+            <span class="game-title">Dragon Game</span>
+        </a>
+        <a class="game-tile" href="/emoji-pong">
+            <img src="emoji-pong.png" alt="" class="game-icon" width="100" height="100">
+            <span class="game-title">Emoji Pong</span>
+        </a>
+        <a class="game-tile" href="/sheep-game">
+            <img src="sheep.png" alt="" class="game-icon" width="100" height="100">
+            <span class="game-title">Sheep and Wolf</span>
+        </a>
+        <a class="game-tile" href="/pumpkin">
+            <img src="pumpkin.png" alt="" class="game-icon" width="100" height="100">
+            <span class="game-title">Pumpkin Picking</span>
+        </a>
+        <a class="game-tile" href="/emoji-draw">
+            <img src="emoji-draw.png" alt="" class="game-icon" width="100" height="100">
+            <span class="game-title">Emoji Drawing Explosion</span>
+        </a>
+    </main>
 </body>
 </html>
